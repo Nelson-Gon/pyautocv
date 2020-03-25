@@ -49,8 +49,9 @@ cv2.imwrite("random_img_color.png", bgr_image)
 # try to read with load image
 #cv2.imread("original_mountain.jpg", cv2.CV_L)
 import matplotlib.pyplot as plt
-#os.chdir("simplecv")
-original_img = plt.imread("original_mountain.jpg")
+
+
+original_img = plt.imread("simplecv/original_mountain.jpg")
 # get image representation
 img_copy = np.copy(original_img)
 img_copy[0, 0] = [0, 0, 0]
@@ -72,3 +73,72 @@ my_roi = img_copy2[0: 200, 0:200]
 img_copy2[300:500, 300:500] = my_roi
 # essentially just transfers the roi from one point to another
 cv2.imshow('image', img_copy2)
+
+# high performance filter
+from scipy import ndimage
+
+test_kernel = np.array([[-1,-1,-1],
+                         [-1,8,-1],
+                        [-1,-1,-1]])
+
+test_kernel_2 = np.array([[-1, -1, -1, -1, -1],
+                          [-1, 1, 2, 1, -1],
+                          [-1, 1, 2, 1, -1],
+                          [-1, -1, -1, -1, -1]])
+# same dimensions with convolver
+
+k3 = ndimage.convolve(original_img[0,:3], test_kernel)
+k5 = ndimage.convolve(original_img[0, :5], test_kernel_2)
+
+blurred = cv2.GaussianBlur(original_img, (17, 17), 0)
+g_hpf = original_img - blurred
+
+cv2.imshow("3*3",blurred)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# misc
+from scipy import misc
+
+face = misc.face(gray=True)
+
+face[10:13, 20:23]
+
+# change face
+face[100:120] = 255
+x, y = face.shape
+#np.ogrid[1:5, 1:4]
+X, Y = np.ogrid[0:x, 0:y]
+# What's masking?
+# a mask is a small matrix with weights
+# origin of symmetric masks in their center pixel position
+# Convolution
+# For each pixel in an image, apply mask on top of the image with
+# origin lying on that pixel
+# values of each image pixel under the mask multiplied by the values of
+# the corresponding mask weights
+# results are summed to yield a single output placed in the output image
+# at the location of the pixel being processed.
+# layman version
+# a convolution is an element-wise multiplicatin of two matrices followed
+# by a sum
+# Take two matrices X and Y
+# multiply them element wise
+# sum the elements
+mask = (X - x/2)  ** 2 + (Y - y/2) ** 2 > x * y /4
+
+face[mask] = 0
+
+plt.imshow(face)
