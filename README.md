@@ -1,4 +1,5 @@
 **(Semi) Automated Image Processing**
+
 [![DOI](https://zenodo.org/badge/249137364.svg)](https://zenodo.org/badge/latestdoi/249137364)
 ![Test-Package](https://github.com/Nelson-Gon/pyautocv/workflows/Test-Package/badge.svg)
 ![Travis Build](https://travis-ci.com/Nelson-Gon/pyautocv.svg?branch=master)
@@ -22,6 +23,15 @@ or at least reduce the time spent in image (pre)-processing.
 
 **Installing the package**
 
+From pypi:
+
+```
+
+pip install pyautocv
+
+```
+From GitHub
+
 ```
 # only if you can see releases >= 1
 pip install pip install git+https://github.com/Nelson-Gon/pyautocv.git
@@ -31,3 +41,13 @@ cd pyautocv
 python3 setup.py install
 
 ```
+
+**Import**
+
+```
+# or import pyautocv
+from pyautocv import *
+
+```
+
+**Examples**
