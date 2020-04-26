@@ -15,7 +15,7 @@ from version import __version__
 
 __author__ = "Nelson Gonzabato"
 __version__ = __version__
-__all__ = ["simplecv"]
+__all__ = ["pyautocv"]
 
 
 
