@@ -14,9 +14,8 @@ def read_images(directory=None):
         return imread_collection(directory + "/*.jpg")
 
 
-images_list = list(read_images("simplecv"))
-# see length of images
-len(images_list)
+
+
 
 
 # change images to gray scale
@@ -44,7 +43,6 @@ def threshold(image_list,type="simple"):
 
 
 
-thresheld = threshold(images_list)
 
 def convert_thresheld(thresheld_images, original_images):
     original_images = gray_images(original_images)
@@ -54,7 +52,7 @@ def convert_thresheld(thresheld_images, original_images):
     return converted_images
 
 
-thresheld_converted = convert_thresheld(thresheld, images_list)
+
 
 def detect_edges(sobel_operator, image):
     # can use multiple thresholds too
@@ -79,7 +77,7 @@ def detect_edges(sobel_operator, image):
 
     return ndimage.convolve(image, sobel, mode="reflect")
 
-edge_detection = list(map(lambda x: detect_edges("laplace",x), thresheld_converted))
+
 
 def show_images(image_list=None, thresheld=False, image_type="gray", nrows=1, ncols=1):
     """
@@ -110,8 +108,7 @@ def show_images(image_list=None, thresheld=False, image_type="gray", nrows=1, nc
         axes.ravel()[ind].imshow(image_list[ind], cmap=plt_cmap)
         axes.ravel()[ind].set_axis_off()
 
-show_images(convert_thresheld(thresheld_list, images_list),thresheld=True,ncols=2)
 
-show_images(edge_detection,ncols=2,thresheld=True)
+
 
 
