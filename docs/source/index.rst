@@ -8,7 +8,8 @@ Welcome to simplecv's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+
+   readme.rst
 
 
 

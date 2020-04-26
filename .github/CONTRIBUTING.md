@@ -23,7 +23,7 @@ Please also update the docs using `sphinx`
 
 * Make changes and ensure that builds are passing the necessary checks on Travis.
 
-* Update `NEWS.md` to reflect the changes made.
+* Update `changelog.md` to reflect the changes made.
 
 * Do the following:
 
@@ -31,9 +31,10 @@ Please also update the docs using `sphinx`
 
 # The Makefile here is Windows specific
 
-cd docs
+# root of project
 python -m m2r ../README.md
 # answer yes to overwrite
+cd docs
 sphinx-build source build
 # use make on *nix 
 make.bat html
