@@ -1,7 +1,4 @@
-
-
-
-
+from simplecv import *
 images_list = list(read_images("../images"))
 thresheld = threshold(images_list)
 thresheld_converted = convert_thresheld(thresheld, images_list)
