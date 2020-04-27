@@ -14,7 +14,7 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 __author__ = "Nelson Gonzabato"
 __version__ =open('pyautocv/version.py').read().rstrip()
-__all__ = ["pyautocv"]
+__all__ = ["segmentation"]
 
 
 

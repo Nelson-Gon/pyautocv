@@ -24,9 +24,11 @@ class Segmentation(object):
 
         """
         if self.directory is None:
-            return imread_collection("./*.jpg")
+            images_list=imread_collection("./*.jpg")
         else:
-            return imread_collection(self.directory + "/*.jpg")
+            images_list=imread_collection(self.directory + "/*.jpg")
+
+        return list(images_list)
 
     def gray_images(self):
         """
@@ -95,7 +97,7 @@ class Segmentation(object):
 
         return ndimage.convolve(self.convert_thresholded(), kernel, mode="reflect")
 
-    def show_images(self,  thresholded=False, image_type="gray", nrows=1, ncols=1):
+    def show_images(self,  thresholded=False, image_type="gray", nrows=1, ncols=2):
         """
       :param image_type: gray or colored. Defaults to gray
      :param nrows Number of rows to use on plot

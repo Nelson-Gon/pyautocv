@@ -102,11 +102,18 @@ From GitHub
    cd pyautocv
    python3 setup.py install
 
-**Import**
+**Example Usage**
 
 .. code-block::
 
-   # or import pyautocv
-   from pyautocv import *
+   from pyautocv.segmentation import *
+   images_list=Segmentation("images")
+   images_list.show_images(thresholded=False,ncols=2)
 
-**Examples**
+The above will give us the following result:
+
+
+.. image:: ./sample_results/sample_colored.png
+   :target: ./sample_results/sample_colored.png
+   :alt: Sample_colored
+
