@@ -1,5 +1,3 @@
 from pyautocv.segmentation import *
-images_list=Segmentation("images")
-images_list.show_images(thresholded=False)
-images_list.show_images(thresholded=True,operator="laplace")
-
+images_list=Segmentation("images/biology")
+images_list.show_images(thresholded=True,ncols=3,operator="sobel_horizontal")
