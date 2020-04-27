@@ -68,3 +68,26 @@ images_list.show_images(thresholded=True,operator="laplace")
 This results in:
 
 ![sample_thresholded](./sample_results/sample_thresholded.png)
+
+
+Using Prewitt, let's try to see if we can identify potholes in an image:
+
+```
+images_list=Segmentation("images/potholes")
+images_list.show_images()
+
+```
+
+The above gives us:
+
+![Original Potholes](sample_results/potholes_original.png)
+
+Applying Prewitt vertical:
+
+```
+
+images_list.show_images(thresholded=True,ncols=2, operator="prewitt_vertical")
+
+```
+
+![Prewitt Vertical](sample_results/pot_holes.png)
