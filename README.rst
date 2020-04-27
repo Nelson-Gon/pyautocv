@@ -117,3 +117,17 @@ The above will give us the following result:
    :target: ./sample_results/sample_colored.png
    :alt: Sample_colored
 
+
+To show images with thresholding and edge detection,
+
+.. code-block::
+
+   images_list.show_images(thresholded=True,operator="laplace")
+
+This results in:
+
+
+.. image:: ./sample_results/sample_thresholded.png
+   :target: ./sample_results/sample_thresholded.png
+   :alt: sample_thresholded
+

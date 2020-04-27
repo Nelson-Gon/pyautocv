@@ -57,3 +57,14 @@ The above will give us the following result:
 
 
 ![Sample_colored](./sample_results/sample_colored.png)
+
+To show images with thresholding and edge detection,
+
+```
+images_list.show_images(thresholded=True,operator="laplace")
+
+```
+
+This results in:
+
+![sample_thresholded](./sample_results/sample_thresholded.png)

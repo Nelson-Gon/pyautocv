@@ -24,9 +24,9 @@ class Segmentation(object):
 
         """
         if self.directory is None:
-            images_list=imread_collection("./*.jpg")
+            images_list = imread_collection("./*.jpg")
         else:
-            images_list=imread_collection(self.directory + "/*.jpg")
+            images_list = imread_collection(self.directory + "/*.jpg")
 
         return list(images_list)
 
@@ -54,26 +54,27 @@ class Segmentation(object):
         if threshold_method == "simple":
             for shape, image in zip(image_shapes, image_list):
                 reshaped_images.append(image.reshape(shape[0] * shape[1]))
-                for reshaped_image in reshaped_images:
-                    final_images.append(np.where(reshaped_image > reshaped_image.mean(), 1, 0))
+            for reshaped_image in reshaped_images:
+                final_images.append(np.where(reshaped_image > reshaped_image.mean(), 1, 0))
 
         return final_images
 
-    def convert_thresholded(self):
+    def convert_thresholded(self, threshold_method="simple"):
         """
 
         :return: Converts images from thresholding to a shape suitable for viewing
 
         """
         converted_images = []
-        for original, binary in zip(self.gray_images(), self.threshold()):
+        for original, binary in zip(self.read_images(), self.threshold(threshold_method)):
             converted_images.append(binary.reshape(original.shape[0], original.shape[1]))
 
         return converted_images
 
-    def detect_edges(self, operator):
+    def detect_edges(self, operator="laplace", threshold_method="simple"):
         """
 
+        :param threshold_method: method to threshold with
         :param operator: One of sobel_vertical, sobel_horizontal or laplace. Kernels used are available here:
         https://en.wikipedia.org/wiki/Sobel_operator
         :return: Edge detection using sobel vertical, sobel horizontal or laplace. Uses images that have already been
@@ -89,20 +90,29 @@ class Segmentation(object):
 
         elif operator == "sobel_vertical":
             print("Using vertical sobel")
-            kernel = np.array([[-1, 0, 1], [-2, 0, 2],  [-1, 0, 1]])
+            kernel = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
 
         else:
             print("Using laplace")
             kernel = np.array([[1, 1, 1], [1, -8, 1], [1, 1, 1]])
 
-        return ndimage.convolve(self.convert_thresholded(), kernel, mode="reflect")
+        final_images = []
+        for image in self.convert_thresholded(threshold_method):
+            final_images.append(ndimage.convolve(image, kernel, mode="reflect"))
+        return final_images
 
-    def show_images(self,  thresholded=False, image_type="gray", nrows=1, ncols=2):
+
+    def show_images(self, thresholded=False, image_type="gray", nrows=1, ncols=2, operator="laplace",
+                    threshold_method="simple"):
         """
+
+
+        :param threshold_method:
       :param image_type: gray or colored. Defaults to gray
      :param nrows Number of rows to use on plot
      :param ncols Number of columns to use on plot
      :param thresholded Boolean, defaults to False
+     :param operator: operator to detect_edges
      :type nrows int
      :type ncols int
      :type thresholded bool
@@ -117,7 +127,7 @@ class Segmentation(object):
         plt_cmap = "viridis"
 
         if thresholded:
-            image_list = self.detect_edges()
+            image_list = self.detect_edges(operator=operator, threshold_method=threshold_method)
             plt_cmap = plt.gray()
 
         if image_type == "gray" and not thresholded:
