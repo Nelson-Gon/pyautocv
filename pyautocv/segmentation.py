@@ -75,32 +75,27 @@ class Segmentation(object):
         """
 
         :param threshold_method: method to threshold with
-        :param operator: One of sobel_vertical, sobel_horizontal or laplace. Kernels used are available here:
+        :param operator: One of sobel_vertical, sobel_horizontal,prewitt_horizontal,prewitt_vertical or laplace. Kernels used are available here:
         https://en.wikipedia.org/wiki/Sobel_operator
         :return: Edge detection using sobel vertical, sobel horizontal or laplace. Uses images that have already been
         thresholded
 
         """
-        if operator not in ["sobel_horizontal", "sobel_vertical", "laplace"]:
-            raise ValueError("operator should be one of sobel_vertical, sobel_horizontal or laplace")
+        available_operators = ["sobel_horizontal", "sobel_vertical","prewitt_horizontal","prewitt_vertical","laplace"]
+        if operator not in available_operators:
+            raise ValueError("operator should be one of {}".format(available_operators))
 
-        if operator == "sobel_horizontal":
-            print("Using horizontal sobel")
-            kernel = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]])
+        kernels = {'sobel_horizontal': np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]]),
+                   'sobel_vertical': np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]]),
+                   'laplace': np.array([[1, 1, 1], [1, -8, 1], [1, 1, 1]]),
+                   'prewitt_horizontal' : np.array([[1, 0, -1], [1, 0, -1], [1, 0, -1]]),
+                   'prewitt_vertical': np.array([[1, 1, 1], [0, 0, 0], [-1,-1, -1]])}
 
-        elif operator == "sobel_vertical":
-            print("Using vertical sobel")
-            kernel = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
-
-        else:
-            print("Using laplace")
-            kernel = np.array([[1, 1, 1], [1, -8, 1], [1, 1, 1]])
-
+        print("Using {}".format(operator))
         final_images = []
         for image in self.convert_thresholded(threshold_method):
-            final_images.append(ndimage.convolve(image, kernel, mode="reflect"))
+            final_images.append(ndimage.convolve(image, kernels[operator], mode="reflect"))
         return final_images
-
 
     def show_images(self, thresholded=False, image_type="gray", nrows=1, ncols=2, operator="laplace",
                     threshold_method="simple"):
