@@ -18,7 +18,7 @@
 
 **Project Aims**
 
-The goal of simple cv is to provide a simple computer vision(cv) workflow that enables one to automate 
+The goal of pyautocv is to provide a simple computer vision(cv) workflow that enables one to automate 
 or at least reduce the time spent in image (pre)-processing. 
 
 **Installing the package**
