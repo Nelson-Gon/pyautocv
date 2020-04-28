@@ -46,48 +46,67 @@ python3 setup.py install
 
 **Example Usage**
 
+
+
 ```
 from pyautocv.segmentation import *
 images_list=Segmentation("images")
-images_list.show_images(thresholded=False,ncols=2)
+images_list.show_images()
 
 ```
 
 The above will give us the following result:
 
 
-![Sample_colored](./sample_results/sample_colored.png)
+![Sample_colored](./sample_results/images_root.png)
 
-To show images with thresholding and edge detection,
+To use a different filter e.g Laplace,
 
 ```
-images_list.show_images(thresholded=True,operator="laplace")
+images_list.show_images(operator="laplace")
 
 ```
 
 This results in:
 
-![sample_thresholded](./sample_results/sample_thresholded.png)
+![Laplace](./sample_results/root_laplace.png)
 
+Flowers
+```
+
+images_list=Segmentation("images/flowers")
+images_list.show_images(operator="prewitt_vertical")
+
+```
+
+![Flowers](./sample_results/flowers.png)
 
 Using Prewitt, let's try to see if we can identify potholes in an image:
 
 ```
+
 images_list=Segmentation("images/potholes")
-images_list.show_images()
+images_list.show_images(operator="prewitt_vertical")
 
 ```
 
-The above gives us:
+![Prewitt Vertical](sample_results/potholes.png)
 
-![Original Potholes](sample_results/potholes_original.png)
 
-Applying Prewitt vertical:
+Currently available filters:
 
-```
+* Standard Sobel
 
-images_list.show_images(thresholded=True,ncols=2, operator="prewitt_vertical")
+* Standard Prewitt
 
-```
+* Laplacian
 
-![Prewitt Vertical](sample_results/pot_holes.png)
+* Roberts
+
+These more examples are available in [example.py](./examples/example.py)
+
+---
+
+References:
+
+* [Bebis](https://www.cse.unr.edu/~bebis/CS791E/Notes/EdgeDetection.pdf)

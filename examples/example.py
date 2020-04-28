@@ -1,8 +1,14 @@
 from pyautocv.segmentation import *
+# images root
+images_list=Segmentation("images")
+images_list.show_images()
+images_list.show_images(operator="laplace")
+# biology
 images_list=Segmentation("images/biology")
-images_list.show_images(thresholded=True,ncols=3,operator="sobel_horizontal")
-images_list.show_images(thresholded=True,ncols=3,operator="prewitt_horizontal")
-images_list.show_images(thresholded=True,ncols=3,operator="prewitt_vertical")
+len(images_list.read_images())
+images_list.show_images(operator="sobel_horizontal",nrows=2,ncols=3)
+images_list.show_images(operator="prewitt_horizontal", nrows=2, ncols=3)
+images_list.show_images(operator="prewitt_vertical",nrows=2, ncols=3)
 
 # houses
 images_list=Segmentation("images/houses")
@@ -10,9 +16,12 @@ images_list=Segmentation("images/houses")
 images_list.show_images(thresholded=True,operator="prewitt_vertical")
 # random
 images_list=Segmentation("images")
-images_list.show_images(thresholded=False,ncols=2)
+images_list.show_images()
 
 #potholes
 images_list=Segmentation("images/potholes")
-images_list.show_images()
-images_list.show_images(thresholded=True,ncols=2, operator="prewitt_vertical")
+images_list.show_images(operator="prewitt_vertical")
+
+# flowers
+images_list=Segmentation("images/test")
+images_list.show_images(operator="prewitt_vertical")

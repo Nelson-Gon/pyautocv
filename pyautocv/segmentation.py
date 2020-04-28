@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from scipy import ndimage
 from skimage.io import imread_collection
 import numpy as np
+from itertools import chain
 
 
 # init class segmentation
@@ -71,7 +72,7 @@ class Segmentation(object):
 
         return converted_images
 
-    def detect_edges(self, operator="laplace", threshold_method="simple"):
+    def detect_edges(self, operator="laplace",threshold_method="simple"):
         """
 
         :param threshold_method: method to threshold with
@@ -81,32 +82,35 @@ class Segmentation(object):
         thresholded
 
         """
-        available_operators = ["sobel_horizontal", "sobel_vertical","prewitt_horizontal","prewitt_vertical","laplace"]
+        available_operators = ["sobel_horizontal", "sobel_vertical","prewitt_horizontal","prewitt_vertical",
+                               "laplace", "roberts_vertical", "roberts_horizontal"]
         if operator not in available_operators:
             raise ValueError("operator should be one of {}".format(available_operators))
 
         kernels = {'sobel_horizontal': np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]]),
                    'sobel_vertical': np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]]),
+                   'roberts_horizontal': np.array([[1, 0], [0, -1]]), 'roberts_vertical': np.array([[0, 1], [-1, 0]]),
                    'laplace': np.array([[1, 1, 1], [1, -8, 1], [1, 1, 1]]),
-                   'prewitt_horizontal' : np.array([[1, 0, -1], [1, 0, -1], [1, 0, -1]]),
-                   'prewitt_vertical': np.array([[1, 1, 1], [0, 0, 0], [-1,-1, -1]])}
+                   'prewitt_horizontal': np.array([[1, 0, -1], [1, 0, -1], [1, 0, -1]]),
+                   'prewitt_vertical': np.array([[1, 1, 1], [0, 0, 0], [-1, -1, -1]])}
 
         print("Using {}".format(operator))
+
         final_images = []
+
         for image in self.convert_thresholded(threshold_method):
             final_images.append(ndimage.convolve(image, kernels[operator], mode="reflect"))
+
         return final_images
 
-    def show_images(self, thresholded=False, image_type="gray", nrows=1, ncols=2, operator="laplace",
+    def show_images(self, nrows=2, ncols=2, operator="sobel_vertical",
                     threshold_method="simple"):
         """
 
 
-        :param threshold_method:
-      :param image_type: gray or colored. Defaults to gray
+     :param threshold_method:
      :param nrows Number of rows to use on plot
      :param ncols Number of columns to use on plot
-     :param thresholded Boolean, defaults to False
      :param operator: operator to detect_edges
      :type nrows int
      :type ncols int
@@ -116,19 +120,15 @@ class Segmentation(object):
         if self.read_images() is None:
             raise ValueError("A list of images is required.")
 
-        if image_type not in ["colored", "gray"]:
-            raise ValueError("Image type should be one of gray or colored.")
 
-        plt_cmap = "viridis"
+        #plt_cmap = "viridis"
 
-        if thresholded:
-            image_list = self.detect_edges(operator=operator, threshold_method=threshold_method)
-            plt_cmap = plt.gray()
+        image_list = list(chain(self.read_images(),self.detect_edges(operator=operator,
+                                                                     threshold_method=threshold_method)))
 
-        if image_type == "gray" and not thresholded:
-            image_list = self.gray_images()
 
         fig, axes = plt.subplots(nrows=nrows, ncols=ncols)
+
         for ind, image in enumerate(image_list):
-            axes.ravel()[ind].imshow(image_list[ind], cmap=plt_cmap)
-            axes.ravel()[ind].set_axis_off()
+                axes.ravel()[ind].imshow(image_list[ind])
+                axes.ravel()[ind].set_axis_off()
