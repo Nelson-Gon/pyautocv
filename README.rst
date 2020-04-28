@@ -3,7 +3,7 @@
 
 
 .. image:: https://zenodo.org/badge/249137364.svg
-   :target: https://zenodo.org/badge/latestdoi/249137364
+   :target: https://zenodo.org/badge/laflowersdoi/249137364
    :alt: DOI
 
 
@@ -47,7 +47,7 @@
    :alt: Maintenance
 
 
-.. image:: http://www.repostatus.org/badges/latest/active.svg
+.. image:: http://www.repostatus.org/badges/laflowers/active.svg
    :target: http://www.repostatus.org/#active
    :alt: Project Status
  
@@ -108,26 +108,78 @@ From GitHub
 
    from pyautocv.segmentation import *
    images_list=Segmentation("images")
-   images_list.show_images(thresholded=False,ncols=2)
+   images_list.show_images()
 
 The above will give us the following result:
 
 
-.. image:: ./sample_results/sample_colored.png
-   :target: ./sample_results/sample_colored.png
+.. image:: ./sample_results/images_root.png
+   :target: ./sample_results/images_root.png
    :alt: Sample_colored
 
 
-To show images with thresholding and edge detection,
+To use a different filter e.g Laplace,
 
 .. code-block::
 
-   images_list.show_images(thresholded=True,operator="laplace")
+   images_list.show_images(operator="laplace")
 
 This results in:
 
 
-.. image:: ./sample_results/sample_thresholded.png
-   :target: ./sample_results/sample_thresholded.png
-   :alt: sample_thresholded
+.. image:: ./sample_results/root_laplace.png
+   :target: ./sample_results/root_laplace.png
+   :alt: Laplace
 
+
+Flowers
+
+.. code-block::
+
+
+   images_list=Segmentation("images/flowers")
+   images_list.show_images(operator="prewitt_vertical")
+
+
+.. image:: ./sample_results/flowers.png
+   :target: ./sample_results/flowers.png
+   :alt: Flowers
+
+
+Using Prewitt, let's try to see if we can identify potholes in an image:
+
+.. code-block::
+
+
+   images_list=Segmentation("images/potholes")
+   images_list.show_images(operator="prewitt_vertical")
+
+
+.. image:: sample_results/potholes.png
+   :target: sample_results/potholes.png
+   :alt: Prewitt Vertical
+
+
+Currently available filters:
+
+
+* 
+  Standard Sobel
+
+* 
+  Standard Prewitt
+
+* 
+  Laplacian
+
+* 
+  Roberts
+
+These and more examples are available in `example.py <./examples/example.py>`_
+
+----
+
+References:
+
+
+* `Bebis <https://www.cse.unr.edu/~bebis/CS791E/Notes/EdgeDetection.pdf>`_

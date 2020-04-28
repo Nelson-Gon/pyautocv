@@ -1,6 +1,6 @@
 **(Semi) Automated Image Processing**
 
-[![DOI](https://zenodo.org/badge/249137364.svg)](https://zenodo.org/badge/latestdoi/249137364)
+[![DOI](https://zenodo.org/badge/249137364.svg)](https://zenodo.org/badge/laflowersdoi/249137364)
 ![Test-Package](https://github.com/Nelson-Gon/pyautocv/workflows/Test-Package/badge.svg)
 ![Travis Build](https://travis-ci.com/Nelson-Gon/pyautocv.svg?branch=master)
 [![PyPI version fury.io](https://badge.fury.io/py/pyautocv.svg)](https://pypi.python.org/pypi/pyautocv/)
@@ -9,7 +9,7 @@
 [![PyPI download week](https://img.shields.io/pypi/dw/pyautocv.svg)](https://pypi.python.org/pypi/pyautocv/)
 [![PyPI download day](https://img.shields.io/pypi/dd/pyautocv.svg)](https://pypi.python.org/pypi/pyautocv/)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Nelson-Gon/pyautocv/graphs/commit-activity)
-[![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) 
+[![Project Status](http://www.repostatus.org/badges/laflowers/active.svg)](http://www.repostatus.org/#active) 
 [![GitHub last commit](https://img.shields.io/github/last-commit/Nelson-Gon/pyautocv.svg)](https://github.com/Nelson-Gon/pyautocv/commits/master)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![GitHub issues](https://img.shields.io/github/issues/Nelson-Gon/pyautocv.svg)](https://GitHub.com/Nelson-Gon/pyautocv/issues/)
@@ -103,7 +103,7 @@ Currently available filters:
 
 * Roberts
 
-These more examples are available in [example.py](./examples/example.py)
+These and more examples are available in [example.py](./examples/example.py)
 
 ---
 

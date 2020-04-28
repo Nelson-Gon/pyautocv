@@ -23,5 +23,5 @@ images_list=Segmentation("images/potholes")
 images_list.show_images(operator="prewitt_vertical")
 
 # flowers
-images_list=Segmentation("images/test")
+images_list=Segmentation("images/flowers")
 images_list.show_images(operator="prewitt_vertical")
