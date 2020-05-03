@@ -116,7 +116,7 @@ show_images(to_threshold.gray_images(),to_threshold.threshold_images())
 
 
 
-These and more examples are available in [example2.py](./examples/example.py). Image sources are
+These and more examples are available in [example2.py](./examples/example2.py). Image sources are
 shown in `sources.md`. If you feel, attribution was not made, please file an issue
 and cite the violating image.
 
