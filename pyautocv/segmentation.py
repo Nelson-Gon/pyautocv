@@ -92,7 +92,9 @@ class Segmentation(object):
                    'roberts_horizontal': np.array([[1, 0], [0, -1]]), 'roberts_vertical': np.array([[0, 1], [-1, 0]]),
                    'laplace': np.array([[1, 1, 1], [1, -8, 1], [1, 1, 1]]),
                    'prewitt_horizontal': np.array([[1, 0, -1], [1, 0, -1], [1, 0, -1]]),
-                   'prewitt_vertical': np.array([[1, 1, 1], [0, 0, 0], [-1, -1, -1]])}
+                   'prewitt_vertical': np.array([[1, 1, 1], [0, 0, 0], [-1, -1, -1]]),
+                   'scharr_horizontal': np.array([[3, 0, -3], [10, 0, -10],[3,0, -3]]),
+                   'scharr_vertical': np.array([[3, 10, 3], [0, 0, 0], [-3, -10, -3]])}
 
         print("Using {}".format(operator))
 
