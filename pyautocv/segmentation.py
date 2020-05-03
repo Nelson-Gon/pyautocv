@@ -39,6 +39,24 @@ class Segmentation(object):
         """
         return list(map(lambda x: cv2.cvtColor(x, cv2.COLOR_BGR2GRAY), self.read_images()))
 
+    def smooth(self, mask="box"):
+        """
+
+        :param mask: A low pass filter method to use for noise reduction
+        :return: Images convolved with a low pass filter to reduce noise
+
+        """
+        image_list = self.gray_images()
+        mask_list = {'box': 1 / 9 * np.array([[1, 1, 1], [1, 1, 1], [1, 1, 1]])}
+        # alias box with mean, would be great to have a .alias method
+        mask_list.update({"mean": mask_list['box']})
+        # convolve images with low pass filter
+        low_pass_filtered = []
+        for img in image_list:
+            low_pass_filtered.append(ndimage.convolve(img, mask_list[mask]))
+
+        return low_pass_filtered
+
     def threshold(self, threshold_method="simple"):
 
         """
@@ -72,7 +90,7 @@ class Segmentation(object):
 
         return converted_images
 
-    def detect_edges(self, operator="laplace",threshold_method="simple"):
+    def detect_edges(self, operator="laplace", mask="box"):
         """
 
         :param threshold_method: method to threshold with
@@ -82,7 +100,7 @@ class Segmentation(object):
         thresholded
 
         """
-        available_operators = ["sobel_horizontal", "sobel_vertical","prewitt_horizontal","prewitt_vertical",
+        available_operators = ["sobel_horizontal", "sobel_vertical", "prewitt_horizontal", "prewitt_vertical",
                                "laplace", "roberts_vertical", "roberts_horizontal"]
         if operator not in available_operators:
             raise ValueError("operator should be one of {}".format(available_operators))
@@ -93,20 +111,19 @@ class Segmentation(object):
                    'laplace': np.array([[1, 1, 1], [1, -8, 1], [1, 1, 1]]),
                    'prewitt_horizontal': np.array([[1, 0, -1], [1, 0, -1], [1, 0, -1]]),
                    'prewitt_vertical': np.array([[1, 1, 1], [0, 0, 0], [-1, -1, -1]]),
-                   'scharr_horizontal': np.array([[3, 0, -3], [10, 0, -10],[3,0, -3]]),
+                   'scharr_horizontal': np.array([[3, 0, -3], [10, 0, -10], [3, 0, -3]]),
                    'scharr_vertical': np.array([[3, 10, 3], [0, 0, 0], [-3, -10, -3]])}
 
         print("Using {}".format(operator))
 
         final_images = []
 
-        for image in self.convert_thresholded(threshold_method):
+        for image in self.smooth(mask=mask):
             final_images.append(ndimage.convolve(image, kernels[operator], mode="reflect"))
 
         return final_images
 
-    def show_images(self, nrows=2, ncols=2, operator="sobel_vertical",
-                    threshold_method="simple"):
+    def show_images(self, nrows=2, ncols=2, operator="sobel_vertical", mask="box"):
         """
 
 
@@ -122,15 +139,11 @@ class Segmentation(object):
         if self.read_images() is None:
             raise ValueError("A list of images is required.")
 
-
-        #plt_cmap = "viridis"
-
-        image_list = list(chain(self.read_images(),self.detect_edges(operator=operator,
-                                                                     threshold_method=threshold_method)))
-
+        image_list = list(chain(self.read_images(), self.detect_edges(operator=operator,
+                                                                      mask=mask)))
 
         fig, axes = plt.subplots(nrows=nrows, ncols=ncols)
 
         for ind, image in enumerate(image_list):
-                axes.ravel()[ind].imshow(image_list[ind])
-                axes.ravel()[ind].set_axis_off()
+            axes.ravel()[ind].imshow(image_list[ind])
+            axes.ravel()[ind].set_axis_off()
