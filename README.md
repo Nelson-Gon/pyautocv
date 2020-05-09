@@ -59,15 +59,15 @@ To smooth a directory of images, we can use `EdgeDetection`'s `smooth` method as
 follows:
 
 ```python
-
-to_smooth = EdgeDetection("images/people","sobel_vertical","box")
+from pyautocv.segmentation import *
+to_smooth = EdgeDetection("images/people","sobel_vertical")
 show_images(*[to_smooth.gray_images(), to_smooth.smooth()])
 
 ```
 
-This will give us;
+This will give us:
 
-![Smoothened](sample_results/smooth_images.png)
+![Smoothened](sample_results/people_smooth.png)
 
 
 * Edge Detection 
@@ -75,29 +75,31 @@ This will give us;
 To detect edges in a directory image, we provide original(grayed) images for comparison to
 images that have been transformed to detect edges. 
 
-```
-from pyautocv.segmentation import *
-edge_detection = EdgeDetection("images","sobel_vertical","box")
+```python 
 
-show_images(*[edge_detection.gray_images(), edge_detection.detect_edges()])
+edge_detection = EdgeDetection("images","sobel_vertical")
+# use a gaussian blur
+# detect edges with sobel_vertical
+show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="sobel_vertical",mask="gaussian",sigma=3.5))
 
 ```
 
 The above will give us the following result:
 
 
-![Sample_colored](./sample_results/images_smooth.png)
+![Sample_colored](./sample_results/sample_sobel_gaussian.png)
 
 To use a different filter e.g Laplace,
 
 ```
-show_images(*[edge_detection.gray_images(), edge_detection.detect_edges(operator="laplace")])
+
+show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="laplace",mask="gaussian",sigma=3.5))
 
 ```
 
 This results in:
 
-![Laplace](./sample_results/show_smooth_laplace.png)
+![Laplace](./sample_results/gauss_laplace.png)
 
 
 * Thresholding
@@ -107,12 +109,12 @@ To perform thresholding, we can use `Threshold`'s methods dedicated to threshold
 We use flowers as an example:
 
 ```
-to_threshold = Threshold("images/flowers",threshold_method="simple")
-show_images(to_threshold.gray_images(),to_threshold.threshold_images())
+to_threshold = Threshold("images/biology",threshold_method="simple")
+show_images(to_threshold.read_images(),to_threshold.threshold_images())
 
 ```
 
-![Flowers](./sample_results/threshold_flowers.png)
+![Flowers](./sample_results/bio_thresh.png)
 
 
 
