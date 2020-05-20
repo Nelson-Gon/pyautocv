@@ -10,3 +10,5 @@
 **Major Changes**
 
 * Method `show_images` is now a `static` method.
+
+* `read_images` now supports `png` 

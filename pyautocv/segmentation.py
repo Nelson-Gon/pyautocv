@@ -2,7 +2,8 @@
 import cv2
 import matplotlib.pyplot as plt
 from scipy import ndimage
-from skimage.io import imread_collection
+from skimage.io import ImageCollection
+from os import pathsep
 import numpy as np
 from itertools import chain
 
@@ -24,10 +25,10 @@ class Segmentation(object):
         :return: Returns a multidimensional array containing arrays that represent images in a directory
 
         """
-        if self.directory is None:
-            images_list = imread_collection("./*.jpg")
-        else:
-            images_list = imread_collection(self.directory + "/*.jpg")
+        # read png and jpg from current directory
+        images_list = ImageCollection("./*.jpg"+pathsep+"./*.png")
+        if self.directory is not None:
+            images_list = ImageCollection(self.directory + "/*.jpg" + pathsep + "/*.png")
 
         return list(images_list)
 
