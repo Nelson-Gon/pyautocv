@@ -109,13 +109,21 @@ To perform thresholding, we can use `Threshold`'s methods dedicated to threshold
 We use flowers as an example:
 
 ```
-to_threshold = Threshold("images/biology",threshold_method="simple")
+to_threshold = Threshold("images/biology",threshold_method="binary")
 show_images(to_threshold.read_images(),to_threshold.threshold_images())
-
+# cats
+to_threshold_cats = Threshold("images/cats",threshold_method="binary")
+show_images(to_threshold_cats.read_images(),to_threshold_cats.threshold_images())
+#potholes
+to_threshold = Threshold("images/potholes",threshold_method="otsu")
+show_images(to_threshold.read_images(),to_threshold.threshold_images())
 ```
 
 ![Flowers](./sample_results/bio_thresh.png)
 
+![cats](./sample_results/cats_example.png)
+
+![Potholes](./sample_results/potholes_sample.png)
 
 
 These and more examples are available in [example2.py](./examples/example2.py). Image sources are
@@ -133,3 +141,7 @@ and cite the violating image.
 References:
 
 * [Bebis](https://www.cse.unr.edu/~bebis/CS791E/Notes/EdgeDetection.pdf)
+
+* [Standford, author unknown](https://ai.stanford.edu/~syyeung/cvweb/tutorial3.html)
+
+* [Funkhouser et al.,2013](https://www.cs.princeton.edu/courses/archive/fall13/cos429/lectures/05-segmentation1)

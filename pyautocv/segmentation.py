@@ -26,7 +26,7 @@ class Segmentation(object):
 
         """
         # read png and jpg from current directory
-        images_list = ImageCollection("./*.jpg"+pathsep+"./*.png")
+        images_list = ImageCollection("./*.jpg" + pathsep + "./*.png")
         if self.directory is not None:
             images_list = ImageCollection(self.directory + "/*.jpg" + pathsep + "/*.png")
 
@@ -67,40 +67,33 @@ class Threshold(Segmentation):
         self.directory = directory
         self.threshold_method = threshold_method
 
-    def threshold(self, threshold_method="simple"):
-
+    def threshold_images(self, threshold_method="binary", use_threshold=127, use_max=255):
         """
 
-        :param threshold_method: a string to specify the kind of thresholding to use. simple for mean thresholding
-        :return: Thresholded images.
-
-        """
-        self.threshold_method = threshold_method
-        image_list = self.gray_images()
-        image_shapes = [x.shape for x in image_list]
-        reshaped_images = []
-        final_images = []
-
-        if self.threshold_method == "simple":
-            for shape, image in zip(image_shapes, image_list):
-                reshaped_images.append(image.reshape(shape[0] * shape[1]))
-            for reshaped_image in reshaped_images:
-                final_images.append(np.where(reshaped_image > reshaped_image.mean(), 1, 0))
-
-        return final_images
-
-    def threshold_images(self, threshold_method="simple"):
-        """
-
+        :param threshold_method:
+        :param use_threshold:
+        :param use_max:
+        :return:
         :return: Converts images from thresholding to a shape suitable for viewing
 
         """
+        # use cv2's threshold instead since this is more mature, don't reinvent
+        # There must be a different way than a list-map approach
         self.threshold_method = threshold_method
-        converted_images = []
-        for original, binary in zip(self.read_images(), self.threshold(self.threshold_method)):
-            converted_images.append(binary.reshape(original.shape[0], original.shape[1]))
+        threshold_methods = {'binary': lambda x: cv2.threshold(x, use_threshold, use_max, cv2.THRESH_BINARY),
+                             'binary_inverse': lambda x: cv2.threshold(x, use_threshold, use_max,
+                                                                       cv2.THRESH_BINARY_INV),
+                             'thresh_to_zero': lambda x: cv2.threshold(x, use_threshold, use_max,
+                                                                       cv2.THRESH_TOZERO),
+                             'otsu': lambda x: cv2.threshold(x, use_threshold, use_max,
+                                                             cv2.THRESH_BINARY + cv2.THRESH_OTSU)}
+        image_list = self.gray_images()
 
-        return converted_images
+        thresholded_images = list(map(threshold_methods[threshold_method], image_list))
+        # drop ret val
+        thresholded_images = [image[1] for image in thresholded_images]
+
+        return thresholded_images
 
 
 class EdgeDetection(Segmentation):
@@ -138,17 +131,18 @@ class EdgeDetection(Segmentation):
                    'sobel_vertical': lambda x: cv2.Sobel(x, cv2.CV_64F, 0, 1, ksize=self.kernel_size),
                    'roberts_horizontal': lambda x: ndimage.convolve(x, np.array([[1, 0], [0, -1]]), mode="reflect"),
                    'roberts_vertical': lambda x: ndimage.convolve(x, np.array([[0, 1], [-1, 0]]), mode="reflect"),
-                   'laplace': lambda x: cv2.Sobel(x, cv2.CV_64F,1, 0, ksize=self.kernel_size),
-                   'prewitt_horizontal': lambda x: ndimage.convolve(x,np.array([[1, 0, -1], [1, 0, -1], [1, 0, -1]]),
+                   'laplace': lambda x: cv2.Sobel(x, cv2.CV_64F, 1, 0, ksize=self.kernel_size),
+                   'prewitt_horizontal': lambda x: ndimage.convolve(x, np.array([[1, 0, -1], [1, 0, -1], [1, 0, -1]]),
                                                                     mode="reflect"),
                    'prewitt_vertical': lambda x: ndimage.convolve(x, np.array([[1, 1, 1], [0, 0, 0],
-                                                                    [-1, -1, -1]]),
+                                                                               [-1, -1, -1]]),
                                                                   mode="refelct"),
                    'scharr_horizontal': lambda x: ndimage.convolve(x,
-                                                np.array([[3, 0, -3], [10, 0, -10], [3, 0, -3]]),
-                                                        mode="reflect"),
+                                                                   np.array([[3, 0, -3], [10, 0, -10], [3, 0, -3]]),
+                                                                   mode="reflect"),
                    'scharr_vertical': lambda x: ndimage.convolve(x,
-                                    np.array([[3, 10, 3], [0, 0, 0], [-3, -10, -3]]), mode="reflect")}
+                                                                 np.array([[3, 10, 3], [0, 0, 0], [-3, -10, -3]]),
+                                                                 mode="reflect")}
 
         print("Using {}".format(self.operator))
 
@@ -176,5 +170,5 @@ def show_images(original_images=None, processed_images=None):
     fig, axes = plt.subplots(nrows=2, ncols=int(ncols))
 
     for ind, image in enumerate(image_list):
-        axes.ravel()[ind].imshow(image_list[ind].astype('uint8'))
+        axes.ravel()[ind].imshow(image_list[ind])
         axes.ravel()[ind].set_axis_off()
