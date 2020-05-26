@@ -117,14 +117,18 @@ show_images(to_threshold_cats.read_images(),to_threshold_cats.threshold_images()
 #potholes
 to_threshold = Threshold("images/potholes",threshold_method="otsu")
 show_images(to_threshold.read_images(),to_threshold.threshold_images())
+# houses
+to_threshold = Threshold("images/houses",threshold_method="binary_inverse")
+show_images(to_threshold.read_images(),to_threshold.threshold_images())
 ```
 
-![Flowers](./sample_results/bio_thresh.png)
+![Biology](./sample_results/bio_new.png)
 
 ![cats](./sample_results/cats_example.png)
 
 ![Potholes](./sample_results/potholes_sample.png)
 
+![Houses](./sample_results/houses_bin_inverse.png)
 
 These and more examples are available in [example2.py](./examples/example2.py). Image sources are
 shown in `sources.md`. If you feel, attribution was not made, please file an issue
