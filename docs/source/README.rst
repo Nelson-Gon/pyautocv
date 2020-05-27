@@ -1,5 +1,6 @@
 
-**(Semi) Automated Image Processing**
+(Semi) Automated Image Processing with pyautocv
+===============================================
 
 
 .. image:: https://www.repostatus.org/badges/latest/wip.svg

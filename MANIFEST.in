@@ -1,2 +1,7 @@
-include README.md LICENSE images/* version.py README.rst
-
+include README.md
+include LICENSE images
+include version.py
+include README.rst
+include docs
+include sample_results
+include modules.rst

@@ -35,6 +35,15 @@ Please also update the docs using `sphinx`
 python -m m2r ../README.md
 # answer yes to overwrite
 cd docs
+sphinx-apidoc -o source/ ../pyautocv
+# copy changelog and README or get their diff and copy it to docs/source
+cp ../README.md ../changelog.md source
+cd source
+# make rst files as above, yes to overwrite
+python -m m2r changelog.md README.md
+# go back to docs
+cd docs
+# build docs
 sphinx-build source build
 # use make on *nix 
 make.bat html
@@ -43,3 +52,5 @@ make.bat html
 Please note that the 'pyfdc' project is released with a
 [Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
+
+[See also](https://samnicholls.net/2016/06/15/how-to-sphinx-readthedocs/) for a guide on Sphinx documentation.

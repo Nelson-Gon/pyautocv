@@ -22,3 +22,6 @@ show_images(to_threshold.read_images(),to_threshold.threshold_images())
 to_threshold = Threshold("images/houses",threshold_method="binary_inverse")
 show_images(to_threshold.read_images(),to_threshold.threshold_images())
 
+# people
+to_threshold = Threshold("images/people",threshold_method="binary_inverse")
+show_images(to_threshold.read_images(),to_threshold.threshold_images())
