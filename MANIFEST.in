@@ -1,7 +1,6 @@
 include README.md
-include LICENSE images
-include version.py
+include images/*
+include pyautocv/version.py
 include README.rst
-include docs
-include sample_results
-include modules.rst
+include docs/*
+include sample_results/*
