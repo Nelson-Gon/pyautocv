@@ -1,7 +1,6 @@
 from setuptools import setup, find_packages
-
 setup(name='pyautocv',
-      version=open("pyautocv/version.py").read().rstrip(),
+      version="0.2.0".encode("ascii","ignore").decode('ascii'),
       description='(Semi) Automated Image Processing',
       url='http://www.github.com/Nelson-Gon/pyautocv',
       author='Nelson Gonzabato',
