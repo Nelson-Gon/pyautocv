@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>(Semi) Automated Image Processing with pyautocv &#8212; pyautocv 0.2.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changes to pyautocv" href="changelog.html" />
+    <link rel="prev" title="pyautocv package" href="pyautocv.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="semi-automated-image-processing-with-pyautocv">
+<h1>(Semi) Automated Image Processing with pyautocv<a class="headerlink" href="#semi-automated-image-processing-with-pyautocv" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://www.repostatus.org/badges/latest/wip.svg"><img alt="Stage" src="https://www.repostatus.org/badges/latest/wip.svg" /></a>
+<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3766956"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3766956.svg" /></a>
+<a class="reference external image-reference" href="https://github.com/Nelson-Gon/pyautocv/workflows/Test-Package/badge.svg"><img alt="Test-Package" src="https://github.com/Nelson-Gon/pyautocv/workflows/Test-Package/badge.svg" /></a>
+<a class="reference external image-reference" href="https://travis-ci.com/Nelson-Gon/pyautocv.svg?branch=master"><img alt="Travis Build" src="https://travis-ci.com/Nelson-Gon/pyautocv.svg?branch=master" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/pyautocv/"><img alt="PyPI version fury.io" src="https://badge.fury.io/py/pyautocv.svg" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/pyautocv/"><img alt="PyPI license" src="https://img.shields.io/pypi/l/pyautocv.svg" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/pyautocv/"><img alt="PyPI download Month" src="https://img.shields.io/pypi/dm/pyautocv.svg" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/pyautocv/"><img alt="PyPI download week" src="https://img.shields.io/pypi/dw/pyautocv.svg" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/pyautocv/"><img alt="PyPI download day" src="https://img.shields.io/pypi/dd/pyautocv.svg" /></a>
+<a class="reference external image-reference" href="https://GitHub.com/Nelson-Gon/pyautocv/graphs/commit-activity"><img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
+<a class="reference external image-reference" href="https://github.com/Nelson-Gon/pyautocv/commits/master"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Nelson-Gon/pyautocv.svg" /></a>
+<a class="reference external image-reference" href="https://www.python.org/"><img alt="made-with-python" src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg" /></a>
+<a class="reference external image-reference" href="https://GitHub.com/Nelson-Gon/pyautocv/issues/"><img alt="GitHub issues" src="https://img.shields.io/github/issues/Nelson-Gon/pyautocv.svg" /></a>
+<a class="reference external image-reference" href="https://GitHub.com/Nelson-Gon/pyautocv/issues?q=is%3Aissue+is%3Aclosed"><img alt="GitHub issues-closed" src="https://img.shields.io/github/issues-closed/Nelson-Gon/pyautocv.svg" /></a>
+<a class="reference external image-reference" href="https://github.com/Nelson-Gon/pyautocv/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
+<p><strong>Project Aims</strong></p>
+<p>The goal of pyautocv is to provide a simple computer vision(cv) workflow that enables one to automate
+or at least reduce the time spent in image (pre)-processing.</p>
+<p><strong>Installing the package</strong></p>
+<p>From pypi:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyautocv</span>
+</pre></div>
+</div>
+<p>From GitHub</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Nelson</span><span class="o">-</span><span class="n">Gon</span><span class="o">/</span><span class="n">pyautocv</span><span class="o">.</span><span class="n">git</span>
+<span class="c1">#or</span>
+<span class="c1"># clone the repo</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Nelson</span><span class="o">-</span><span class="n">Gon</span><span class="o">/</span><span class="n">pyautocv</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">pyautocv</span>
+<span class="n">python3</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p><strong>Available Class</strong></p>
+<ul class="simple">
+<li><p>Segmentation is a super class on which other classes build</p></li>
+<li><p>EdgeDetection is dedicated to edge detection. Currently supported kernels are stored in <code class="docutils literal notranslate"><span class="pre">.available_operators()</span></code></p></li>
+<li><p>Thresholding dedicated to thresholding.</p></li>
+</ul>
+<p><strong>Example Usage</strong></p>
+<ul class="simple">
+<li><p>Smoothing</p></li>
+</ul>
+<p>To smooth a directory of images, we can use <code class="docutils literal notranslate"><span class="pre">EdgeDetection</span></code>’s <code class="docutils literal notranslate"><span class="pre">smooth</span></code> method as
+follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyautocv.segmentation</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">to_smooth</span> <span class="o">=</span> <span class="n">EdgeDetection</span><span class="p">(</span><span class="s2">&quot;images/people&quot;</span><span class="p">,</span><span class="s2">&quot;sobel_vertical&quot;</span><span class="p">)</span>
+<span class="n">show_images</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">to_smooth</span><span class="o">.</span><span class="n">gray_images</span><span class="p">(),</span> <span class="n">to_smooth</span><span class="o">.</span><span class="n">smooth</span><span class="p">()])</span>
+</pre></div>
+</div>
+<p>This will give us:</p>
+<a class="reference external image-reference" href="sample_results/people_smooth.png"><img alt="Smoothened" src="_images/people_smooth.png" /></a>
+<ul class="simple">
+<li><p>Edge Detection</p></li>
+</ul>
+<p>To detect edges in a directory image, we provide original(grayed) images for comparison to
+images that have been transformed to detect edges.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">edge_detection</span> <span class="o">=</span> <span class="n">EdgeDetection</span><span class="p">(</span><span class="s2">&quot;images&quot;</span><span class="p">,</span><span class="s2">&quot;sobel_vertical&quot;</span><span class="p">)</span>
+<span class="c1"># use a gaussian blur</span>
+<span class="c1"># detect edges with sobel_vertical</span>
+<span class="n">show_images</span><span class="p">(</span><span class="n">edge_detection</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span> <span class="n">edge_detection</span><span class="o">.</span><span class="n">detect_edges</span><span class="p">(</span><span class="n">operator</span><span class="o">=</span><span class="s2">&quot;sobel_vertical&quot;</span><span class="p">,</span><span class="n">mask</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mf">3.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The above will give us the following result:</p>
+<a class="reference external image-reference" href="./sample_results/sample_sobel_gaussian.png"><img alt="Sample_colored" src="_images/sample_sobel_gaussian.png" /></a>
+<p>To use a different filter e.g Laplace,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">show_images</span><span class="p">(</span><span class="n">edge_detection</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span> <span class="n">edge_detection</span><span class="o">.</span><span class="n">detect_edges</span><span class="p">(</span><span class="n">operator</span><span class="o">=</span><span class="s2">&quot;laplace&quot;</span><span class="p">,</span><span class="n">mask</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mf">3.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This results in:</p>
+<a class="reference external image-reference" href="./sample_results/gauss_laplace.png"><img alt="Laplace" src="_images/gauss_laplace.png" /></a>
+<ul class="simple">
+<li><p>Thresholding</p></li>
+</ul>
+<p>To perform thresholding, we can use <code class="docutils literal notranslate"><span class="pre">Threshold</span></code>’s methods dedicated to thresholding.</p>
+<p>We use flowers as an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">to_threshold</span> <span class="o">=</span> <span class="n">Threshold</span><span class="p">(</span><span class="s2">&quot;images/biology&quot;</span><span class="p">,</span><span class="n">threshold_method</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>
+<span class="n">show_images</span><span class="p">(</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">threshold_images</span><span class="p">())</span>
+<span class="c1"># cats</span>
+<span class="n">to_threshold_cats</span> <span class="o">=</span> <span class="n">Threshold</span><span class="p">(</span><span class="s2">&quot;images/cats&quot;</span><span class="p">,</span><span class="n">threshold_method</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>
+<span class="n">show_images</span><span class="p">(</span><span class="n">to_threshold_cats</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span><span class="n">to_threshold_cats</span><span class="o">.</span><span class="n">threshold_images</span><span class="p">())</span>
+<span class="c1">#potholes</span>
+<span class="n">to_threshold</span> <span class="o">=</span> <span class="n">Threshold</span><span class="p">(</span><span class="s2">&quot;images/potholes&quot;</span><span class="p">,</span><span class="n">threshold_method</span><span class="o">=</span><span class="s2">&quot;otsu&quot;</span><span class="p">)</span>
+<span class="n">show_images</span><span class="p">(</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">threshold_images</span><span class="p">())</span>
+<span class="c1"># houses</span>
+<span class="n">to_threshold</span> <span class="o">=</span> <span class="n">Threshold</span><span class="p">(</span><span class="s2">&quot;images/houses&quot;</span><span class="p">,</span><span class="n">threshold_method</span><span class="o">=</span><span class="s2">&quot;binary_inverse&quot;</span><span class="p">)</span>
+<span class="n">show_images</span><span class="p">(</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">threshold_images</span><span class="p">())</span>
+</pre></div>
+</div>
+<a class="reference external image-reference" href="./sample_results/bio_new.png"><img alt="Biology" src="_images/bio_new.png" /></a>
+<a class="reference external image-reference" href="./sample_results/cats_example.png"><img alt="cats" src="_images/cats_example.png" /></a>
+<a class="reference external image-reference" href="./sample_results/potholes_sample.png"><img alt="Potholes" src="_images/potholes_sample.png" /></a>
+<a class="reference external image-reference" href="./sample_results/houses_bin_inverse.png"><img alt="Houses" src="_images/houses_bin_inverse.png" /></a>
+<p>These and more examples are available in <a class="reference external" href="./examples/example2.py">example2.py</a>. Image sources are
+shown in <code class="docutils literal notranslate"><span class="pre">sources.md</span></code>. If you feel, attribution was not made, please file an issue
+and cite the violating image.</p>
+<blockquote>
+<div><p>Thank you very much</p>
+<p>“A language that doesn’t affect the way you think about programming is not worth knowing.”
+― Alan J. Perlis</p>
+</div></blockquote>
+<hr class="docutils" />
+<p>References:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.cse.unr.edu/~bebis/CS791E/Notes/EdgeDetection.pdf">Bebis</a></p></li>
+<li><p><a class="reference external" href="https://ai.stanford.edu/~syyeung/cvweb/tutorial3.html">Standford, author unknown</a></p></li>
+<li><p><a class="reference external" href="https://www.cs.princeton.edu/courses/archive/fall13/cos429/lectures/05-segmentation1">Funkhouser et al.,2013</a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyautocv</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pyautocv</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">(Semi) Automated Image Processing with pyautocv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changes to pyautocv</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="pyautocv.html" title="previous chapter">pyautocv package</a></li>
+      <li>Next: <a href="changelog.html" title="next chapter">Changes to pyautocv</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Nelson Gonzabato.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/README.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
