@@ -14,3 +14,6 @@ show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_m
 # cats
 to_threshold = Segmentation("images/cats")
 show_images(to_threshold.read_images(),gray_images(to_threshold.read_images()))
+to_threshold = Segmentation("images/people")
+show_images(to_threshold.read_images(),to_threshold.detect_edges(operator="roberts"))
+
