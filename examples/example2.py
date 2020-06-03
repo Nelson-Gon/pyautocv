@@ -13,4 +13,4 @@ to_threshold = Segmentation("images/biology")
 show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="otsu"))
 # cats
 to_threshold = Segmentation("images/cats")
-show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="binary_inverse"))
+show_images(to_threshold.read_images(),gray_images(to_threshold.read_images()))
