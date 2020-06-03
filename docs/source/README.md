@@ -1,4 +1,4 @@
-# (Semi) Automated Image Processing with pyautocv
+**(Semi) Automated Image Processing**
 
 ![Stage](https://www.repostatus.org/badges/latest/wip.svg) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3766956.svg)](https://doi.org/10.5281/zenodo.3766956)
 ![Test-Package](https://github.com/Nelson-Gon/pyautocv/workflows/Test-Package/badge.svg)
@@ -60,75 +60,81 @@ follows:
 
 ```python
 from pyautocv.segmentation import *
-to_smooth = EdgeDetection("images/people","sobel_vertical")
-show_images(*[to_smooth.gray_images(), to_smooth.smooth()])
+edge_detection = Segmentation("images/cats")
+show_images(edge_detection.gray_images(), edge_detection.smooth())
 
 ```
 
 This will give us:
 
-![Smoothened](sample_results/people_smooth.png)
+![Smoothened](sample_results/cats_gray_smooth.png)
 
 
 * Edge Detection 
 
-To detect edges in a directory image, we provide original(grayed) images for comparison to
-images that have been transformed to detect edges. 
+To detect edges in a directory of images, we can use `Segmentation`'s `detect_edges`. 
 
 ```python 
 
-edge_detection = EdgeDetection("images","sobel_vertical")
-# use a gaussian blur
-# detect edges with sobel_vertical
-show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="sobel_vertical",mask="gaussian",sigma=3.5))
+edge_detection = Segmentation("images/cats")
+show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="roberts", mask="gaussian", sigma=0))
 
 ```
 
 The above will give us the following result:
 
 
-![Sample_colored](./sample_results/sample_sobel_gaussian.png)
+![Sample_colored](./sample_results/cats_roberts_gaussian.png)
 
 To use a different filter e.g Laplace,
 
 ```
 
-show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="laplace",mask="gaussian",sigma=3.5))
+show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="laplace", mask="gaussian", sigma=0))
 
 ```
 
 This results in:
 
-![Laplace](./sample_results/gauss_laplace.png)
+![Laplace](./sample_results/cats_laplace_gaussian.png)
 
 
 * Thresholding
 
-To perform thresholding, we can use `Threshold`'s methods dedicated to thresholding.
+To perform thresholding, we can use the method `threshold_images`.
 
 We use flowers as an example:
 
 ```
-to_threshold = Threshold("images/biology",threshold_method="binary")
+to_threshold = Segmentation("images/biology")
 show_images(to_threshold.read_images(),to_threshold.threshold_images())
-# cats
-to_threshold_cats = Threshold("images/cats",threshold_method="binary")
-show_images(to_threshold_cats.read_images(),to_threshold_cats.threshold_images())
-#potholes
-to_threshold = Threshold("images/potholes",threshold_method="otsu")
-show_images(to_threshold.read_images(),to_threshold.threshold_images())
-# houses
-to_threshold = Threshold("images/houses",threshold_method="binary_inverse")
-show_images(to_threshold.read_images(),to_threshold.threshold_images())
+
 ```
 
-![Biology](./sample_results/bio_new.png)
+![Flowers](./sample_results/threshold_flowers.png)
 
-![cats](./sample_results/cats_example.png)
+To use a different thresholding method:
 
-![Potholes](./sample_results/potholes_sample.png)
+```
 
-![Houses](./sample_results/houses_bin_inverse.png)
+show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="otsu"))
+
+```
+
+The above gives us:
+
+![otsu](./sample_results/threshold_flowers_otsu.png)
+
+For cat lovers, here's thresholding with inverse binary:
+
+```
+show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="binary_inverse"))
+```
+
+Result:
+
+![Cats](./sample_results/cats_bin_inverse.png)
+
 
 These and more examples are available in [example2.py](./examples/example2.py). Image sources are
 shown in `sources.md`. If you feel, attribution was not made, please file an issue

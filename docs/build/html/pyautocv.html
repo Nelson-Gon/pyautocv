@@ -14,7 +14,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="(Semi) Automated Image Processing with pyautocv" href="README.html" />
+    <link rel="next" title="&lt;no title&gt;" href="README.html" />
     <link rel="prev" title="pyautocv" href="modules.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -40,17 +40,12 @@
 <div class="section" id="module-pyautocv.segmentation">
 <span id="pyautocv-segmentation-module"></span><h2>pyautocv.segmentation module<a class="headerlink" href="#module-pyautocv.segmentation" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="pyautocv.segmentation.EdgeDetection">
-<em class="property">class </em><code class="sig-prename descclassname">pyautocv.segmentation.</code><code class="sig-name descname">EdgeDetection</code><span class="sig-paren">(</span><em class="sig-param">directory</em>, <em class="sig-param">operator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#EdgeDetection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.EdgeDetection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyautocv.segmentation.Segmentation" title="pyautocv.segmentation.Segmentation"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyautocv.segmentation.Segmentation</span></code></a></p>
+<dt id="pyautocv.segmentation.Segmentation">
+<em class="property">class </em><code class="sig-prename descclassname">pyautocv.segmentation.</code><code class="sig-name descname">Segmentation</code><span class="sig-paren">(</span><em class="sig-param">directory=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#Segmentation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.Segmentation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
-<dt id="pyautocv.segmentation.EdgeDetection.available_operators">
-<code class="sig-name descname">available_operators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#EdgeDetection.available_operators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.EdgeDetection.available_operators" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyautocv.segmentation.EdgeDetection.detect_edges">
-<code class="sig-name descname">detect_edges</code><span class="sig-paren">(</span><em class="sig-param">operator='sobel_vertical'</em>, <em class="sig-param">kernel_size=3</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#EdgeDetection.detect_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.EdgeDetection.detect_edges" title="Permalink to this definition">¶</a></dt>
+<dt id="pyautocv.segmentation.Segmentation.detect_edges">
+<code class="sig-name descname">detect_edges</code><span class="sig-paren">(</span><em class="sig-param">operator='sobel_vertical'</em>, <em class="sig-param">kernel_size=3</em>, <em class="sig-param">optional_mask=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#Segmentation.detect_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.Segmentation.detect_edges" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -65,22 +60,6 @@
 thresholded</p>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="class">
-<dt id="pyautocv.segmentation.Segmentation">
-<em class="property">class </em><code class="sig-prename descclassname">pyautocv.segmentation.</code><code class="sig-name descname">Segmentation</code><span class="sig-paren">(</span><em class="sig-param">directory=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#Segmentation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.Segmentation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="pyautocv.segmentation.Segmentation.gray_images">
-<code class="sig-name descname">gray_images</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#Segmentation.gray_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.Segmentation.gray_images" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Returns grayed images. Currently supports only blue-green-red to gray conversion</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="method">
 <dt id="pyautocv.segmentation.Segmentation.read_images">
 <code class="sig-name descname">read_images</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#Segmentation.read_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.Segmentation.read_images" title="Permalink to this definition">¶</a></dt>
@@ -93,7 +72,7 @@ thresholded</p>
 
 <dl class="method">
 <dt id="pyautocv.segmentation.Segmentation.smooth">
-<code class="sig-name descname">smooth</code><span class="sig-paren">(</span><em class="sig-param">mask='box'</em>, <em class="sig-param">sigma=3</em>, <em class="sig-param">kernel_shape=(3</em>, <em class="sig-param">3)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#Segmentation.smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.Segmentation.smooth" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">smooth</code><span class="sig-paren">(</span><em class="sig-param">mask='box'</em>, <em class="sig-param">kernel_shape=(5</em>, <em class="sig-param">5)</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#Segmentation.smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.Segmentation.smooth" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -108,15 +87,9 @@ thresholded</p>
 </dl>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="class">
-<dt id="pyautocv.segmentation.Threshold">
-<em class="property">class </em><code class="sig-prename descclassname">pyautocv.segmentation.</code><code class="sig-name descname">Threshold</code><span class="sig-paren">(</span><em class="sig-param">directory</em>, <em class="sig-param">threshold_method</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#Threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.Threshold" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyautocv.segmentation.Segmentation" title="pyautocv.segmentation.Segmentation"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyautocv.segmentation.Segmentation</span></code></a></p>
 <dl class="method">
-<dt id="pyautocv.segmentation.Threshold.threshold_images">
-<code class="sig-name descname">threshold_images</code><span class="sig-paren">(</span><em class="sig-param">threshold_method='binary'</em>, <em class="sig-param">use_threshold=127</em>, <em class="sig-param">use_max=255</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#Threshold.threshold_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.Threshold.threshold_images" title="Permalink to this definition">¶</a></dt>
+<dt id="pyautocv.segmentation.Segmentation.threshold_images">
+<code class="sig-name descname">threshold_images</code><span class="sig-paren">(</span><em class="sig-param">threshold_method='binary'</em>, <em class="sig-param">use_threshold=127</em>, <em class="sig-param">use_max=255</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#Segmentation.threshold_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.Segmentation.threshold_images" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -134,6 +107,16 @@ thresholded</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="function">
+<dt id="pyautocv.segmentation.gray_images">
+<code class="sig-prename descclassname">pyautocv.segmentation.</code><code class="sig-name descname">gray_images</code><span class="sig-paren">(</span><em class="sig-param">images</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyautocv/segmentation.html#gray_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyautocv.segmentation.gray_images" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns grayed images. Currently supports only blue-green-red to gray conversion</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
@@ -181,8 +164,6 @@ thresholded</p>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">pyautocv package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="README.html">(Semi) Automated Image Processing with pyautocv</a></li>
-<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changes to pyautocv</a></li>
 </ul>
 
 <div class="relations">
@@ -191,7 +172,7 @@ thresholded</p>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">pyautocv</a><ul>
       <li>Previous: <a href="modules.html" title="previous chapter">pyautocv</a></li>
-      <li>Next: <a href="README.html" title="next chapter">(Semi) Automated Image Processing with pyautocv</a></li>
+      <li>Next: <a href="README.html" title="next chapter">&lt;no title&gt;</a></li>
   </ul></li>
   </ul></li>
 </ul>

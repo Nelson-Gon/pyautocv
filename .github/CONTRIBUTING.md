@@ -32,7 +32,7 @@ Please also update the docs using `sphinx`
 # The Makefile here is Windows specific
 
 # root of project
-python -m m2r ../README.md
+python -m m2r README.md
 # answer yes to overwrite
 cd docs
 sphinx-apidoc -o source/ ../pyautocv
@@ -42,10 +42,10 @@ cd source
 # make rst files as above, yes to overwrite
 python -m m2r changelog.md README.md
 # go back to docs
-cd docs
+cd ..
 # build docs
 sphinx-build source build
-# use make on *nix 
+# use make on *nix or if you have make on Windows
 make.bat html
 
 ```

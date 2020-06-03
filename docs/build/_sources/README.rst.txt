@@ -1,6 +1,5 @@
 
-(Semi) Automated Image Processing with pyautocv
-===============================================
+**(Semi) Automated Image Processing**
 
 
 .. image:: https://www.repostatus.org/badges/latest/wip.svg
@@ -125,36 +124,33 @@ follows:
 .. code-block:: python
 
    from pyautocv.segmentation import *
-   to_smooth = EdgeDetection("images/people","sobel_vertical")
-   show_images(*[to_smooth.gray_images(), to_smooth.smooth()])
+   edge_detection = Segmentation("images/cats")
+   show_images(edge_detection.gray_images(), edge_detection.smooth())
 
 This will give us:
 
 
-.. image:: sample_results/people_smooth.png
-   :target: sample_results/people_smooth.png
+.. image:: sample_results/cats_gray_smooth.png
+   :target: sample_results/cats_gray_smooth.png
    :alt: Smoothened
 
 
 
 * Edge Detection 
 
-To detect edges in a directory image, we provide original(grayed) images for comparison to
-images that have been transformed to detect edges. 
+To detect edges in a directory of images, we can use ``Segmentation``\ 's ``detect_edges``. 
 
 .. code-block:: python
 
 
-   edge_detection = EdgeDetection("images","sobel_vertical")
-   # use a gaussian blur
-   # detect edges with sobel_vertical
-   show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="sobel_vertical",mask="gaussian",sigma=3.5))
+   edge_detection = Segmentation("images/cats")
+   show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="roberts", mask="gaussian", sigma=0))
 
 The above will give us the following result:
 
 
-.. image:: ./sample_results/sample_sobel_gaussian.png
-   :target: ./sample_results/sample_sobel_gaussian.png
+.. image:: ./sample_results/cats_roberts_gaussian.png
+   :target: ./sample_results/cats_roberts_gaussian.png
    :alt: Sample_colored
 
 
@@ -163,59 +159,61 @@ To use a different filter e.g Laplace,
 .. code-block::
 
 
-   show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="laplace",mask="gaussian",sigma=3.5))
+   show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="laplace", mask="gaussian", sigma=0))
 
 This results in:
 
 
-.. image:: ./sample_results/gauss_laplace.png
-   :target: ./sample_results/gauss_laplace.png
+.. image:: ./sample_results/cats_laplace_gaussian.png
+   :target: ./sample_results/cats_laplace_gaussian.png
    :alt: Laplace
 
 
 
 * Thresholding
 
-To perform thresholding, we can use ``Threshold``\ 's methods dedicated to thresholding.
+To perform thresholding, we can use the method ``threshold_images``.
 
 We use flowers as an example:
 
 .. code-block::
 
-   to_threshold = Threshold("images/biology",threshold_method="binary")
-   show_images(to_threshold.read_images(),to_threshold.threshold_images())
-   # cats
-   to_threshold_cats = Threshold("images/cats",threshold_method="binary")
-   show_images(to_threshold_cats.read_images(),to_threshold_cats.threshold_images())
-   #potholes
-   to_threshold = Threshold("images/potholes",threshold_method="otsu")
-   show_images(to_threshold.read_images(),to_threshold.threshold_images())
-   # houses
-   to_threshold = Threshold("images/houses",threshold_method="binary_inverse")
+   to_threshold = Segmentation("images/biology")
    show_images(to_threshold.read_images(),to_threshold.threshold_images())
 
 
-.. image:: ./sample_results/bio_new.png
-   :target: ./sample_results/bio_new.png
-   :alt: Biology
+.. image:: ./sample_results/threshold_flowers.png
+   :target: ./sample_results/threshold_flowers.png
+   :alt: Flowers
 
 
+To use a different thresholding method:
 
-.. image:: ./sample_results/cats_example.png
-   :target: ./sample_results/cats_example.png
-   :alt: cats
-
+.. code-block::
 
 
-.. image:: ./sample_results/potholes_sample.png
-   :target: ./sample_results/potholes_sample.png
-   :alt: Potholes
+   show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="otsu"))
+
+The above gives us:
 
 
+.. image:: ./sample_results/threshold_flowers_otsu.png
+   :target: ./sample_results/threshold_flowers_otsu.png
+   :alt: otsu
 
-.. image:: ./sample_results/houses_bin_inverse.png
-   :target: ./sample_results/houses_bin_inverse.png
-   :alt: Houses
+
+For cat lovers, here's thresholding with inverse binary:
+
+.. code-block::
+
+   show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="binary_inverse"))
+
+Result:
+
+
+.. image:: ./sample_results/cats_bin_inverse.png
+   :target: ./sample_results/cats_bin_inverse.png
+   :alt: Cats
 
 
 These and more examples are available in `example2.py <./examples/example2.py>`_. Image sources are

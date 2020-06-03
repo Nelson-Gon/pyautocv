@@ -1,3 +1,18 @@
+# pyautocv's change log 
+
+**pyautocv 0.2.1**
+
+**Major Changes**
+
+* Classes `Threshold` and `EdgeDetection` were dropped. Support is now through `Segmentation`
+
+* `gray_images` is now a static method. 
+
+**Additions**
+
+* Added support for more detection methods eg Roberts Cross
+
+----
 **pyautocv 0.2.0**
 
 **Major Additions**
