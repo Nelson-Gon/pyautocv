@@ -48,6 +48,7 @@ cd ..
 sphinx-build source build
 # use make on *nix or if you have make on Windows
 make html
+make latexpdf
 
 ```
 Please note that the 'pyfdc' project is released with a
