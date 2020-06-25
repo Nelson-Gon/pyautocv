@@ -4,6 +4,8 @@
 
 **Major Changes**
 
+* `show_images` now supports different color maps
+
 * Classes `Threshold` and `EdgeDetection` were dropped. Support is now through `Segmentation`
 
 * `gray_images` is now a static method. 

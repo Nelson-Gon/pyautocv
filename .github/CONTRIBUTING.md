@@ -37,6 +37,7 @@ python -m m2r README.md
 cd docs
 sphinx-apidoc -o source/ ../pyautocv
 # copy changelog and README or get their diff and copy it to docs/source
+# Change image paths ie . to ../.. or use direct links to github
 cp ../README.md ../changelog.md source
 cd source
 # make rst files as above, yes to overwrite
@@ -46,7 +47,7 @@ cd ..
 # build docs
 sphinx-build source build
 # use make on *nix or if you have make on Windows
-make.bat html
+make html
 
 ```
 Please note that the 'pyfdc' project is released with a

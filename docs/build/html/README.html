@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>&lt;no title&gt; &#8212; pyautocv 0.2.0 documentation</title>
+    <title>(Semi) Automated Image Processing with pyautocv &#8212; pyautocv 0.2.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,7 +14,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="changelog.html" />
+    <link rel="next" title="pyautocv’s change log" href="changelog.html" />
     <link rel="prev" title="pyautocv package" href="pyautocv.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -32,7 +32,8 @@
 
           <div class="body" role="main">
             
-  <p><strong>(Semi) Automated Image Processing</strong></p>
+  <div class="section" id="semi-automated-image-processing-with-pyautocv">
+<h1>(Semi) Automated Image Processing with pyautocv<a class="headerlink" href="#semi-automated-image-processing-with-pyautocv" title="Permalink to this headline">¶</a></h1>
 <a class="reference external image-reference" href="https://www.repostatus.org/badges/latest/wip.svg"><img alt="Stage" src="https://www.repostatus.org/badges/latest/wip.svg" /></a>
 <a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3766956"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3766956.svg" /></a>
 <a class="reference external image-reference" href="https://github.com/Nelson-Gon/pyautocv/workflows/Test-Package/badge.svg"><img alt="Test-Package" src="https://github.com/Nelson-Gon/pyautocv/workflows/Test-Package/badge.svg" /></a>
@@ -57,7 +58,7 @@ or at least reduce the time spent in image (pre)-processing.</p>
 </pre></div>
 </div>
 <p>From GitHub</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Nelson</span><span class="o">-</span><span class="n">Gon</span><span class="o">/</span><span class="n">pyautocv</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Nelson</span><span class="o">-</span><span class="n">Gon</span><span class="o">/</span><span class="n">pyautocv</span><span class="o">.</span><span class="n">git</span>
 <span class="c1">#or</span>
 <span class="c1"># clone the repo</span>
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Nelson</span><span class="o">-</span><span class="n">Gon</span><span class="o">/</span><span class="n">pyautocv</span><span class="o">.</span><span class="n">git</span>
@@ -73,56 +74,84 @@ or at least reduce the time spent in image (pre)-processing.</p>
 </ul>
 <p><strong>Example Usage</strong></p>
 <ul class="simple">
+<li><p>Image Gra(e)ying</p></li>
+</ul>
+<p>To grey an image directory:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyautocv.segmentation</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">images_list</span><span class="o">=</span><span class="n">Segmentation</span><span class="p">(</span><span class="s2">&quot;images/cats&quot;</span><span class="p">)</span>
+<span class="n">show_images</span><span class="p">(</span><span class="n">gray_images</span><span class="p">(</span><span class="n">images_list</span><span class="o">.</span><span class="n">read_images</span><span class="p">()),</span> <span class="n">images_list</span><span class="o">.</span><span class="n">read_images</span><span class="p">())</span>
+</pre></div>
+</div>
+<a class="reference external image-reference" href="../../sample_results/cats_gray.png"><img alt="Grayed" src="_images/cats_gray.png" /></a>
+<ul class="simple">
 <li><p>Smoothing</p></li>
 </ul>
 <p>To smooth a directory of images, we can use <code class="docutils literal notranslate"><span class="pre">EdgeDetection</span></code>’s <code class="docutils literal notranslate"><span class="pre">smooth</span></code> method as
 follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyautocv.segmentation</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">edge_detection</span> <span class="o">=</span> <span class="n">Segmentation</span><span class="p">(</span><span class="s2">&quot;images/cats&quot;</span><span class="p">)</span>
-<span class="n">show_images</span><span class="p">(</span><span class="n">edge_detection</span><span class="o">.</span><span class="n">gray_images</span><span class="p">(),</span> <span class="n">edge_detection</span><span class="o">.</span><span class="n">smooth</span><span class="p">())</span>
+
+<span class="n">images_list</span><span class="o">=</span><span class="n">Segmentation</span><span class="p">(</span><span class="s2">&quot;images/cats&quot;</span><span class="p">)</span>
+<span class="n">show_images</span><span class="p">(</span><span class="n">gray_images</span><span class="p">(</span><span class="n">images_list</span><span class="o">.</span><span class="n">read_images</span><span class="p">()),</span> <span class="n">images_list</span><span class="o">.</span><span class="n">read_images</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>This will give us:</p>
-<a class="reference external image-reference" href="sample_results/cats_gray_smooth.png"><img alt="Smoothened" src="sample_results/cats_gray_smooth.png" /></a>
+<a class="reference external image-reference" href="../../sample_results/cats_smooth.png"><img alt="Smooth" src="_images/cats_smooth.png" /></a>
+<p>To use a different filter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">show_images</span><span class="p">(</span><span class="n">images_list</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span> <span class="n">images_list</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="n">kernel_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">)))</span>
+</pre></div>
+</div>
+<a class="reference external image-reference" href="../../sample_results/cats_smooth_median.png"><img alt="Cats-Median-Smooth" src="_images/cats_smooth_median.png" /></a>
 <ul class="simple">
 <li><p>Edge Detection</p></li>
 </ul>
 <p>To detect edges in a directory of images, we can use <code class="docutils literal notranslate"><span class="pre">Segmentation</span></code>’s <code class="docutils literal notranslate"><span class="pre">detect_edges</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">edge_detection</span> <span class="o">=</span> <span class="n">Segmentation</span><span class="p">(</span><span class="s2">&quot;images/cats&quot;</span><span class="p">)</span>
-<span class="n">show_images</span><span class="p">(</span><span class="n">edge_detection</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span> <span class="n">edge_detection</span><span class="o">.</span><span class="n">detect_edges</span><span class="p">(</span><span class="n">operator</span><span class="o">=</span><span class="s2">&quot;roberts&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">show_images</span><span class="p">(</span><span class="n">images_list</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span> <span class="n">images_list</span><span class="o">.</span><span class="n">detect_edges</span><span class="p">(</span><span class="n">operator</span><span class="o">=</span><span class="s2">&quot;roberts&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The above will give us the following result:</p>
-<a class="reference external image-reference" href="./sample_results/cats_roberts_gaussian.png"><img alt="Sample_colored" src="./sample_results/cats_roberts_gaussian.png" /></a>
+<a class="reference external image-reference" href="../../sample_results/cats_gauss_edge.png"><img alt="Sample_colored" src="_images/cats_gauss_edge.png" /></a>
 <p>To use a different filter e.g Laplace,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">show_images</span><span class="p">(</span><span class="n">edge_detection</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span> <span class="n">edge_detection</span><span class="o">.</span><span class="n">detect_edges</span><span class="p">(</span><span class="n">operator</span><span class="o">=</span><span class="s2">&quot;laplace&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>This results in:</p>
-<a class="reference external image-reference" href="./sample_results/cats_laplace_gaussian.png"><img alt="Laplace" src="./sample_results/cats_laplace_gaussian.png" /></a>
+<a class="reference external image-reference" href="../../sample_results/cats_laplace_gaussian.png"><img alt="Laplace" src="_images/cats_laplace_gaussian.png" /></a>
 <ul class="simple">
 <li><p>Thresholding</p></li>
 </ul>
 <p>To perform thresholding, we can use the method <code class="docutils literal notranslate"><span class="pre">threshold_images</span></code>.</p>
-<p>We use flowers as an example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">to_threshold</span> <span class="o">=</span> <span class="n">Segmentation</span><span class="p">(</span><span class="s2">&quot;images/biology&quot;</span><span class="p">)</span>
 <span class="n">show_images</span><span class="p">(</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">threshold_images</span><span class="p">())</span>
 </pre></div>
 </div>
-<a class="reference external image-reference" href="./sample_results/threshold_flowers.png"><img alt="Flowers" src="_images/threshold_flowers.png" /></a>
+<a class="reference external image-reference" href="../../sample_results/bio_thresh.png"><img alt="Threshold" src="_images/bio_thresh.png" /></a>
 <p>To use a different thresholding method:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">show_images</span><span class="p">(</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">threshold_images</span><span class="p">(</span><span class="n">threshold_method</span><span class="o">=</span><span class="s2">&quot;otsu&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The above gives us:</p>
-<a class="reference external image-reference" href="./sample_results/threshold_flowers_otsu.png"><img alt="otsu" src="./sample_results/threshold_flowers_otsu.png" /></a>
+<a class="reference external image-reference" href="../../sample_results/bio_thresh_otsu.png"><img alt="otsu" src="_images/bio_thresh_otsu.png" /></a>
 <p>For cat lovers, here’s thresholding with inverse binary:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">show_images</span><span class="p">(</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">threshold_images</span><span class="p">(</span><span class="n">threshold_method</span><span class="o">=</span><span class="s2">&quot;binary_inverse&quot;</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">show_images</span><span class="p">(</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span><span class="n">to_threshold</span><span class="o">.</span><span class="n">threshold_images</span><span class="p">(</span><span class="n">threshold_method</span><span class="o">=</span><span class="s2">&quot;binary_inverse&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Result:</p>
-<a class="reference external image-reference" href="./sample_results/cats_bin_inverse.png"><img alt="Cats" src="./sample_results/cats_bin_inverse.png" /></a>
-<p>These and more examples are available in <a class="reference external" href="./examples/example2.py">example2.py</a>. Image sources are
+<a class="reference external image-reference" href="../../sample_results/cats_bin_inverse.png"><img alt="Cats" src="_images/cats_bin_inverse.png" /></a>
+<p>Thresholding applied to houses:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">images_list</span><span class="o">=</span><span class="n">Segmentation</span><span class="p">(</span><span class="s2">&quot;images/houses&quot;</span><span class="p">)</span>
+
+<span class="n">show_images</span><span class="p">(</span><span class="n">images_list</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span> <span class="n">images_list</span><span class="o">.</span><span class="n">threshold_images</span><span class="p">(</span><span class="n">threshold_method</span><span class="o">=</span><span class="s2">&quot;thresh_to_zero&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference external image-reference" href="../../sample_results/houses_thresh.png"><img alt="Threshold-Houses" src="_images/houses_thresh.png" /></a>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">images_list</span><span class="o">=</span><span class="n">Segmentation</span><span class="p">(</span><span class="s2">&quot;images/potholes&quot;</span><span class="p">)</span>
+
+<span class="n">show_images</span><span class="p">(</span><span class="n">images_list</span><span class="o">.</span><span class="n">read_images</span><span class="p">(),</span> <span class="n">images_list</span><span class="o">.</span><span class="n">threshold_images</span><span class="p">(</span><span class="s2">&quot;binary&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference external image-reference" href="../../sample_results/potholes.png"><img alt="Potholes" src="_images/potholes.png" /></a>
+<p>These and more examples are available in <a class="reference external" href="../../examples/example.py">example.py</a>. Image sources are
 shown in <code class="docutils literal notranslate"><span class="pre">sources.md</span></code>. If you feel, attribution was not made, please file an issue
 and cite the violating image.</p>
 <blockquote>
@@ -137,6 +166,7 @@ and cite the violating image.</p>
 <li><p><a class="reference external" href="https://ai.stanford.edu/~syyeung/cvweb/tutorial3.html">Standford, author unknown</a></p></li>
 <li><p><a class="reference external" href="https://www.cs.princeton.edu/courses/archive/fall13/cos429/lectures/05-segmentation1">Funkhouser et al.,2013</a></p></li>
 </ul>
+</div>
 
 
           </div>
@@ -155,8 +185,10 @@ and cite the violating image.</p>
 
 
 <h3>Navigation</h3>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="modules.html">pyautocv</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">(Semi) Automated Image Processing with pyautocv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">pyautocv’s change log</a></li>
 </ul>
 
 <div class="relations">
@@ -164,7 +196,7 @@ and cite the violating image.</p>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="pyautocv.html" title="previous chapter">pyautocv package</a></li>
-      <li>Next: <a href="changelog.html" title="next chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="changelog.html" title="next chapter">pyautocv’s change log</a></li>
   </ul></li>
 </ul>
 </div>

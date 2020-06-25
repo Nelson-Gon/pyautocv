@@ -138,10 +138,11 @@ class Segmentation(object):
         return final_images
 
 
-def show_images(original_images=None, processed_images=None):
+def show_images(original_images=None, processed_images=None, cmap="gray"):
     """
     :param original_images: Original Images from read_images()
     :param processed_images: Images that have been converted eg from detect_edges()
+    :param cmap: Color cmpa from matplotlib. Defaults to gray
     """
     # need to figure out how any works in python
     if original_images is None or processed_images is None:
@@ -158,5 +159,5 @@ def show_images(original_images=None, processed_images=None):
     fig, axes = plt.subplots(nrows=2, ncols=int(ncols))
 
     for ind, image in enumerate(image_list):
-        axes.ravel()[ind].imshow(image_list[ind])
+        axes.ravel()[ind].imshow(image_list[ind], cmap=cmap)
         axes.ravel()[ind].set_axis_off()

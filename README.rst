@@ -1,5 +1,6 @@
 
-**(Semi) Automated Image Processing**
+(Semi) Automated Image Processing with pyautocv
+===============================================
 
 
 .. image:: https://www.repostatus.org/badges/latest/wip.svg
@@ -94,7 +95,7 @@ From GitHub
 
 .. code-block::
 
-   pip install pip install git+https://github.com/Nelson-Gon/pyautocv.git
+   pip install git+https://github.com/Nelson-Gon/pyautocv.git
    #or
    # clone the repo
    git clone https://www.github.com/Nelson-Gon/pyautocv.git
@@ -116,6 +117,24 @@ From GitHub
 **Example Usage**
 
 
+* Image Gra(e)ying
+
+To grey an image directory:
+
+.. code-block:: python
+
+   from pyautocv.segmentation import *
+
+   images_list=Segmentation("images/cats")
+   show_images(gray_images(images_list.read_images()), images_list.read_images())
+
+
+.. image:: sample_results/cats_gray.png
+   :target: sample_results/cats_gray.png
+   :alt: Grayed
+
+
+
 * Smoothing
 
 To smooth a directory of images, we can use ``EdgeDetection``\ 's ``smooth`` method as
@@ -124,15 +143,30 @@ follows:
 .. code-block:: python
 
    from pyautocv.segmentation import *
-   edge_detection = Segmentation("images/cats")
-   show_images(edge_detection.gray_images(), edge_detection.smooth())
+
+   images_list=Segmentation("images/cats")
+   show_images(gray_images(images_list.read_images()), images_list.read_images())
 
 This will give us:
 
 
-.. image:: sample_results/cats_gray_smooth.png
-   :target: sample_results/cats_gray_smooth.png
-   :alt: Smoothened
+.. image:: sample_results/cats_smooth.png
+   :target: sample_results/cats_smooth.png
+   :alt: Smooth
+
+
+To use a different filter:
+
+.. code-block:: python
+
+
+
+   show_images(images_list.read_images(), images_list.smooth(mask="median", kernel_shape=(7, 7)))
+
+
+.. image:: ./sample_results/cats_smooth_median.png
+   :target: ./sample_results/cats_smooth_median.png
+   :alt: Cats-Median-Smooth
 
 
 
@@ -143,14 +177,13 @@ To detect edges in a directory of images, we can use ``Segmentation``\ 's ``dete
 .. code-block:: python
 
 
-   edge_detection = Segmentation("images/cats")
-   show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="roberts", mask="gaussian", sigma=0))
+   show_images(images_list.read_images(), images_list.detect_edges(operator="roberts", mask="gaussian", sigma=0.8))
 
 The above will give us the following result:
 
 
-.. image:: ./sample_results/cats_roberts_gaussian.png
-   :target: ./sample_results/cats_roberts_gaussian.png
+.. image:: ./sample_results/cats_gauss_edge.png
+   :target: ./sample_results/cats_gauss_edge.png
    :alt: Sample_colored
 
 
@@ -174,17 +207,15 @@ This results in:
 
 To perform thresholding, we can use the method ``threshold_images``.
 
-We use flowers as an example:
-
 .. code-block::
 
    to_threshold = Segmentation("images/biology")
    show_images(to_threshold.read_images(),to_threshold.threshold_images())
 
 
-.. image:: ./sample_results/threshold_flowers.png
-   :target: ./sample_results/threshold_flowers.png
-   :alt: Flowers
+.. image:: ./sample_results/bio_thresh.png
+   :target: ./sample_results/bio_thresh.png
+   :alt: Threshold
 
 
 To use a different thresholding method:
@@ -197,14 +228,15 @@ To use a different thresholding method:
 The above gives us:
 
 
-.. image:: ./sample_results/threshold_flowers_otsu.png
-   :target: ./sample_results/threshold_flowers_otsu.png
+.. image:: ./sample_results/bio_thresh_otsu.png
+   :target: ./sample_results/bio_thresh_otsu.png
    :alt: otsu
 
 
 For cat lovers, here's thresholding with inverse binary:
 
-.. code-block::
+.. code-block:: python
+
 
    show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="binary_inverse"))
 
@@ -216,7 +248,34 @@ Result:
    :alt: Cats
 
 
-These and more examples are available in `example2.py <./examples/example2.py>`_. Image sources are
+Thresholding applied to houses:
+
+.. code-block:: python
+
+   images_list=Segmentation("images/houses")
+
+   show_images(images_list.read_images(), images_list.threshold_images(threshold_method="thresh_to_zero"))
+
+
+.. image:: ./sample_results/houses_thresh.png
+   :target: ./sample_results/houses_thresh.png
+   :alt: Threshold-Houses
+
+
+.. code-block:: python
+
+
+   images_list=Segmentation("images/potholes")
+
+   show_images(images_list.read_images(), images_list.threshold_images("binary"))
+
+
+.. image:: ./sample_results/potholes.png
+   :target: ./sample_results/potholes.png
+   :alt: Potholes
+
+
+These and more examples are available in `example.py <./examples/example.py>`_. Image sources are
 shown in ``sources.md``. If you feel, attribution was not made, please file an issue
 and cite the violating image.
 

@@ -1,4 +1,4 @@
-**(Semi) Automated Image Processing**
+# (Semi) Automated Image Processing with pyautocv
 
 ![Stage](https://www.repostatus.org/badges/latest/wip.svg) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3766956.svg)](https://doi.org/10.5281/zenodo.3766956)
 ![Test-Package](https://github.com/Nelson-Gon/pyautocv/workflows/Test-Package/badge.svg)
@@ -32,7 +32,7 @@ pip install pyautocv
 From GitHub
 
 ```
-pip install pip install git+https://github.com/Nelson-Gon/pyautocv.git
+pip install git+https://github.com/Nelson-Gon/pyautocv.git
 #or
 # clone the repo
 git clone https://www.github.com/Nelson-Gon/pyautocv.git
@@ -53,6 +53,20 @@ python3 setup.py install
 
 **Example Usage**
 
+
+* Image Gra(e)ying
+
+To grey an image directory:
+
+```python
+from pyautocv.segmentation import *
+
+images_list=Segmentation("images/cats")
+show_images(gray_images(images_list.read_images()), images_list.read_images())
+
+```
+![Grayed](sample_results/cats_gray.png)
+
 * Smoothing
 
 To smooth a directory of images, we can use `EdgeDetection`'s `smooth` method as
@@ -60,14 +74,26 @@ follows:
 
 ```python
 from pyautocv.segmentation import *
-edge_detection = Segmentation("images/cats")
-show_images(edge_detection.gray_images(), edge_detection.smooth())
+
+images_list=Segmentation("images/cats")
+show_images(gray_images(images_list.read_images()), images_list.read_images())
 
 ```
 
 This will give us:
 
-![Smoothened](sample_results/cats_gray_smooth.png)
+![Smooth](sample_results/cats_smooth.png)
+
+To use a different filter:
+
+```python
+
+
+show_images(images_list.read_images(), images_list.smooth(mask="median", kernel_shape=(7, 7)))
+
+```
+
+![Cats-Median-Smooth](./sample_results/cats_smooth_median.png)
 
 
 * Edge Detection 
@@ -76,15 +102,15 @@ To detect edges in a directory of images, we can use `Segmentation`'s `detect_ed
 
 ```python 
 
-edge_detection = Segmentation("images/cats")
-show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="roberts", mask="gaussian", sigma=0))
+show_images(images_list.read_images(), images_list.detect_edges(operator="roberts", mask="gaussian", sigma=0.8))
 
 ```
 
 The above will give us the following result:
 
 
-![Sample_colored](./sample_results/cats_roberts_gaussian.png)
+![Sample_colored](./sample_results/cats_gauss_edge.png)
+
 
 To use a different filter e.g Laplace,
 
@@ -99,11 +125,12 @@ This results in:
 ![Laplace](./sample_results/cats_laplace_gaussian.png)
 
 
+
 * Thresholding
 
 To perform thresholding, we can use the method `threshold_images`.
 
-We use flowers as an example:
+
 
 ```
 to_threshold = Segmentation("images/biology")
@@ -111,7 +138,7 @@ show_images(to_threshold.read_images(),to_threshold.threshold_images())
 
 ```
 
-![Flowers](./sample_results/threshold_flowers.png)
+![Threshold](./sample_results/bio_thresh.png)
 
 To use a different thresholding method:
 
@@ -123,20 +150,44 @@ show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_m
 
 The above gives us:
 
-![otsu](./sample_results/threshold_flowers_otsu.png)
+![otsu](./sample_results/bio_thresh_otsu.png)
 
 For cat lovers, here's thresholding with inverse binary:
 
-```
+```python
+
 show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="binary_inverse"))
+
 ```
 
 Result:
 
 ![Cats](./sample_results/cats_bin_inverse.png)
 
+Thresholding applied to houses:
 
-These and more examples are available in [example2.py](./examples/example2.py). Image sources are
+```python
+images_list=Segmentation("images/houses")
+
+show_images(images_list.read_images(), images_list.threshold_images(threshold_method="thresh_to_zero"))
+
+
+```
+
+![Threshold-Houses](./sample_results/houses_thresh.png)
+
+```python
+
+images_list=Segmentation("images/potholes")
+
+show_images(images_list.read_images(), images_list.threshold_images("binary"))
+
+```
+
+![Potholes](./sample_results/potholes.png)
+
+
+These and more examples are available in [example.py](./examples/example.py). Image sources are
 shown in `sources.md`. If you feel, attribution was not made, please file an issue
 and cite the violating image.
 
