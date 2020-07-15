@@ -161,3 +161,5 @@ def show_images(original_images=None, processed_images=None, cmap="gray"):
     for ind, image in enumerate(image_list):
         axes.ravel()[ind].imshow(image_list[ind], cmap=cmap)
         axes.ravel()[ind].set_axis_off()
+
+
