@@ -32,21 +32,6 @@
    :alt: PyPI license
 
 
-.. image:: https://img.shields.io/pypi/dm/pyautocv.svg
-   :target: https://pypi.python.org/pypi/pyautocv/
-   :alt: PyPI download Month
-
-
-.. image:: https://img.shields.io/pypi/dw/pyautocv.svg
-   :target: https://pypi.python.org/pypi/pyautocv/
-   :alt: PyPI download week
-
-
-.. image:: https://img.shields.io/pypi/dd/pyautocv.svg
-   :target: https://pypi.python.org/pypi/pyautocv/
-   :alt: PyPI download day
-
-
 .. image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
    :target: https://GitHub.com/Nelson-Gon/pyautocv/graphs/commit-activity
    :alt: Maintenance
@@ -55,12 +40,7 @@
 .. image:: https://img.shields.io/github/last-commit/Nelson-Gon/pyautocv.svg
    :target: https://github.com/Nelson-Gon/pyautocv/commits/master
    :alt: GitHub last commit
-
-
-.. image:: https://img.shields.io/badge/Made%20with-Python-1f425f.svg
-   :target: https://www.python.org/
-   :alt: made-with-python
-
+://www.python.org/)
 
 .. image:: https://img.shields.io/github/issues/Nelson-Gon/pyautocv.svg
    :target: https://GitHub.com/Nelson-Gon/pyautocv/issues/
