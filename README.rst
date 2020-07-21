@@ -40,7 +40,7 @@
 .. image:: https://img.shields.io/github/last-commit/Nelson-Gon/pyautocv.svg
    :target: https://github.com/Nelson-Gon/pyautocv/commits/master
    :alt: GitHub last commit
-://www.python.org/)
+
 
 .. image:: https://img.shields.io/github/issues/Nelson-Gon/pyautocv.svg
    :target: https://GitHub.com/Nelson-Gon/pyautocv/issues/
