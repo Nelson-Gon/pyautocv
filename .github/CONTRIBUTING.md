@@ -46,6 +46,8 @@ python -m m2r changelog.md README.md
 cd ..
 # build docs
 sphinx-build source build
+# check docs
+sphinx-build docs/source -W -b linkcheck -d docs/build/doctrees/ docs/build/html/
 # use make on *nix or if you have make on Windows
 make html
 make latexpdf

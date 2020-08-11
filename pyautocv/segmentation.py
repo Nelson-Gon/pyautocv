@@ -103,9 +103,9 @@ class Segmentation(object):
 
         :param kernel_size: int size to use for edge detection kernels
         :param kernel_shape: tuple Shape to use for kernel smoothing
-        :param operator: One of sobel_vertical, sobel_horizontal,prewitt_horizontal,prewitt_vertical or laplace.
+        :param operator: One of sobel_vertical, sobel_horizontal,prewitt_horizontal,prewitt_vertical or laplace. \
         Kernels used are available here: https://en.wikipedia.org/wiki/Sobel_operator
-        :return: Edge detection using sobel vertical, sobel horizontal or laplace. Uses images that have already been
+        :return: Edge detection using sobel vertical, sobel horizontal or laplace. Uses images that have already been \
         thresholded
 
         """
