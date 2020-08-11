@@ -7,17 +7,23 @@ show_images(images_list.read_images(), images_list.read_images(), number=10)
 # smooth images
 show_images(images_list.read_images(), images_list.smooth())
 # use median
-show_images(images_list.read_images(), images_list.smooth(mask="median", kernel_shape=(7, 7)), number = 8)
+show_images(images_list.read_images(), images_list.smooth(mask="median", kernel_shape=(7, 7)), number = 4)
 
 # detect edges
 
 show_images(images_list.read_images(), images_list.detect_edges(operator="roberts", mask="gaussian", sigma=0.8), number=4)
 
-show_images(images_list.read_images(), images_list.threshold_images(), number = 2)
+show_images(images_list.read_images(), images_list.threshold_images(), number = 4)
+
+show_images(images_list.read_images(), images_list.threshold_images(threshold_method="otsu"), number = 4)
 
 # threshold
 cats = Segmentation("images/cats")
 show_images(cats.read_images(), cats.threshold_images(threshold_method="binary_inverse"))
+
+images_list_gray_mode=Segmentation("images/dic", image_suffix ="tif", color_mode = "gray")
+# no need to gray them since they are already gray
+show_images(images_list_gray_mode.read_images(), images_list_gray_mode.threshold_images(), number = 4)
 
 # biology
 to_threshold = Segmentation("images/biology")
