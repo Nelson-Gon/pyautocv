@@ -3,7 +3,7 @@ version: 2
 
 
 sphinx:
-  configuration: docs/source/conf.py
+  configuration: docs/conf.py
 
 formats:
   - pdf
@@ -12,4 +12,5 @@ formats:
 python:
   version: 3.7
   install:
-    - requirements: ./requirements.txt
+    - requirements: docs/requirements.txt
+    - method: pip
