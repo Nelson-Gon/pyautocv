@@ -2,12 +2,11 @@
 import cv2
 import matplotlib.pyplot as plt
 from scipy import ndimage
-from skimage.io import ImageCollection
+from skimage.io import imread_collection
 from skimage import filters
 from os import pathsep
 import numpy as np
 from itertools import chain
-
 
 
 def gray_images(images):
@@ -19,18 +18,25 @@ def gray_images(images):
 
     return list(map(lambda x: cv2.cvtColor(x, cv2.COLOR_BGR2GRAY), images))
 
+
 # init class segmentation
 class Segmentation(object):
-    def __init__(self, directory=None):
+    def __init__(self, directory=None, image_suffix="png", color_mode="rgb"):
         """
 
         :param directory: A directory containing images(currently only supports .jpg images
+        :param image_suffix: Suffix of images in directory. For mixed types(png and jpg), set suffix as png. \
+        Defaults to png.
+        :param color_mode: Specifies the nature of input images. Defaults to rgb implying not grayscale
         :type directory: str
 
         """
         self.directory = directory
         if self.directory is None:
             self.directory = "."
+
+        self.image_suffix = image_suffix
+        self.color_mode = color_mode
 
     def read_images(self):
         """
@@ -39,14 +45,18 @@ class Segmentation(object):
 
         """
         # read png and jpg from current directory
-        images_list = ImageCollection("./*.jpg" + pathsep + "./*.png")
-        if self.directory is not None:
-            images_list = ImageCollection(self.directory + "/*.jpg" + pathsep + "/*.png")
+
+
+        use_engine = {'tif': imread_collection(self.directory + "./*.tif", plugin="pil"),
+                      'png': imread_collection(self.directory + "/*.jpg" + pathsep + "/*.png")}
+
+
+
+        images_list = use_engine[self.image_suffix]
 
         return list(images_list)
 
-
-    def smooth(self, mask="box",kernel_shape=(5, 5), **kwargs):
+    def smooth(self, mask="box", kernel_shape=(5, 5), **kwargs):
         """
 
         :param sigma: Sigma to use for a gaussian filter
@@ -86,7 +96,10 @@ class Segmentation(object):
                                                                        cv2.THRESH_TOZERO),
                              'otsu': lambda x: cv2.threshold(x, use_threshold, use_max,
                                                              cv2.THRESH_BINARY + cv2.THRESH_OTSU)}
-        image_list = gray_images(self.read_images())
+        if self.color_mode == "rgb":
+            image_list = gray_images(self.read_images())
+        else:
+            image_list = self.read_images()
 
         thresholded_images = list(map(threshold_methods[threshold_method], image_list))
         # drop ret val
@@ -94,11 +107,7 @@ class Segmentation(object):
 
         return thresholded_images
 
-
-
-
-
-    def detect_edges(self, operator="sobel_vertical", kernel_size=3,optional_mask=None,**kwargs):
+    def detect_edges(self, operator="sobel_vertical", kernel_size=3, optional_mask=None, **kwargs):
         """
 
         :param kernel_size: int size to use for edge detection kernels
@@ -114,7 +123,7 @@ class Segmentation(object):
 
         available_operators = ["sobel_horizontal", "sobel_vertical", "prewitt_horizontal", "prewitt_vertical",
                                "laplace", "roberts_cross_neg", "roberts_horizontal", "scharr_vertical",
-                               "scharr_horizontal","canny", "roberts"]
+                               "scharr_horizontal", "canny", "roberts"]
 
         if operator not in available_operators:
             raise KeyError("operator should be one of {}".format(available_operators))
@@ -132,23 +141,33 @@ class Segmentation(object):
 
         print("Using {}".format(self.operator))
         # denoise and gray
-        grayed_denoised = gray_images(self.smooth(**kwargs))
+        if self.color_mode == "gray":
+            to_denoise = self.smooth(**kwargs)
+        else:
+            to_denoise = gray_images(self.smooth(**kwargs))
+        grayed_denoised = to_denoise
         final_images = list(map(kernels[self.operator], grayed_denoised))
 
         return final_images
 
 
-def show_images(original_images=None, processed_images=None, cmap="gray"):
+def show_images(original_images=None, processed_images=None, cmap="gray", number = None):
     """
     :param original_images: Original Images from read_images()
     :param processed_images: Images that have been converted eg from detect_edges()
     :param cmap: Color cmpa from matplotlib. Defaults to gray
+    :param number: optional Number of images to show
     """
     # need to figure out how any works in python
     if original_images is None or processed_images is None:
         raise ValueError("Both original and processed image lists are required.")
+    if number is not None:
+        original_images =original_images[:number]
+        processed_images = processed_images[:number]
 
     image_list = list(chain(original_images, processed_images))
+
+
 
 
     if len(image_list) % 2 == 0:
@@ -161,5 +180,3 @@ def show_images(original_images=None, processed_images=None, cmap="gray"):
     for ind, image in enumerate(image_list):
         axes.ravel()[ind].imshow(image_list[ind], cmap=cmap)
         axes.ravel()[ind].set_axis_off()
-
-

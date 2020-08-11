@@ -1,5 +1,13 @@
 # pyautocv's change log 
 
+**pyautocv 0.2.2**
+
+- Added support for different color modes i.e either grayscale or rgb images
+
+- Added support for tiff(`.tif`) images
+
+- `show_images` is now more customizable with respect to the number of images one would like to show. 
+
 **pyautocv 0.2.1**
 
 **Major Changes**
