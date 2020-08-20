@@ -53,3 +53,6 @@ show_images(images_list_gray_mode.read_images(), images_list_gray_mode.threshold
 images_list=Segmentation("images/potholes")
 
 show_images(images_list.read_images(), images_list.threshold_images("binary"))
+
+images_list = Segmentation("images/cats")
+show_images(images_list.read_images(), images_list.smooth(mask="median", kernel_shape=(7, 7)))

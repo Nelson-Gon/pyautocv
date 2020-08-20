@@ -102,12 +102,12 @@ To use a different filter:
 
 ```python
 
-
+images_list = Segmentation("images/cats")
 show_images(images_list.read_images(), images_list.smooth(mask="median", kernel_shape=(7, 7)))
 
 ```
 
-![Cats-Median-Smooth](./sample_results/cats_smooth_median.png)
+![Cats-Median-Smooth](./sample_results/cat_median_smooth.png)
 
 
 * Edge Detection 
