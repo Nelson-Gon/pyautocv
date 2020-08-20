@@ -162,10 +162,13 @@ def show_images(original_images=None, processed_images=None, cmap="gray", number
     if original_images is None or processed_images is None:
         raise ValueError("Both original and processed image lists are required.")
     if number is not None:
-        original_images = original_images[:number]
+        original_images =original_images[:number]
         processed_images = processed_images[:number]
 
-    image_list = list(chain(*zip(original_images, processed_images)))
+    image_list = list(chain(original_images, processed_images))
+
+
+
 
     if len(image_list) % 2 == 0:
         ncols = len(image_list) / 2
@@ -173,6 +176,7 @@ def show_images(original_images=None, processed_images=None, cmap="gray", number
         ncols = len(image_list)
 
     fig, axes = plt.subplots(nrows=2, ncols=int(ncols))
+
     for ind, image in enumerate(image_list):
         axes.ravel()[ind].imshow(image_list[ind], cmap=cmap)
         axes.ravel()[ind].set_axis_off()

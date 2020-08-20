@@ -13,7 +13,7 @@
 
 **Project Aims**
 
-The goal of `pyautocv` is to provide a simple computer vision(cv) workflow that enables one to automate 
+The goal of pyautocv is to provide a simple computer vision(cv) workflow that enables one to automate 
 or at least reduce the time spent in image (pre)-processing. 
 
 **Installing the package**
@@ -37,7 +37,7 @@ python3 setup.py install
 
 ```
 
-**Available Classes**
+**Available Class**
 
 * Segmentation is a super class on which other classes build
 
@@ -58,7 +58,7 @@ To grey an image directory:
 from pyautocv.segmentation import *
 
 images_list=Segmentation("images/cats")
-show_images(gray_images(images_list.read_images()), images_list.read_images(), number=2)
+show_images(gray_images(images_list.read_images()), images_list.read_images())
 
 ```
 ![Grayed](sample_results/cats_gray.png)
@@ -69,11 +69,10 @@ To smooth a directory of images, we can use `EdgeDetection`'s `smooth` method as
 follows:
 
 ```python
-
 from pyautocv.segmentation import *
 
 images_list=Segmentation("images/cats")
-show_images(images_list.smooth(), images_list.read_images(),number=2)
+show_images(gray_images(images_list.read_images()), images_list.read_images())
 
 ```
 
@@ -130,7 +129,7 @@ To use a different filter e.g Laplace,
 
 ```
 
-show_images(images_list.read_images(), images_list.detect_edges(operator="laplace", mask="gaussian", sigma=0))
+show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="laplace", mask="gaussian", sigma=0))
 
 ```
 
@@ -170,7 +169,7 @@ For cat lovers, here's thresholding with inverse binary:
 
 ```python
 
-show_images(images_list.read_images(),images_list.threshold_images(threshold_method="binary_inverse"))
+show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="binary_inverse"))
 
 ```
 
