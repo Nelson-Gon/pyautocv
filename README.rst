@@ -59,7 +59,7 @@
 
 **Project Aims**
 
-The goal of pyautocv is to provide a simple computer vision(cv) workflow that enables one to automate 
+The goal of ``pyautocv`` is to provide a simple computer vision(cv) workflow that enables one to automate 
 or at least reduce the time spent in image (pre)-processing. 
 
 **Installing the package**
@@ -82,7 +82,7 @@ From GitHub
    cd pyautocv
    python3 setup.py install
 
-**Available Class**
+**Available Classes**
 
 
 * 
@@ -106,7 +106,7 @@ To grey an image directory:
    from pyautocv.segmentation import *
 
    images_list=Segmentation("images/cats")
-   show_images(gray_images(images_list.read_images()), images_list.read_images())
+   show_images(gray_images(images_list.read_images()), images_list.read_images(), number=2)
 
 
 .. image:: sample_results/cats_gray.png
@@ -122,10 +122,11 @@ follows:
 
 .. code-block:: python
 
+
    from pyautocv.segmentation import *
 
    images_list=Segmentation("images/cats")
-   show_images(gray_images(images_list.read_images()), images_list.read_images())
+   show_images(images_list.smooth(), images_list.read_images(),number=2)
 
 This will give us:
 
@@ -190,7 +191,7 @@ To use a different filter e.g Laplace,
 .. code-block::
 
 
-   show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="laplace", mask="gaussian", sigma=0))
+   show_images(images_list.read_images(), images_list.detect_edges(operator="laplace", mask="gaussian", sigma=0))
 
 This results in:
 
@@ -236,7 +237,7 @@ For cat lovers, here's thresholding with inverse binary:
 .. code-block:: python
 
 
-   show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="binary_inverse"))
+   show_images(images_list.read_images(),images_list.threshold_images(threshold_method="binary_inverse"))
 
 Result:
 
