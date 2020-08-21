@@ -2,6 +2,10 @@
 
 **pyautocv 0.2.2**
 
+- Made `show_images` more flexible regarding the size of the figure shown. 
+
+- Fixed an issue with reading `.tif` images
+
 - `show_images` now shows image side by side which is more intuitive. 
 
 - Added support for different color modes i.e either grayscale or rgb images

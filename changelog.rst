@@ -6,6 +6,12 @@ pyautocv's change log
 
 
 * 
+  Made ``show_images`` more flexible regarding the size of the figure shown. 
+
+* 
+  Fixed an issue with reading ``.tif`` images
+
+* 
   ``show_images`` now shows image side by side which is more intuitive. 
 
 * 

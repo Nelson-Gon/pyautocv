@@ -47,7 +47,7 @@ class Segmentation(object):
         # read png and jpg from current directory
 
 
-        use_engine = {'tif': imread_collection(self.directory + "./*.tif", plugin="pil"),
+        use_engine = {'tif': imread_collection(self.directory + "/*.tif", plugin="pil"),
                       'png': imread_collection(self.directory + "/*.jpg" + pathsep + "/*.png")}
 
 
@@ -151,11 +151,12 @@ class Segmentation(object):
         return final_images
 
 
-def show_images(original_images=None, processed_images=None, cmap="gray", number = None):
+def show_images(original_images=None, processed_images=None, cmap="gray", number=None, figure_size=(20,20)):
     """
+    :param figure_size: Size of the plot shown. Defaults to (20,20)
     :param original_images: Original Images from read_images()
     :param processed_images: Images that have been converted eg from detect_edges()
-    :param cmap: Color cmpa from matplotlib. Defaults to gray
+    :param cmap: Color cmap from matplotlib. Defaults to gray
     :param number: optional Number of images to show
     """
     # need to figure out how any works in python
@@ -172,7 +173,7 @@ def show_images(original_images=None, processed_images=None, cmap="gray", number
     else:
         ncols = len(image_list)
 
-    fig, axes = plt.subplots(nrows=2, ncols=int(ncols))
+    fig, axes = plt.subplots(nrows=2, ncols=int(ncols), figsize = figure_size)
     for ind, image in enumerate(image_list):
         axes.ravel()[ind].imshow(image_list[ind], cmap=cmap)
         axes.ravel()[ind].set_axis_off()
