@@ -6,6 +6,9 @@ pyautocv's change log
 
 
 * 
+  ``read_images`` now provides a naturally sorted list at least for tiff images. 
+
+* 
   Made ``show_images`` more flexible regarding the size of the figure shown. 
 
 * 

@@ -2,6 +2,8 @@
 
 **pyautocv 0.2.2**
 
+- `read_images` now provides a naturally sorted list at least for tiff images. 
+
 - Made `show_images` more flexible regarding the size of the figure shown. 
 
 - Fixed an issue with reading `.tif` images

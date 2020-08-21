@@ -2,11 +2,12 @@
 import cv2
 import matplotlib.pyplot as plt
 from scipy import ndimage
-from skimage.io import imread_collection
+from skimage.io import imread_collection, imread
 from skimage import filters
 from os import pathsep
 import numpy as np
 from itertools import chain
+import glob
 
 
 def gray_images(images):
@@ -45,16 +46,13 @@ class Segmentation(object):
 
         """
         # read png and jpg from current directory
-
-
-        use_engine = {'tif': imread_collection(self.directory + "/*.tif", plugin="pil"),
-                      'png': imread_collection(self.directory + "/*.jpg" + pathsep + "/*.png")}
-
-
-
-        images_list = use_engine[self.image_suffix]
-
-        return list(images_list)
+        if self.image_suffix == "tif":
+            images_list = sorted(glob.glob(self.directory + "/*.tif"))
+            return [imread(x, plugin='pil') for x in images_list]
+        else:
+            if self.image_suffix not in ["png", "jpg"]:
+                raise ValueError("Only tif, png, and jpg are currently supported")
+            return list(imread_collection(self.directory + "/*.jpg" + pathsep + "/*.png"))
 
     def smooth(self, mask="box", kernel_shape=(5, 5), **kwargs):
         """
@@ -151,7 +149,7 @@ class Segmentation(object):
         return final_images
 
 
-def show_images(original_images=None, processed_images=None, cmap="gray", number=None, figure_size=(20,20)):
+def show_images(original_images=None, processed_images=None, cmap="gray", number=None, figure_size=(20, 20)):
     """
     :param figure_size: Size of the plot shown. Defaults to (20,20)
     :param original_images: Original Images from read_images()
@@ -173,7 +171,7 @@ def show_images(original_images=None, processed_images=None, cmap="gray", number
     else:
         ncols = len(image_list)
 
-    fig, axes = plt.subplots(nrows=2, ncols=int(ncols), figsize = figure_size)
+    fig, axes = plt.subplots(nrows=2, ncols=int(ncols), figsize=figure_size)
     for ind, image in enumerate(image_list):
         axes.ravel()[ind].imshow(image_list[ind], cmap=cmap)
         axes.ravel()[ind].set_axis_off()
