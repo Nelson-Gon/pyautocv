@@ -6,6 +6,13 @@ pyautocv's change log
 
 
 * 
+  Fixed issues with ``read_images`` not reading mixed formats. 
+
+* 
+  ``reshape_images`` and ``resize_images`` are helper functions that were originally written for
+  `cytounet <https://github.com/Nelson-Gon/cytounet>`_
+
+* 
   ``read_images`` now provides a naturally sorted list at least for tiff images. 
 
 * 
