@@ -202,5 +202,5 @@ def reshape_images(image_list):
     :return: Images that can be plotted with show_images
 
     """
-    final_list = [img[:, :, 0] if len(img.shape) == 3 else img for img in image_list]
+    final_list = [img[:, :, 0] if len(img.shape) == 3 and img.shape[2] != 3 else img for img in image_list]
     return final_list
