@@ -56,3 +56,7 @@ show_images(images_list.read_images(), images_list.threshold_images("binary"))
 
 images_list = Segmentation("images/cats")
 show_images(images_list.read_images(), images_list.smooth(mask="median", kernel_shape=(7, 7)))
+show_images(images_list.read_images(), images_list.detect_edges(operator="laplace", mask="gaussian", sigma=0))
+images_list=Segmentation("images/cats")
+show_images(images_list.smooth(), images_list.read_images(),number=2)
+show_images(gray_images(images_list.read_images()), images_list.read_images(), number=2)
