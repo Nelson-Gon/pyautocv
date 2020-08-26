@@ -6,6 +6,9 @@ pyautocv's change log
 
 
 * 
+  ``show_images`` now has a titles argument to add titles to plots.  
+
+* 
   Fixed issues with ``read_images`` not reading mixed formats. 
 
 * 

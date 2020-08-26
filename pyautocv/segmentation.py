@@ -154,13 +154,16 @@ class Segmentation(object):
         return final_images
 
 
-def show_images(original_images=None, processed_images=None, cmap="gray", number=None, figure_size=(20, 20)):
+def show_images(original_images=None, processed_images=None, cmap="gray", number=None, figure_size=(20, 20),
+                titles = None):
     """
+    :param titles: A list of length 2 for titles to use. Defaults to ['original','processed']
     :param figure_size: Size of the plot shown. Defaults to (20,20)
     :param original_images: Original Images from read_images()
     :param processed_images: Images that have been converted eg from detect_edges()
     :param cmap: Color cmap from matplotlib. Defaults to gray
     :param number: optional Number of images to show
+    :return A matplotlib plot of images
     """
 
     if original_images is None or processed_images is None:
@@ -177,8 +180,13 @@ def show_images(original_images=None, processed_images=None, cmap="gray", number
         ncols = len(image_list)
 
     fig, axes = plt.subplots(nrows=2, ncols=int(ncols), figsize=figure_size)
+    if titles is None:
+        titles = ['original', 'processed']
+
+    titles = titles * len(image_list)
     for ind, image in enumerate(image_list):
         axes.ravel()[ind].imshow(image_list[ind], cmap=cmap)
+        axes.ravel()[ind].set_title(f'{titles[ind]}')
         axes.ravel()[ind].set_axis_off()
 
 
@@ -204,3 +212,5 @@ def reshape_images(image_list):
     """
     final_list = [img[:, :, 0] if len(img.shape) == 3 and img.shape[2] != 3 else img for img in image_list]
     return final_list
+
+

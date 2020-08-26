@@ -2,6 +2,8 @@
 
 **pyautocv 0.2.2**
 
+- `show_images` now has a titles argument to add titles to plots.  
+
 - Fixed issues with `read_images` not reading mixed formats. 
 
 - `reshape_images` and `resize_images` are helper functions that were originally written for
