@@ -214,3 +214,20 @@ def reshape_images(image_list):
     return final_list
 
 
+def stack_images(list_one, list_two, direction="horizontal"):
+    """
+
+    :param list_one: List containing image arrays to stack together
+    :param list_two: Another list of image arrays
+    :param direction: Stacking direction. One of horizontal and verical,defaults to horizontal
+    :return: Returns a list of images stacked together as requested.
+
+    """
+    stack_direction = {"horizontal": np.hstack,
+                       "vertical": np.vstack}
+    stacked_images = []
+    for img_x, img_y in zip(list_one, list_two):
+        stacked_images.append(stack_direction[direction]((img_x, img_y)))
+
+    return stacked_images
+

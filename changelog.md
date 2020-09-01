@@ -2,6 +2,8 @@
 
 **pyautocv 0.2.2**
 
+- `stack_images` is a new function that allows one to stack images vertically and horizontally.
+
 - `show_images` now has a titles argument to add titles to plots.  
 
 - Fixed issues with `read_images` not reading mixed formats. 
