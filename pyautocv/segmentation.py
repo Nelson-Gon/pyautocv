@@ -61,8 +61,6 @@ class Segmentation(object):
 
     def smooth(self, mask="box", kernel_shape=(5, 5), **kwargs):
         """
-
-        :param sigma: Sigma to use for a gaussian filter
         :param mask: A low pass filter method to use for noise reduction
         :param kernel_shape: A tuple specifying the shape of the kernel. Defaults to (3, 3)
         :return: Images convolved with a low pass filter to reduce noise
@@ -113,16 +111,14 @@ class Segmentation(object):
     def detect_edges(self, operator="sobel_vertical", kernel_size=3, optional_mask=None, **kwargs):
         """
 
+        :param optional_mask: See skimage.filters.scharr_v for details.
         :param kernel_size: int size to use for edge detection kernels
-        :param kernel_shape: tuple Shape to use for kernel smoothing
         :param operator: One of sobel_vertical, sobel_horizontal,prewitt_horizontal,prewitt_vertical or laplace. \
         Kernels used are available here: https://en.wikipedia.org/wiki/Sobel_operator
         :return: Edge detection using sobel vertical, sobel horizontal or laplace. Uses images that have already been \
         thresholded
 
         """
-        self.operator = operator
-        self.kernel_size = kernel_size
 
         available_operators = ["sobel_horizontal", "sobel_vertical", "prewitt_horizontal", "prewitt_vertical",
                                "laplace", "roberts_cross_neg", "roberts_horizontal", "scharr_vertical",
@@ -131,31 +127,31 @@ class Segmentation(object):
         if operator not in available_operators:
             raise KeyError("operator should be one of {}".format(available_operators))
 
-        kernels = {'sobel_horizontal': lambda x: cv2.Sobel(x, cv2.CV_64F, 1, 0, ksize=self.kernel_size),
-                   'sobel_vertical': lambda x: cv2.Sobel(x, cv2.CV_64F, 0, 1, ksize=self.kernel_size),
+        kernels = {'sobel_horizontal': lambda x: cv2.Sobel(x, cv2.CV_64F, 1, 0, ksize=kernel_size),
+                   'sobel_vertical': lambda x: cv2.Sobel(x, cv2.CV_64F, 0, 1, ksize=kernel_size),
                    'roberts': lambda x: filters.roberts(x, optional_mask),
-                   'roberts_cross_neg': lambda x: lambda x: ndimage.convolve(x, np.array([[0, -1], [1, 0]])),
+                   'roberts_cross_neg': lambda x: ndimage.convolve(x, np.array([[0, -1], [1, 0]])),
                    'roberts_cross_pos': lambda x: filters.roberts_pos_diag(x, optional_mask),
-                   'laplace': lambda x: cv2.Sobel(x, cv2.CV_64F, 1, 0, ksize=self.kernel_size),
+                   'laplace': lambda x: cv2.Sobel(x, cv2.CV_64F, 1, 0, ksize=kernel_size),
                    'prewitt_horizontal': lambda x: filters.prewitt_h(x, optional_mask),
                    'prewitt_vertical': lambda x: filters.prewitt_v(x, optional_mask),
                    'scharr_horizontal': lambda x: filters.scharr_h(x, optional_mask),
                    'scharr_vertical': lambda x: filters.scharr_v(x, optional_mask)}
 
-        print("Using {}".format(self.operator))
+        print("Using {}".format(operator))
         # denoise and gray
         if self.color_mode == "gray":
             to_denoise = self.smooth(**kwargs)
         else:
             to_denoise = gray_images(self.smooth(**kwargs))
         grayed_denoised = to_denoise
-        final_images = list(map(kernels[self.operator], grayed_denoised))
+        final_images = list(map(kernels[operator], grayed_denoised))
 
         return final_images
 
 
 def show_images(original_images=None, processed_images=None, cmap="gray", number=None, figure_size=(20, 20),
-                titles = None):
+                titles=None):
     """
     :param titles: A list of length 2 for titles to use. Defaults to ['original','processed']
     :param figure_size: Size of the plot shown. Defaults to (20,20)
@@ -219,7 +215,7 @@ def stack_images(list_one, list_two, direction="horizontal"):
 
     :param list_one: List containing image arrays to stack together
     :param list_two: Another list of image arrays
-    :param direction: Stacking direction. One of horizontal and verical,defaults to horizontal
+    :param direction: Stacking direction. One of horizontal and vertical,defaults to horizontal
     :return: Returns a list of images stacked together as requested.
 
     """
@@ -231,3 +227,22 @@ def stack_images(list_one, list_two, direction="horizontal"):
 
     return stacked_images
 
+
+def plot_hist(input_image=None, lim=None, color_mode="gray"):
+    """
+
+    :param input_image: An image representation(array) whose histogram is required.
+    :param lim: A list to define the range of the x-axis, defaults to [0, 256]
+    :param color_mode: One of gray or rgb. This determines the number of plots shown.
+    :return:
+
+    """
+    if lim is None:
+        lim = [0, 256]
+    channel = "b"
+    if color_mode == "rgb":
+        channel = ('b', 'g', 'r')
+    for i, col in enumerate(channel):
+        calculated_hist = cv2.calcHist([input_image], [i], None, [256], [0, 256])
+        plt.plot(calculated_hist, color=col)
+        plt.xlim(lim)

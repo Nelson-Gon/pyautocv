@@ -3,8 +3,6 @@ import os
 os.chdir("pyautocv")
 # gray images
 images_list = Segmentation("images/dic", image_suffix="tif", color_mode="gray")
-
-
 # smooth images
 show_images(images_list.read_images(), images_list.smooth())
 # use median

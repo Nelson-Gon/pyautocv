@@ -6,6 +6,9 @@ pyautocv's change log
 
 
 * 
+  ``plot_hist`` is a new function that allows one to plot histograms of images. 
+
+* 
   ``stack_images`` is a new function that allows one to stack images vertically and horizontally.
 
 * 
