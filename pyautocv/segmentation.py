@@ -151,9 +151,9 @@ class Segmentation(object):
 
 
 def show_images(original_images=None, processed_images=None, cmap="gray", number=None, figure_size=(20, 20),
-                titles=None):
+                custom_titles=None):
     """
-    :param titles: A list of length 2 for titles to use. Defaults to ['original','processed']
+    :param custom_titles: A list of length 2 for titles to use. Defaults to ['original','processed']
     :param figure_size: Size of the plot shown. Defaults to (20,20)
     :param original_images: Original Images from read_images()
     :param processed_images: Images that have been converted eg from detect_edges()
@@ -161,28 +161,37 @@ def show_images(original_images=None, processed_images=None, cmap="gray", number
     :param number: optional Number of images to show
     :return A matplotlib plot of images
     """
+    if number is None:
+        # This assumes that both lists will be the same length
+        # TODO: test for length equivalency, error on incompatible lengths
+        number = len(original_images)
 
-    if original_images is None or processed_images is None:
-        raise ValueError("Both original and processed image lists are required.")
-    if number is not None:
-        original_images = reshape_images(original_images[:number])
+    image_list = reshape_images(original_images[:number])
+
+    if custom_titles is None:
+        custom_titles = ['original']
+
+    if processed_images is not None:
         processed_images = reshape_images(processed_images[:number])
+        image_list = list(chain(*zip(image_list, processed_images)))
+        custom_titles = ["original", "processed"]
 
-    image_list = list(chain(*zip(original_images, processed_images)))
+    # Currently only considering divisibility by three and two for image visualization
+    # This is mostly necessary for single list visualization
 
     if len(image_list) % 2 == 0:
-        ncols = len(image_list) / 2
+        number_of_columns = len(image_list) / 2
+        number_of_rows = 2
+
     else:
-        ncols = len(image_list)
+        number_of_columns = len(image_list) / 3
+        number_of_rows = 3
+    custom_titles = custom_titles * len(image_list)
+    fig, axes = plt.subplots(nrows=number_of_rows, ncols=int(number_of_columns), figsize=figure_size)
 
-    fig, axes = plt.subplots(nrows=2, ncols=int(ncols), figsize=figure_size)
-    if titles is None:
-        titles = ['original', 'processed']
-
-    titles = titles * len(image_list)
     for ind, image in enumerate(image_list):
         axes.ravel()[ind].imshow(image_list[ind], cmap=cmap)
-        axes.ravel()[ind].set_title(f'{titles[ind]}')
+        axes.ravel()[ind].set_title(f'{custom_titles[ind]}')
         axes.ravel()[ind].set_axis_off()
 
 

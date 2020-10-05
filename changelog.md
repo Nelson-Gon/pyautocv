@@ -2,6 +2,12 @@
 
 **pyautocv 0.2.2**
 
+- An `example_script.py` file was added to test running files at the command line
+
+- `titles` was renamed to `custom_titles` in `show_images`
+
+- `show_images` now supports showing only a single list of images
+
 - `plot_hist` is a new function that allows one to plot histograms of images. 
 
 - `stack_images` is a new function that allows one to stack images vertically and horizontally.
