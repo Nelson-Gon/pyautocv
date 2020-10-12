@@ -32,6 +32,11 @@
    :alt: PyPI license
 
 
+.. image:: https://img.shields.io/pypi/dm/pyautocv.svg
+   :target: https://pypi.python.org/pypi/pyautocv/
+   :alt: PyPI Downloads Month
+
+
 .. image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
    :target: https://GitHub.com/Nelson-Gon/pyautocv/graphs/commit-activity
    :alt: Maintenance

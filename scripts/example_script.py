@@ -10,3 +10,7 @@ if __name__ == "__main__":
     test_list = Segmentation(arguments.directory, image_suffix=arguments.suffix)
     show_images(test_list.read_images(), test_list.threshold_images(threshold_method=arguments.method))
     plt.show()
+
+# TODO:
+# Provide an argument to choose the kind of processing to do
+# Perhaps use several scripts instead of one?
