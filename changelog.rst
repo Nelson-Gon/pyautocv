@@ -6,6 +6,9 @@ pyautocv's change log
 
 
 * 
+  Initial support for thresholding scripts. Added arguments to the sample script 
+
+* 
   An ``example_script.py`` file was added to test running files at the command line
 
 * 

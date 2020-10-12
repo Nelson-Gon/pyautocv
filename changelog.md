@@ -2,6 +2,8 @@
 
 **pyautocv 0.2.2**
 
+- Initial support for thresholding scripts. Added arguments to the sample script 
+
 - An `example_script.py` file was added to test running files at the command line
 
 - `titles` was renamed to `custom_titles` in `show_images`

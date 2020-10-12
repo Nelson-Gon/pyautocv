@@ -18,7 +18,7 @@ or at least reduce the time spent in image (pre)-processing.
 
 **Installing the package**
 
-From pypi:
+From PyPI:
 
 ```
 
@@ -48,6 +48,35 @@ python3 setup.py install
 
 
 **Example Usage**
+
+**Simple Script(Currently only supports thresholding)**
+
+
+To run the script at the  command-line, we can do the following:
+
+```
+
+# Ensure you have your paths set well
+# This assumes that we are inside the package's top level directory
+
+python scripts/example_script.py -d "images/cats" -s "png" -m "binary_inverse"
+
+```
+
+Sample Result
+
+![Command Line Script](sample_results/sample_script.png)
+
+
+To get help:
+
+```
+
+python scripts/example_script.py -h 
+
+
+
+```
 
 
 * Image Gra(e)ying
@@ -177,6 +206,8 @@ show_images(images_list.read_images(),images_list.threshold_images(threshold_met
 Result:
 
 ![Cats](./sample_results/cats_bin_inverse.png)
+
+
 
 Thresholding applied to houses:
 

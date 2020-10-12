@@ -64,7 +64,7 @@ or at least reduce the time spent in image (pre)-processing.
 
 **Installing the package**
 
-From pypi:
+From PyPI:
 
 .. code-block::
 
@@ -95,6 +95,33 @@ From GitHub
   Thresholding dedicated to thresholding.
 
 **Example Usage**
+
+**Simple Script(Currently only supports thresholding)**
+
+To run the script at the  command-line, we can do the following:
+
+.. code-block::
+
+
+   # Ensure you have your paths set well
+   # This assumes that we are inside the package's top level directory
+
+   python scripts/example_script.py -d "images/cats" -s "png" -m "binary_inverse"
+
+Sample Result
+
+
+.. image:: sample_results/sample_script.png
+   :target: sample_results/sample_script.png
+   :alt: Command Line Script
+
+
+To get help:
+
+.. code-block::
+
+
+   python scripts/example_script.py -h
 
 
 * Image Gra(e)ying
