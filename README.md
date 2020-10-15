@@ -242,6 +242,23 @@ and cite the violating image.
 > “A language that doesn't affect the way you think about programming is not worth knowing.”
 ― Alan J. Perlis
 
+---
+
+If you would like to cite this work, please use:
+
+Nelson Gonzabato(2020) pyautocv: (Semi) Automated Image Processing, https://github.com/Nelson-Gon/pyautocv
+
+BibTex:
+
+@misc{Gonzabato2020,
+  author = {Gonzabato, N},
+  title = {pyautocv: (Semi) Automated Image Processing},
+  year = {2020},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/Nelson-Gon/pyautocv}},
+  commit = {7403d8f33634bfbae3e5aac214df1757e2aaaa5e}
+} 
 
 ---
 
