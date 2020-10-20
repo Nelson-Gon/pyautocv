@@ -60,7 +60,8 @@ To run the script at the  command-line, we can do the following:
 # Ensure you have your paths set well
 # This assumes that we are inside the package's top level directory
 
-python scripts/example_script.py -d "images/cats" -s "png" -m "binary_inverse"
+ python scripts/processing.py -d "images/cats" -s "png" -m "binary_inverse" -o "threshold" -mt 250 -t 50
+
 
 ```
 
@@ -73,7 +74,7 @@ To get help:
 
 ```
 
-python scripts/example_script.py -h 
+python scripts/processing.py -h 
 
 
 
@@ -257,7 +258,7 @@ BibTex:
   publisher = {GitHub},
   journal = {GitHub repository},
   howpublished = {\url{https://github.com/Nelson-Gon/pyautocv}},
-  commit = {7403d8f33634bfbae3e5aac214df1757e2aaaa5e}
+  commit = {2a5a8c48fd91c719d526ed013b298d560df9b73f}
 } 
 
 ---
