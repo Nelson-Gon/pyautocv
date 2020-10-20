@@ -326,15 +326,17 @@ Nelson Gonzabato(2020) pyautocv: (Semi) Automated Image Processing, https://gith
 
 BibTex:
 
-@misc{Gonzabato2020,
-  author = {Gonzabato, N},
-  title = {pyautocv: (Semi) Automated Image Processing},
-  year = {2020},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/Nelson-Gon/pyautocv}},
-  commit = {2a5a8c48fd91c719d526ed013b298d560df9b73f}
-} 
+.. code-block::
+
+   @misc{Gonzabato2020,
+     author = {Gonzabato, N},
+     title = {pyautocv: (Semi) Automated Image Processing},
+     year = {2020},
+     publisher = {GitHub},
+     journal = {GitHub repository},
+     howpublished = {\url{https://github.com/Nelson-Gon/pyautocv}},
+     commit = {2a5a8c48fd91c719d526ed013b298d560df9b73f}
+   }
 
 ----
 
