@@ -6,6 +6,9 @@ pyautocv's change log
 
 
 * 
+  Extended the script to handle thresholding, edge detection, and smoothing. 
+
+* 
   Initial support for thresholding scripts. Added arguments to the sample script 
 
 * 
