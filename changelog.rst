@@ -6,6 +6,9 @@ pyautocv's change log
 
 
 * 
+  Extended script to make it a bit more flexible 
+
+* 
   Extended the script to handle thresholding, edge detection, and smoothing. 
 
 * 

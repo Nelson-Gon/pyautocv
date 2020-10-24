@@ -2,6 +2,8 @@
 
 **pyautocv 0.2.2**
 
+- Extended script to make it a bit more flexible 
+
 - Extended the script to handle thresholding, edge detection, and smoothing. 
 
 - Initial support for thresholding scripts. Added arguments to the sample script 

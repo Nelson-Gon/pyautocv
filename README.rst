@@ -101,9 +101,10 @@ From GitHub
 
 **Example Usage**
 
-**Simple Script(Currently only supports thresholding)**
+**Note**\ : Although these methods can be run via this script, the script is less flexible and might be useful for quick
+exploration but not extended analysis. 
 
-To run the script at the  command-line, we can do the following:
+To run the script at the  commandline, we can do the following:
 
 .. code-block::
 
@@ -121,20 +122,46 @@ Sample Result
    :alt: Command Line Script
 
 
-To get help:
+To perform edge detection:
 
 .. code-block::
 
 
-   python scripts/processing.py -h
+   python scripts/processing.py -d "images/biology" -s "jpg" -o "detect_edges" -m "sobel_vertical" -k 3
+
+.. code-block::
 
 
-* Image Gra(e)ying
+   ![Bio Script](sample_results/bioscript.png)
 
-To grey an image directory:
 
-.. code-block:: python
+   To smooth images:
 
+python scripts/processing.py -d "images/houses" -s "jpg" -o "smooth" -m "gaussian" -k 5 5 --sigma 0.7
+
+.. code-block::
+
+
+   ![Houses Smooth](sample_results/houses_smooth.png)
+
+   To get help:
+
+python scripts/processing.py -h 
+
+.. code-block::
+
+
+   Further exploration is left to the user.
+
+   ---
+
+   The following section shows how to use the more flexible class/methods approach
+
+   * Image Gra(e)ying
+
+   To grey an image directory:
+
+   ```python
    from pyautocv.segmentation import *
 
    images_list=Segmentation("images/cats")
