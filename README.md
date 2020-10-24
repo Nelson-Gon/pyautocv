@@ -1,6 +1,6 @@
 # (Semi) Automated Image Processing with pyautocv
 
-![Stage](https://www.repostatus.org/badges/latest/wip.svg) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3766956.svg)](https://doi.org/10.5281/zenodo.3766956)
+![Stage](https://www.repostatus.org/badges/latest/active.svg) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3766956.svg)](https://doi.org/10.5281/zenodo.3766956)
 ![Test-Package](https://github.com/Nelson-Gon/pyautocv/workflows/Test-Package/badge.svg)
 ![Travis Build](https://travis-ci.com/Nelson-Gon/pyautocv.svg?branch=master)
 [![PyPI version fury.io](https://badge.fury.io/py/pyautocv.svg)](https://pypi.python.org/pypi/pyautocv/)

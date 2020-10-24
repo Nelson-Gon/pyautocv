@@ -3,8 +3,8 @@
 ===============================================
 
 
-.. image:: https://www.repostatus.org/badges/latest/wip.svg
-   :target: https://www.repostatus.org/badges/latest/wip.svg
+.. image:: https://www.repostatus.org/badges/latest/active.svg
+   :target: https://www.repostatus.org/badges/latest/active.svg
    :alt: Stage
  
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3766956.svg
