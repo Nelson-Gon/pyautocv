@@ -38,14 +38,6 @@ python3 setup.py install
 
 ```
 
-**Available Classes**
-
-* Segmentation is a super class on which other classes build
-
-* EdgeDetection is dedicated to edge detection. Currently supported kernels are stored in `.available_operators()`
-
-* Thresholding dedicated to thresholding.
-
 
 
 **Example Usage**
