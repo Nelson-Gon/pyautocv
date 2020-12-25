@@ -14,6 +14,7 @@ import glob
 def gray_images(images):
     """
 
+    :param images: A list of images that should be grayed/greyed.
     :return: Returns grayed images. Currently supports only blue-green-red to gray conversion
 
     """
@@ -31,6 +32,7 @@ class Segmentation(object):
         Defaults to png.
         :param color_mode: Specifies the nature of input images. Defaults to rgb implying not grayscale
         :type directory: str
+        :return An object of class Segmentation
 
         """
         self.directory = directory
@@ -238,7 +240,7 @@ def plot_hist(input_image=None, lim=None, color_mode="gray"):
     :param input_image: An image representation(array) whose histogram is required.
     :param lim: A list to define the range of the x-axis, defaults to [0, 256]
     :param color_mode: One of gray or rgb. This determines the number of plots shown.
-    :return:
+    :return: A histogram plot
 
     """
     if lim is None:
