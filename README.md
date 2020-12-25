@@ -69,8 +69,7 @@ To perform edge detection
 
 ```shell
 
-python scripts/processing.py -d "images/biology" -s "jpg" -o "detect_edges" -m "sobel_vertical" -k 3```
-
+python scripts/processing.py -d "images/biology" -s "jpg" -o "detect_edges" -m "sobel_vertical" -k 3
 ```
 
 ![Bio Script](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bioscript.png?raw=true)
@@ -80,7 +79,6 @@ To smooth images
 
 ```shell
 python scripts/processing.py -d "images/houses" -s "jpg" -o "smooth" -m "gaussian" -k 5 5 --sigma 0.7
-
 ```
 
 ![Houses Smooth](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_smooth.png?raw=true)
