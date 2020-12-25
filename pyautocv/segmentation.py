@@ -32,7 +32,7 @@ class Segmentation(object):
         Defaults to png.
         :param color_mode: Specifies the nature of input images. Defaults to rgb implying not grayscale
         :type directory: str
-        :return An object of class Segmentation
+        :return: An object of class Segmentation
 
         """
         self.directory = directory
@@ -44,11 +44,8 @@ class Segmentation(object):
 
     def read_images(self, other_directory=None):
         """
-        :param other_directory: If images exist in another folder/sub folder, please provide it here. Leave blank if
-        mixed file formats(jpg and png) exist in the same folder
-
-        :return: Returns a multidimensional array containing arrays that represent images in a directory
-
+        :param other_directory: Use if images exist in sub-folders.
+        :return: Returns an n-D array of images.
         """
         # read png and jpg from current directory
         if self.image_suffix == "tif":
@@ -66,7 +63,6 @@ class Segmentation(object):
         :param mask: A low pass filter method to use for noise reduction
         :param kernel_shape: A tuple specifying the shape of the kernel. Defaults to (3, 3)
         :return: Images convolved with a low pass filter to reduce noise
-
         """
         image_list = self.read_images()
         mask_list = {'gaussian': lambda x: ndimage.gaussian_filter(x, **kwargs),
@@ -83,10 +79,10 @@ class Segmentation(object):
     def threshold_images(self, threshold_method="binary", use_threshold=127, use_max=255):
         """
 
-        :param threshold_method:
-        :param use_threshold:
-        :param use_max:
-        :return: Converts images from thresholding to a shape suitable for viewing
+        :param threshold_method: Threshold method to use.
+        :param use_threshold: Threshold value
+        :param use_max: Maximum value of threshold
+        :return: Thresholded images
 
         """
         # use cv2's threshold instead since this is more mature, don't reinvent
@@ -156,7 +152,7 @@ def show_images(original_images=None, processed_images=None, cmap="gray", number
     :param processed_images: Images that have been converted eg from detect_edges()
     :param cmap: Color cmap from matplotlib. Defaults to gray
     :param number: optional Number of images to show
-    :return A matplotlib plot of images
+    :return: A matplotlib plot of images
     """
     if number is None:
         # This assumes that both lists will be the same length

@@ -41,11 +41,6 @@ sphinx-apidoc -o source/ ../pyautocv
 # use make on *nix or if you have make on Windows
 # Ensure that Make settings point to the right build directory
 python -m m2r README.md changelog.md --overwrite && mv README.rst changelog.rst docs/source && ./make.bat html
-
-# go back to docs
-cd ..
-# build docs
-sphinx-build source build
 # check docs
 sphinx-build docs/source -W -b linkcheck -d docs/build/doctrees/ docs/build/html/
 
