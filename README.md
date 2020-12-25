@@ -134,13 +134,9 @@ The above uses default parameters including an `rgb` color mode. For biological 
 grayscale, one can set `color_mode` to gray as shown below. All other operations will remain the same.
 
 ```
-
 images_list_gray_mode=Segmentation("images/dic", image_suffix ="tif", color_mode = "gray")
-# no need to gray them since they are already gray 
 show_images(images_list_gray_mode.read_images(), images_list_gray_mode.threshold_images(), number = 4)
-
-
-```
+r```
 
 Result
 

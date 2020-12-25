@@ -84,7 +84,6 @@ class Segmentation(object):
         :param threshold_method:
         :param use_threshold:
         :param use_max:
-        :return:
         :return: Converts images from thresholding to a shape suitable for viewing
 
         """
@@ -110,14 +109,10 @@ class Segmentation(object):
 
     def detect_edges(self, operator="sobel_vertical", kernel_size=3, optional_mask=None, **kwargs):
         """
-
         :param optional_mask: See skimage.filters.scharr_v for details.
         :param kernel_size: int size to use for edge detection kernels
-        :param operator: One of sobel_vertical, sobel_horizontal,prewitt_horizontal,prewitt_vertical or laplace. \
-        Kernels used are available here: https://en.wikipedia.org/wiki/Sobel_operator
-        :return: Edge detection using sobel vertical, sobel horizontal or laplace. Uses images that have already been \
-        thresholded
-
+        :param operator: One of sobel_vertical, sobel_horizontal,prewitt_horizontal,prewitt_vertical or laplace.
+        :return: Detected edges
         """
 
         available_operators = ["sobel_horizontal", "sobel_vertical", "prewitt_horizontal", "prewitt_vertical",

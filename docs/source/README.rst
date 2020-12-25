@@ -179,134 +179,152 @@ show_images(images_list.smooth(), images_list.read_images(),number=2)
    grayscale, one can set `color_mode` to gray as shown below. All other operations will remain the same.
 
 images_list_gray_mode=Segmentation("images/dic", image_suffix ="tif", color_mode = "gray")
-
-no need to gray them since they are already gray
-================================================
-
 show_images(images_list_gray_mode.read_images(), images_list_gray_mode.threshold_images(), number = 4)
+r```
+
+Result
+
+
+.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/gray_mode.png?raw=true
+   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/gray_mode.png?raw=true
+   :alt: Sample Gray
+
+
+To use a different filter
 
 .. code-block::
 
 
-   Result
-
-   ![Sample Gray](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/gray_mode.png?raw=true)
-
-
-   To use a different filter
-
-images_list = Segmentation("images/cats")
-show_images(images_list.read_images(), images_list.smooth(mask="median", kernel_shape=(7, 7)))
-
-.. code-block::
+   images_list = Segmentation("images/cats")
+   show_images(images_list.read_images(), images_list.smooth(mask="median", kernel_shape=(7, 7)))
 
 
-   ![Cats-Median-Smooth](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cat_median_smooth.png?raw=true)
+.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cat_median_smooth.png?raw=true
+   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cat_median_smooth.png?raw=true
+   :alt: Cats-Median-Smooth
 
 
-   * Edge Detection 
 
-   To detect edges in a directory of images, we can use `Segmentation`'s `detect_edges`.
+* Edge Detection 
 
-show_images(images_list.read_images(), images_list.detect_edges(operator="roberts", mask="gaussian", sigma=0.8))
+To detect edges in a directory of images, we can use ``Segmentation``\ 's ``detect_edges``. 
 
 .. code-block::
 
 
-   The above will give us the following result
+   show_images(images_list.read_images(), images_list.detect_edges(operator="roberts", mask="gaussian", sigma=0.8))
+
+The above will give us the following result
 
 
-   ![Sample_colored](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_gauss_edge.png?raw=true)
+.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_gauss_edge.png?raw=true
+   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_gauss_edge.png?raw=true
+   :alt: Sample_colored
 
 
-   To use a different filter e.g Laplace,
-
-show_images(images_list.read_images(), images_list.detect_edges(operator="laplace", mask="gaussian", sigma=0))
-
-.. code-block::
-
-
-   This results in
-
-   ![Laplace](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_laplace_gaussian.?raw=true)
-
-
-
-   * Thresholding
-
-   To perform thresholding, we can use the method `threshold_images`.
-
-to_threshold = Segmentation("images/biology")
-show_images(to_threshold.read_images(),to_threshold.threshold_images())
+To use a different filter e.g Laplace,
 
 .. code-block::
 
 
-   ![Threshold](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bio_thresh.png?raw=true)
+   show_images(images_list.read_images(), images_list.detect_edges(operator="laplace", mask="gaussian", sigma=0))
 
-   To use a different thresholding method.
+This results in
 
-show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="otsu"))
+
+.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_laplace_gaussian.?raw=true
+   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_laplace_gaussian.?raw=true
+   :alt: Laplace
+
+
+
+* Thresholding
+
+To perform thresholding, we can use the method ``threshold_images``.
+
+.. code-block::
+
+   to_threshold = Segmentation("images/biology")
+   show_images(to_threshold.read_images(),to_threshold.threshold_images())
+
+
+.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bio_thresh.png?raw=true
+   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bio_thresh.png?raw=true
+   :alt: Threshold
+
+
+To use a different thresholding method.
 
 .. code-block::
 
 
-   The above gives us:
+   show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="otsu"))
 
-   ![otsu](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bio_thresh_otsu.png?raw=true)
-
-   For cat lovers, here's thresholding with inverse binary.
-
-show_images(images_list.read_images(),images_list.threshold_images(threshold_method="binary_inverse"))
-
-.. code-block::
+The above gives us:
 
 
-   Result:
+.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bio_thresh_otsu.png?raw=true
+   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bio_thresh_otsu.png?raw=true
+   :alt: otsu
 
-   ![Cats](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_bin_inverse.png?raw=true)
 
-
-
-   Thresholding applied to images of houses.
-
-images_list=Segmentation("images/houses")
-show_images(images_list.read_images(), images_list.threshold_images(threshold_method="thresh_to_zero"))
+For cat lovers, here's thresholding with inverse binary.
 
 .. code-block::
 
 
-   ![Threshold-Houses](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_thresh.png)
+   show_images(images_list.read_images(),images_list.threshold_images(threshold_method="binary_inverse"))
 
-images_list=Segmentation("images/potholes")
-show_images(images_list.read_images(), images_list.threshold_images("binary"))
+Result:
+
+
+.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_bin_inverse.png?raw=true
+   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_bin_inverse.png?raw=true
+   :alt: Cats
+
+
+Thresholding applied to images of houses.
 
 .. code-block::
 
-
-   ![Potholes](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/potholes.png)
-
-
-   These and more examples are available in [example.py](./examples/example.py). Image sources are
-   shown in `sources.md`. If you feel, attribution was not made, please file an issue
-   and cite the violating image.
+   images_list=Segmentation("images/houses")
+   show_images(images_list.read_images(), images_list.threshold_images(threshold_method="thresh_to_zero"))
 
 
+.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_thresh.png
+   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_thresh.png
+   :alt: Threshold-Houses
 
 
-   **Citation**
+.. code-block::
 
-   Nelson Gonzabato(2020) pyautocv: (Semi) Automated Image Processing, https://github.com/Nelson-Gon/pyautocv.
+   images_list=Segmentation("images/potholes")
+   show_images(images_list.read_images(), images_list.threshold_images("binary"))
 
-@misc {Gonzabato2020,
-author = {Gonzabato, N},
-title = {pyautocv: (Semi) Automated Image Processing},
-year = {2020},
-publisher = {GitHub},
-journal = {GitHub repository},
-howpublished = {\url{https://github.com/Nelson-Gon/pyautocv}},
-commit = {2a5a8c48fd91c719d526ed013b298d560df9b73f}
-```
+
+.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/potholes.png
+   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/potholes.png
+   :alt: Potholes
+
+
+These and more examples are available in `example.py <./examples/example.py>`_. Image sources are
+shown in ``sources.md``. If you feel, attribution was not made, please file an issue
+and cite the violating image.
+
+**Citation**
+
+Nelson Gonzabato(2020) pyautocv: (Semi) Automated Image Processing, https://github.com/Nelson-Gon/pyautocv.
+
+.. code-block::
+
+   @misc {Gonzabato2020,
+   author = {Gonzabato, N},
+   title = {pyautocv: (Semi) Automated Image Processing},
+   year = {2020},
+   publisher = {GitHub},
+   journal = {GitHub repository},
+   howpublished = {\url{https://github.com/Nelson-Gon/pyautocv}},
+   commit = {2a5a8c48fd91c719d526ed013b298d560df9b73f}
 
 ..
 
