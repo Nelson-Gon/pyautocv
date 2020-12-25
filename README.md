@@ -11,6 +11,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/Nelson-Gon/pyautocv.svg)](https://GitHub.com/Nelson-Gon/pyautocv/issues/)
 [![GitHub issues-closed](https://img.shields.io/github/issues-closed/Nelson-Gon/pyautocv.svg)](https://GitHub.com/Nelson-Gon/pyautocv/issues?q=is%3Aissue+is%3Aclosed)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Nelson-Gon/pyautocv/blob/master/LICENSE)
+[![Documentation Status](https://readthedocs.org/projects/pyautocv/badge/?version=latest)](https://pyautocv.readthedocs.io/en/latest/?badge=latest)
 
 **Project Aims**
 
@@ -60,7 +61,7 @@ To run the script at the  commandline, we can do the following
 
 Sample Result
 
-![Command Line Script](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_script.png?raw=true)
+![Command Line Script](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/sample_script.png?raw=true)
 
 
 To perform edge detection
@@ -136,7 +137,7 @@ grayscale, one can set `color_mode` to gray as shown below. All other operations
 ```
 images_list_gray_mode=Segmentation("images/dic", image_suffix ="tif", color_mode = "gray")
 show_images(images_list_gray_mode.read_images(), images_list_gray_mode.threshold_images(), number = 4)
-r```
+```
 
 Result
 

@@ -7,7 +7,7 @@ __pycache__/
 *.so
 # Ignore built docs
 docs/build
-.idead/
+.idea/
 # Distribution / packaging
 .Python
 build/
