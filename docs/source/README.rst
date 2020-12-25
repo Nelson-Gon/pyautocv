@@ -3,8 +3,8 @@
 ===============================================
 
 
-.. image:: https://www.repostatus.org/badges/latest/wip.svg
-   :target: https://www.repostatus.org/badges/latest/wip.svg
+.. image:: https://www.repostatus.org/badges/latest/active.svg
+   :target: https://www.repostatus.org/badges/latest/active.svg
    :alt: Stage
  
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3766956.svg
@@ -34,17 +34,7 @@
 
 .. image:: https://img.shields.io/pypi/dm/pyautocv.svg
    :target: https://pypi.python.org/pypi/pyautocv/
-   :alt: PyPI download Month
-
-
-.. image:: https://img.shields.io/pypi/dw/pyautocv.svg
-   :target: https://pypi.python.org/pypi/pyautocv/
-   :alt: PyPI download week
-
-
-.. image:: https://img.shields.io/pypi/dd/pyautocv.svg
-   :target: https://pypi.python.org/pypi/pyautocv/
-   :alt: PyPI download day
+   :alt: PyPI Downloads Month
 
 
 .. image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
@@ -55,11 +45,6 @@
 .. image:: https://img.shields.io/github/last-commit/Nelson-Gon/pyautocv.svg
    :target: https://github.com/Nelson-Gon/pyautocv/commits/master
    :alt: GitHub last commit
-
-
-.. image:: https://img.shields.io/badge/Made%20with-Python-1f425f.svg
-   :target: https://www.python.org/
-   :alt: made-with-python
 
 
 .. image:: https://img.shields.io/github/issues/Nelson-Gon/pyautocv.svg
@@ -79,12 +64,12 @@
 
 **Project Aims**
 
-The goal of pyautocv is to provide a simple computer vision(cv) workflow that enables one to automate 
+The goal of ``pyautocv`` is to provide a simple computer vision(cv) workflow that enables one to automate 
 or at least reduce the time spent in image (pre)-processing. 
 
 **Installing the package**
 
-From pypi:
+From PyPI
 
 .. code-block::
 
@@ -102,182 +87,226 @@ From GitHub
    cd pyautocv
    python3 setup.py install
 
-**Available Class**
-
-
-* 
-  Segmentation is a super class on which other classes build
-
-* 
-  EdgeDetection is dedicated to edge detection. Currently supported kernels are stored in ``.available_operators()``
-
-* 
-  Thresholding dedicated to thresholding.
-
 **Example Usage**
 
+**Note**\ : Although these methods can be run via this script, the script is less flexible and might be useful for quick
+exploration but not extended analysis. 
 
-* Image Gra(e)ying
-
-To grey an image directory:
-
-.. code-block:: python
-
-   from pyautocv.segmentation import *
-
-   images_list=Segmentation("images/cats")
-   show_images(gray_images(images_list.read_images()), images_list.read_images())
-
-
-.. image:: ../../sample_results/cats_gray.png
-   :target: ../../sample_results/cats_gray.png
-   :alt: Grayed
-
-
-
-* Smoothing
-
-To smooth a directory of images, we can use ``EdgeDetection``\ 's ``smooth`` method as
-follows:
-
-.. code-block:: python
-
-   from pyautocv.segmentation import *
-
-   images_list=Segmentation("images/cats")
-   show_images(gray_images(images_list.read_images()), images_list.read_images())
-
-This will give us:
-
-
-.. image:: ../../sample_results/cats_smooth.png
-   :target: ../../sample_results/cats_smooth.png
-   :alt: Smooth
-
-
-To use a different filter:
-
-.. code-block:: python
-
-
-
-   show_images(images_list.read_images(), images_list.smooth(mask="median", kernel_shape=(7, 7)))
-
-
-.. image:: ../../sample_results/cats_smooth_median.png
-   :target: ../../sample_results/cats_smooth_median.png
-   :alt: Cats-Median-Smooth
-
-
-
-* Edge Detection 
-
-To detect edges in a directory of images, we can use ``Segmentation``\ 's ``detect_edges``. 
-
-.. code-block:: python
-
-
-   show_images(images_list.read_images(), images_list.detect_edges(operator="roberts", mask="gaussian", sigma=0.8))
-
-The above will give us the following result:
-
-
-.. image:: ../../sample_results/cats_gauss_edge.png
-   :target: ../../sample_results/cats_gauss_edge.png
-   :alt: Sample_colored
-
-
-To use a different filter e.g Laplace,
+To run the script at the  commandline, we can do the following
 
 .. code-block::
 
 
-   show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="laplace", mask="gaussian", sigma=0))
+   # Ensure you have your paths set well
+   # This assumes that we are inside the package's top level directory
 
-This results in:
+    python scripts/processing.py -d "images/cats" -s "png" -m "binary_inverse" -o "threshold" -mt 250 -t 50
 
-
-.. image:: ../../sample_results/cats_laplace_gaussian.png
-   :target: ../../sample_results/cats_laplace_gaussian.png
-   :alt: Laplace
+Sample Result
 
 
-
-* Thresholding
-
-To perform thresholding, we can use the method ``threshold_images``.
-
-.. code-block::
-
-   to_threshold = Segmentation("images/biology")
-   show_images(to_threshold.read_images(),to_threshold.threshold_images())
+.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_script.png?raw=true
+   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_script.png?raw=true
+   :alt: Command Line Script
 
 
-.. image:: ../../sample_results/bio_thresh.png
-   :target: ../../sample_results/bio_thresh.png
-   :alt: Threshold
-
-
-To use a different thresholding method:
+To perform edge detection
 
 .. code-block::
 
 
-   show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="otsu"))
+   python scripts/processing.py -d "images/biology" -s "jpg" -o "detect_edges" -m "sobel_vertical" -k 3
 
-The above gives us:
-
-
-.. image:: ../../sample_results/bio_thresh_otsu.png
-   :target: ../../sample_results/bio_thresh_otsu.png
-   :alt: otsu
+.. code-block::
 
 
-For cat lovers, here's thresholding with inverse binary:
-
-.. code-block:: python
+   ![Bio Script](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bioscript.png?raw=true)
 
 
-   show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="binary_inverse"))
+   To smooth images
 
-Result:
+python scripts/processing.py -d "images/houses" -s "jpg" -o "smooth" -m "gaussian" -k 5 5 --sigma 0.7
 
-
-.. image:: ../../sample_results/cats_bin_inverse.png
-   :target: ../../sample_results/cats_bin_inverse.png
-   :alt: Cats
+.. code-block::
 
 
-Thresholding applied to houses:
+   ![Houses Smooth](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_smooth.png?raw=true)
 
-.. code-block:: python
+   To get help
 
-   images_list=Segmentation("images/houses")
+python scripts/processing.py -h 
 
-   show_images(images_list.read_images(), images_list.threshold_images(threshold_method="thresh_to_zero"))
-
-
-.. image:: ../../sample_results/houses_thresh.png
-   :target: ../../sample_results/houses_thresh.png
-   :alt: Threshold-Houses
+.. code-block::
 
 
-.. code-block:: python
+   Further exploration is left to the user.
+
+   ---
+
+   The following section shows how to use the more flexible class/methods approach
+
+   * Image Gra(e)ying
+
+   To grey an image directory
+
+from pyautocv.segmentation import *
+
+images_list=Segmentation("images/cats")
+show_images(gray_images(images_list.read_images()), images_list.read_images(), number=2)
+
+.. code-block::
+
+   ![Grayed](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_gray.png?raw=true)
+
+   * Smoothing
+
+   To smooth a directory of images, we can use `EdgeDetection`'s `smooth` method as
+   follows
+
+from pyautocv.segmentation import *
+
+images_list=Segmentation("images/cats")
+show_images(images_list.smooth(), images_list.read_images(),number=2)
+
+.. code-block::
 
 
-   images_list=Segmentation("images/potholes")
+   This will give us
 
-   show_images(images_list.read_images(), images_list.threshold_images("binary"))
+   ![Smooth](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_smooth.png?raw=true)
+
+   The above uses default parameters including an `rgb` color mode. For biological images which are often in 
+   grayscale, one can set `color_mode` to gray as shown below. All other operations will remain the same.
+
+images_list_gray_mode=Segmentation("images/dic", image_suffix ="tif", color_mode = "gray")
+
+no need to gray them since they are already gray
+================================================
+
+show_images(images_list_gray_mode.read_images(), images_list_gray_mode.threshold_images(), number = 4)
+
+.. code-block::
 
 
-.. image:: ../../sample_results/potholes.png
-   :target: ../../sample_results/potholes.png
-   :alt: Potholes
+   Result
+
+   ![Sample Gray](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/gray_mode.png?raw=true)
 
 
-These and more examples are available in `example.py <../../examples/example.py>`_. Image sources are
-shown in ``sources.md``. If you feel, attribution was not made, please file an issue
-and cite the violating image.
+   To use a different filter
+
+images_list = Segmentation("images/cats")
+show_images(images_list.read_images(), images_list.smooth(mask="median", kernel_shape=(7, 7)))
+
+.. code-block::
+
+
+   ![Cats-Median-Smooth](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cat_median_smooth.png?raw=true)
+
+
+   * Edge Detection 
+
+   To detect edges in a directory of images, we can use `Segmentation`'s `detect_edges`.
+
+show_images(images_list.read_images(), images_list.detect_edges(operator="roberts", mask="gaussian", sigma=0.8))
+
+.. code-block::
+
+
+   The above will give us the following result
+
+
+   ![Sample_colored](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_gauss_edge.png?raw=true)
+
+
+   To use a different filter e.g Laplace,
+
+show_images(images_list.read_images(), images_list.detect_edges(operator="laplace", mask="gaussian", sigma=0))
+
+.. code-block::
+
+
+   This results in
+
+   ![Laplace](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_laplace_gaussian.?raw=true)
+
+
+
+   * Thresholding
+
+   To perform thresholding, we can use the method `threshold_images`.
+
+to_threshold = Segmentation("images/biology")
+show_images(to_threshold.read_images(),to_threshold.threshold_images())
+
+.. code-block::
+
+
+   ![Threshold](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bio_thresh.png?raw=true)
+
+   To use a different thresholding method.
+
+show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_method="otsu"))
+
+.. code-block::
+
+
+   The above gives us:
+
+   ![otsu](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bio_thresh_otsu.png?raw=true)
+
+   For cat lovers, here's thresholding with inverse binary.
+
+show_images(images_list.read_images(),images_list.threshold_images(threshold_method="binary_inverse"))
+
+.. code-block::
+
+
+   Result:
+
+   ![Cats](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_bin_inverse.png?raw=true)
+
+
+
+   Thresholding applied to images of houses.
+
+images_list=Segmentation("images/houses")
+show_images(images_list.read_images(), images_list.threshold_images(threshold_method="thresh_to_zero"))
+
+.. code-block::
+
+
+   ![Threshold-Houses](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_thresh.png)
+
+images_list=Segmentation("images/potholes")
+show_images(images_list.read_images(), images_list.threshold_images("binary"))
+
+.. code-block::
+
+
+   ![Potholes](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/potholes.png)
+
+
+   These and more examples are available in [example.py](./examples/example.py). Image sources are
+   shown in `sources.md`. If you feel, attribution was not made, please file an issue
+   and cite the violating image.
+
+
+
+
+   **Citation**
+
+   Nelson Gonzabato(2020) pyautocv: (Semi) Automated Image Processing, https://github.com/Nelson-Gon/pyautocv.
+
+@misc {Gonzabato2020,
+author = {Gonzabato, N},
+title = {pyautocv: (Semi) Automated Image Processing},
+year = {2020},
+publisher = {GitHub},
+journal = {GitHub repository},
+howpublished = {\url{https://github.com/Nelson-Gon/pyautocv}},
+commit = {2a5a8c48fd91c719d526ed013b298d560df9b73f}
+```
 
 ..
 
@@ -289,7 +318,7 @@ and cite the violating image.
 
 ----
 
-References:
+**References**
 
 
 * 

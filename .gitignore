@@ -5,7 +5,9 @@ __pycache__/
 
 # C extensions
 *.so
-
+# Ignore built docs
+docs/build
+.idead
 # Distribution / packaging
 .Python
 build/

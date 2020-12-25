@@ -19,7 +19,7 @@ or at least reduce the time spent in image (pre)-processing.
 
 **Installing the package**
 
-From PyPI:
+From PyPI
 
 ```
 
@@ -46,7 +46,7 @@ python3 setup.py install
 exploration but not extended analysis. 
 
 
-To run the script at the  commandline, we can do the following:
+To run the script at the  commandline, we can do the following
 
 ```
 
@@ -60,10 +60,10 @@ To run the script at the  commandline, we can do the following:
 
 Sample Result
 
-![Command Line Script](sample_results/sample_script.png)
+![Command Line Script](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_script.png?raw=true)
 
 
-To perform edge detection:
+To perform edge detection
 
 ```
 
@@ -71,19 +71,19 @@ python scripts/processing.py -d "images/biology" -s "jpg" -o "detect_edges" -m "
 
 ```
 
-![Bio Script](sample_results/bioscript.png)
+![Bio Script](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bioscript.png?raw=true)
 
 
-To smooth images:
+To smooth images
 
 ```
 python scripts/processing.py -d "images/houses" -s "jpg" -o "smooth" -m "gaussian" -k 5 5 --sigma 0.7
 
 ```
 
-![Houses Smooth](sample_results/houses_smooth.png)
+![Houses Smooth](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_smooth.png?raw=true)
 
-To get help:
+To get help
 
 ```
 
@@ -101,23 +101,23 @@ The following section shows how to use the more flexible class/methods approach
 
 * Image Gra(e)ying
 
-To grey an image directory:
+To grey an image directory
 
-```python
+```
 from pyautocv.segmentation import *
 
 images_list=Segmentation("images/cats")
 show_images(gray_images(images_list.read_images()), images_list.read_images(), number=2)
 
 ```
-![Grayed](sample_results/cats_gray.png)
+![Grayed](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_gray.png?raw=true)
 
 * Smoothing
 
 To smooth a directory of images, we can use `EdgeDetection`'s `smooth` method as
-follows:
+follows
 
-```python
+```
 
 from pyautocv.segmentation import *
 
@@ -126,9 +126,9 @@ show_images(images_list.smooth(), images_list.read_images(),number=2)
 
 ```
 
-This will give us:
+This will give us
 
-![Smooth](sample_results/cats_smooth.png)
+![Smooth](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_smooth.png?raw=true)
 
 The above uses default parameters including an `rgb` color mode. For biological images which are often in 
 grayscale, one can set `color_mode` to gray as shown below. All other operations will remain the same.
@@ -142,37 +142,37 @@ show_images(images_list_gray_mode.read_images(), images_list_gray_mode.threshold
 
 ```
 
-Result:
+Result
 
-![Sample Gray](sample_results/gray_mode.png)
+![Sample Gray](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/gray_mode.png?raw=true)
 
 
-To use a different filter:
+To use a different filter
 
-```python
+```
 
 images_list = Segmentation("images/cats")
 show_images(images_list.read_images(), images_list.smooth(mask="median", kernel_shape=(7, 7)))
 
 ```
 
-![Cats-Median-Smooth](./sample_results/cat_median_smooth.png)
+![Cats-Median-Smooth](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cat_median_smooth.png?raw=true)
 
 
 * Edge Detection 
 
 To detect edges in a directory of images, we can use `Segmentation`'s `detect_edges`. 
 
-```python 
+``` 
 
 show_images(images_list.read_images(), images_list.detect_edges(operator="roberts", mask="gaussian", sigma=0.8))
 
 ```
 
-The above will give us the following result:
+The above will give us the following result
 
 
-![Sample_colored](./sample_results/cats_gauss_edge.png)
+![Sample_colored](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_gauss_edge.png?raw=true)
 
 
 To use a different filter e.g Laplace,
@@ -183,9 +183,9 @@ show_images(images_list.read_images(), images_list.detect_edges(operator="laplac
 
 ```
 
-This results in:
+This results in
 
-![Laplace](./sample_results/cats_laplace_gaussian.png)
+![Laplace](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_laplace_gaussian.?raw=true)
 
 
 
@@ -201,9 +201,9 @@ show_images(to_threshold.read_images(),to_threshold.threshold_images())
 
 ```
 
-![Threshold](./sample_results/bio_thresh.png)
+![Threshold](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bio_thresh.png?raw=true)
 
-To use a different thresholding method:
+To use a different thresholding method.
 
 ```
 
@@ -213,11 +213,11 @@ show_images(to_threshold.read_images(),to_threshold.threshold_images(threshold_m
 
 The above gives us:
 
-![otsu](./sample_results/bio_thresh_otsu.png)
+![otsu](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bio_thresh_otsu.png?raw=true)
 
-For cat lovers, here's thresholding with inverse binary:
+For cat lovers, here's thresholding with inverse binary.
 
-```python
+```
 
 show_images(images_list.read_images(),images_list.threshold_images(threshold_method="binary_inverse"))
 
@@ -225,64 +225,59 @@ show_images(images_list.read_images(),images_list.threshold_images(threshold_met
 
 Result:
 
-![Cats](./sample_results/cats_bin_inverse.png)
+![Cats](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_bin_inverse.png?raw=true)
 
 
 
-Thresholding applied to houses:
+Thresholding applied to images of houses.
 
-```python
+```
 images_list=Segmentation("images/houses")
-
 show_images(images_list.read_images(), images_list.threshold_images(threshold_method="thresh_to_zero"))
-
-
 ```
 
-![Threshold-Houses](./sample_results/houses_thresh.png)
+![Threshold-Houses](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_thresh.png)
 
-```python
-
+```
 images_list=Segmentation("images/potholes")
-
 show_images(images_list.read_images(), images_list.threshold_images("binary"))
-
 ```
 
-![Potholes](./sample_results/potholes.png)
+![Potholes](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/potholes.png)
 
 
 These and more examples are available in [example.py](./examples/example.py). Image sources are
 shown in `sources.md`. If you feel, attribution was not made, please file an issue
 and cite the violating image.
 
-> Thank you very much
+
+
+
+**Citation**
+
+Nelson Gonzabato(2020) pyautocv: (Semi) Automated Image Processing, https://github.com/Nelson-Gon/pyautocv.
+
+
+```
+@misc {Gonzabato2020,
+author = {Gonzabato, N},
+title = {pyautocv: (Semi) Automated Image Processing},
+year = {2020},
+publisher = {GitHub},
+journal = {GitHub repository},
+howpublished = {\url{https://github.com/Nelson-Gon/pyautocv}},
+commit = {2a5a8c48fd91c719d526ed013b298d560df9b73f}
+```
+
+>Thank you very much
 
 > “A language that doesn't affect the way you think about programming is not worth knowing.”
 ― Alan J. Perlis
 
+
 ---
 
-If you would like to cite this work, please use:
-
-Nelson Gonzabato(2020) pyautocv: (Semi) Automated Image Processing, https://github.com/Nelson-Gon/pyautocv
-
-BibTex:
-
-```
-@misc{Gonzabato2020,
-  author = {Gonzabato, N},
-  title = {pyautocv: (Semi) Automated Image Processing},
-  year = {2020},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/Nelson-Gon/pyautocv}},
-  commit = {2a5a8c48fd91c719d526ed013b298d560df9b73f}
-} 
-```
----
-
-References:
+**References**
 
 * [Bebis](https://www.cse.unr.edu/~bebis/CS791E/Notes/EdgeDetection.pdf)
 

@@ -58,7 +58,7 @@ python3 setup.py install
 To smooth a directory of images, we can use `EdgeDetection`'s `smooth` method as
 follows:
 
-```python
+```
 from pyautocv.segmentation import *
 edge_detection = Segmentation("images/cats")
 show_images(edge_detection.gray_images(), edge_detection.smooth())
@@ -74,7 +74,7 @@ This will give us:
 
 To detect edges in a directory of images, we can use `Segmentation`'s `detect_edges`. 
 
-```python 
+``` 
 
 edge_detection = Segmentation("images/cats")
 show_images(edge_detection.read_images(), edge_detection.detect_edges(operator="roberts", mask="gaussian", sigma=0))

@@ -2,6 +2,64 @@
 pyautocv's change log
 =====================
 
+**pyautocv 0.2.2**
+
+
+* 
+  Extended script to make it a bit more flexible 
+
+* 
+  Extended the script to handle thresholding, edge detection, and smoothing. 
+
+* 
+  Initial support for thresholding scripts. Added arguments to the sample script 
+
+* 
+  An ``example_script.py`` file was added to test running files at the command line
+
+* 
+  ``titles`` was renamed to ``custom_titles`` in ``show_images``
+
+* 
+  ``show_images`` now supports showing only a single list of images
+
+* 
+  ``plot_hist`` is a new function that allows one to plot histograms of images. 
+
+* 
+  ``stack_images`` is a new function that allows one to stack images vertically and horizontally.
+
+* 
+  ``show_images`` now has a titles argument to add titles to plots.  
+
+* 
+  Fixed issues with ``read_images`` not reading mixed formats. 
+
+* 
+  ``reshape_images`` and ``resize_images`` are helper functions that were originally written for
+  `cytounet <https://github.com/Nelson-Gon/cytounet>`_
+
+* 
+  ``read_images`` now provides a naturally sorted list at least for tiff images. 
+
+* 
+  Made ``show_images`` more flexible regarding the size of the figure shown. 
+
+* 
+  Fixed an issue with reading ``.tif`` images
+
+* 
+  ``show_images`` now shows image side by side which is more intuitive. 
+
+* 
+  Added support for different color modes i.e either grayscale or rgb images
+
+* 
+  Added support for tiff(\ ``.tif``\ ) images
+
+* 
+  ``show_images`` is now more customizable with respect to the number of images one would like to show. 
+
 **pyautocv 0.2.1**
 
 **Major Changes**

@@ -31,30 +31,29 @@ Please also update the docs using `sphinx`
 
 # The Makefile here is Windows specific
 
-# root of project
-python -m m2r README.md
-# answer yes to overwrite
+
 cd docs
 sphinx-apidoc -o source/ ../pyautocv
 # copy changelog and README or get their diff and copy it to docs/source
 # Change image paths ie . to ../.. or use direct links to github
-cp ../README.md ../changelog.md source
-cd source
-# make rst files as above, yes to overwrite
-python -m m2r changelog.md README.md
+# make rst files from md
+# Move these to docs/source
+# use make on *nix or if you have make on Windows
+# Ensure that Make settings point to the right build directory
+python -m m2r README.md changelog.md --overwrite && mv README.rst changelog.rst docs/source && ./make.bat html
+
 # go back to docs
 cd ..
 # build docs
 sphinx-build source build
 # check docs
 sphinx-build docs/source -W -b linkcheck -d docs/build/doctrees/ docs/build/html/
-# use make on *nix or if you have make on Windows
-make html
+
 make latexpdf
 
 ```
-Please note that the 'pyfdc' project is released with a
-[Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md).
+Please note that the 'pyautocv' project is released with a
+[Contributor Code of Conduct](https://github.com/Nelson-Gon/pyautocv/.github/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
 [See also](https://samnicholls.net/2016/06/15/how-to-sphinx-readthedocs/) for a guide on Sphinx documentation.
