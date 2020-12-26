@@ -251,8 +251,8 @@ To use a different filter e.g Laplace,
 This results in
 
 
-.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_laplace_gaussian.?raw=true
-   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_laplace_gaussian.?raw=true
+.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_laplace_gaussian.png?raw=true
+   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_laplace_gaussian.png?raw=true
    :alt: Laplace
 
 

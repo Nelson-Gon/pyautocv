@@ -181,7 +181,7 @@ show_images(images_list.read_images(), images_list.detect_edges(operator="laplac
 
 This results in
 
-![Laplace](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_laplace_gaussian.?raw=true)
+![Laplace](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/cats_laplace_gaussian.png?raw=true)
 
 
 
