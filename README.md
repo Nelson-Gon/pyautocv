@@ -232,14 +232,14 @@ images_list=Segmentation("images/houses")
 show_images(images_list.read_images(), images_list.threshold_images(threshold_method="thresh_to_zero"))
 ```
 
-![Threshold-Houses](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_thresh.png)
+![Threshold-Houses](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_thresh.png?raw=true)
 
 ```python
 images_list=Segmentation("images/potholes")
 show_images(images_list.read_images(), images_list.threshold_images("binary"))
 ```
 
-![Potholes](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/potholes.png)
+![Potholes](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/potholes.png?raw=true)
 
 
 These and more examples are available in [example.py](https://github.com/Nelson-Gon/pyautocv/blob/1bc67af448ea0bab00ea7223354619f7e9a5d42c/examples/example.py). Image sources are

@@ -310,8 +310,8 @@ Thresholding applied to images of houses.
    show_images(images_list.read_images(), images_list.threshold_images(threshold_method="thresh_to_zero"))
 
 
-.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_thresh.png
-   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_thresh.png
+.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_thresh.png?raw=true
+   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_thresh.png?raw=true
    :alt: Threshold-Houses
 
 
@@ -321,8 +321,8 @@ Thresholding applied to images of houses.
    show_images(images_list.read_images(), images_list.threshold_images("binary"))
 
 
-.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/potholes.png
-   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/potholes.png
+.. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/potholes.png?raw=true
+   :target: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/potholes.png?raw=true
    :alt: Potholes
 
 

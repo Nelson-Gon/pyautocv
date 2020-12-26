@@ -1,6 +1,6 @@
 .. cytounet documentation master file,
 
-Welcome to cytounet's documentation!
+Welcome to pyautocv's documentation!
 ====================================
 
 .. toctree::
