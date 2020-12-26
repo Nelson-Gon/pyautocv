@@ -242,9 +242,8 @@ show_images(images_list.read_images(), images_list.threshold_images("binary"))
 ![Potholes](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/potholes.png)
 
 
-These and more examples are available in [example.py](./examples/example.py). Image sources are
-shown in `sources.md`. If you feel, attribution was not made, please file an issue
-and cite the violating image.
+These and more examples are available in [example.py](https://github.com/Nelson-Gon/pyautocv/blob/1bc67af448ea0bab00ea7223354619f7e9a5d42c/examples/example.py). Image sources are
+shown in `sources.md`. If you feel attribution was not made, please file an issue and cite the violating image.
 
 
 
