@@ -28,4 +28,8 @@ jobs:
        pip install -r requirements.txt
 
     - name: Install package
-      run: python3 setup.py install 
+      run: python3 setup.py install
+
+    - name: Test script
+      run: python scripts/processing.py -d "images/cats" -s "png" -m "binary_inverse" -o "threshold" -mt 250 -t 50
+

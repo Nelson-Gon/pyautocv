@@ -6,6 +6,9 @@ pyautocv's change log
 
 
 * 
+  Initial support for action based script run.
+
+* 
   Extended script to make it a bit more flexible 
 
 * 
@@ -30,7 +33,7 @@ pyautocv's change log
   ``stack_images`` is a new function that allows one to stack images vertically and horizontally.
 
 * 
-  ``show_images`` now has a titles argument to add titles to plots.  
+  ``show_images`` now has a ``titles`` argument to add titles to ``plots``.  
 
 * 
   Fixed issues with ``read_images`` not reading mixed formats. 
@@ -52,7 +55,7 @@ pyautocv's change log
   ``show_images`` now shows image side by side which is more intuitive. 
 
 * 
-  Added support for different color modes i.e either grayscale or rgb images
+  Added support for different color modes i.e. either grayscale or rgb images
 
 * 
   Added support for tiff(\ ``.tif``\ ) images
@@ -77,7 +80,7 @@ pyautocv's change log
 **Additions**
 
 
-* Added support for more detection methods eg Roberts Cross
+* Added support for more detection methods e.g. Roberts Cross
 
 ----
 

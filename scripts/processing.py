@@ -5,6 +5,8 @@ if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument("-d", "--directory", type=str, help="Path to directory containing images",
                             required=True)
+    arg_parser.add_argument("-c", "--color", type=str, help="Color mode of images",
+                            required=False)
     arg_parser.add_argument("-s", "--suffix", type=str, help="Format of images to load", required=True)
     arg_parser.add_argument("-o", "--operation", type=str, help="Type of processing to perform", required=True)
     arg_parser.add_argument("-mt", "--max-threshold", type=int, help="Maximum threshold for thresholding",
@@ -19,8 +21,8 @@ if __name__ == "__main__":
     arg_parser.add_argument("-mk", "--mask", type=str, help="Mask if detecting edges", required=False)
     # Switch statement based on target operation
     arguments = arg_parser.parse_args()
-    #print(arguments)
-    init_call = Segmentation(arguments.directory, image_suffix=arguments.suffix)
+    # print(arguments)
+    init_call = Segmentation(directory=arguments.directory, image_suffix=arguments.suffix)
 
     if arguments.operation == "detect_edges":
         sigma = None
