@@ -28,24 +28,7 @@ Please also update the docs using `sphinx`
 * Do the following:
 
 ```
-
-# The Makefile here is Windows specific
-
-
-cd docs
-sphinx-apidoc -o source/ ../pyautocv
-# copy changelog and README or get their diff and copy it to docs/source
-# Change image paths ie . to ../.. or use direct links to github
-# make rst files from md
-# Move these to docs/source
-# use make on *nix or if you have make on Windows
-# Ensure that Make settings point to the right build directory
-python -m m2r README.md changelog.md --overwrite && mv README.rst changelog.rst docs/source && ./make.bat html
-# check docs
-sphinx-build docs/source -W -b linkcheck -d docs/build/doctrees/ docs/build/html/
-
-make latexpdf
-
+bash scripts/mkdocs.sh
 ```
 Please note that the 'pyautocv' project is released with a
 [Contributor Code of Conduct](https://github.com/Nelson-Gon/pyautocv/.github/CODE_OF_CONDUCT.md).

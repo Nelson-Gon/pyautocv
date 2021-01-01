@@ -10,6 +10,7 @@ Welcome to pyautocv's documentation!
    modules
    README
    changelog
+   CONTRIBUTING
 
 
 Indices and tables
