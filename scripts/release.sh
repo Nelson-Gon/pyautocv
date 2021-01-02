@@ -16,7 +16,7 @@ check_status (){
 upload_to_pypi (){
   read -p "Did you upload to test.pypi and are happy with the results?" checkmate
   case "$checkmate" in
-  [yY][eE][sS] | [yY] ) echo "Uplaoding to pypi";python -m twine upload dist/*;;
+  [yY][eE][sS] | [yY] ) echo "Uploading to pypi";python -m twine upload dist/*;;
   [nN][oO] | [Nn] ) echo "Please run the script again until you are happy with the results";;
   esac
 
