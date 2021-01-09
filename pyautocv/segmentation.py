@@ -44,7 +44,6 @@ class Segmentation(object):
         if self.image_suffix not in ["png", "jpg", "tif"]:
             raise ValueError("Only png, jpg, and tif are supported")
 
-
         self.color_mode = color_mode
 
     def read_images(self, other_directory=None):
@@ -69,6 +68,12 @@ class Segmentation(object):
         :param kernel_shape: A tuple specifying the shape of the kernel. Defaults to (3, 3)
         :return: Images convolved with a low pass filter to reduce noise
         """
+        if mask not in ["mean", "gaussian", "box", "median"]:
+            raise ValueError("mask should be one of mean, median, box, and gaussian")
+
+        if not isinstance(kernel_shape, tuple):
+            raise TypeError("Expected a tuple not {}".format(type(kernel_shape).__name__))
+
         image_list = self.read_images()
         mask_list = {'gaussian': lambda x: ndimage.gaussian_filter(x, **kwargs),
                      'box': lambda x: cv2.blur(x, ksize=kernel_shape),
