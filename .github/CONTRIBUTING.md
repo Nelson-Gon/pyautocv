@@ -22,7 +22,11 @@ Please also update the docs using `sphinx`
 * Once the bug/enhancement is approved, please create a Git branch for the pull request.
 
 * Make changes and ensure that builds are passing the necessary checks on Travis.
+* Run tests
 
+```shell
+python test.py
+```
 * Update `changelog.md` to reflect the changes made.
 
 * Do the following:

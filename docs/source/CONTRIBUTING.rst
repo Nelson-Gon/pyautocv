@@ -29,6 +29,13 @@ Please also update the docs using ``sphinx``
 * 
   Make changes and ensure that builds are passing the necessary checks on Travis.
 
+* Run tests
+
+.. code-block:: shell
+
+   python test.py
+
+
 * 
   Update ``changelog.md`` to reflect the changes made.
 

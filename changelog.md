@@ -2,6 +2,8 @@
 
 **pyautocv 0.2.2**
 
+- Initial tests
+
 - Initial support for action based script run.
 
 - Extended script to make it a bit more flexible 

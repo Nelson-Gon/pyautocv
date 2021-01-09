@@ -3,8 +3,7 @@ import unittest
 from pyautocv.segmentation import *
 import os
 
-# Still need to figure out how to automatically set dir
-# Use __abspath__ and __realpath__ somehow fail.
+
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 print("Working in {}".format(os.getcwd()))
