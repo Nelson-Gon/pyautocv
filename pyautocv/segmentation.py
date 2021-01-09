@@ -40,6 +40,11 @@ class Segmentation(object):
             self.directory = "."
 
         self.image_suffix = image_suffix
+
+        if self.image_suffix not in ["png", "jpg", "tif"]:
+            raise ValueError("Only png, jpg, and tif are supported")
+
+
         self.color_mode = color_mode
 
     def read_images(self, other_directory=None):
