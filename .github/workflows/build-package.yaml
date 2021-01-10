@@ -37,7 +37,8 @@ jobs:
       run: python test.py
 
     - name: Show coverage on the command line
-      run: coverage report -m
+      run: coverage run test.py && coverage report -m
+
     - name: Upload reports to codecov
       run: bash <(curl -s https://codecov.io/bash)
 
