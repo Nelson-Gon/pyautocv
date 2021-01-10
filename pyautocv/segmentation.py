@@ -5,7 +5,7 @@ from scipy import ndimage
 from skimage.io import imread_collection, imread
 from skimage.transform import resize
 from skimage import filters
-from os import pathsep
+from os import pathsep, path
 import numpy as np
 from itertools import chain
 import glob
@@ -14,15 +14,16 @@ import glob
 def gray_images(images):
     """
 
-    :param images: A list of images that should be grayed/greyed.
+    :param images: A list of color images that should be grayed/greyed.
     :return: Returns grayed images. Currently supports only blue-green-red to gray conversion
 
     """
+    if not isinstance(images, list):
+        raise TypeError(f"Expected a list of images not {type(images).__name__}")
 
     return list(map(lambda x: cv2.cvtColor(x, cv2.COLOR_BGR2GRAY), images))
 
 
-# init class segmentation
 class Segmentation(object):
     def __init__(self, directory=None, image_suffix="png", color_mode="rgb"):
         """
@@ -38,6 +39,9 @@ class Segmentation(object):
         self.directory = directory
         if self.directory is None:
             self.directory = "."
+        # check that the directory actually exists
+        if not path.isdir(self.directory):
+            raise NotADirectoryError(f"{self.directory} is not a valid directory in the current path.")
 
         self.image_suffix = image_suffix
 
@@ -72,7 +76,7 @@ class Segmentation(object):
             raise ValueError("mask should be one of mean, median, box, and gaussian")
 
         if not isinstance(kernel_shape, tuple):
-            raise TypeError("Expected a tuple not {}".format(type(kernel_shape).__name__))
+            raise TypeError(f"Expected a tuple not {type(kernel_shape).__name__}")
 
         image_list = self.read_images()
         mask_list = {'gaussian': lambda x: ndimage.gaussian_filter(x, **kwargs),
@@ -81,7 +85,7 @@ class Segmentation(object):
         # alias box with mean, would be great to have a .alias method
         mask_list.update({"mean": mask})
         # convolve images with low pass filter
-        print("Smoothing with {}".format(mask))
+        print(f"Smoothing with {mask}")
         low_pass_filtered = list(map(mask_list[mask], image_list))
 
         return low_pass_filtered
@@ -104,10 +108,17 @@ class Segmentation(object):
                                                                        cv2.THRESH_TOZERO),
                              'otsu': lambda x: cv2.threshold(x, use_threshold, use_max,
                                                              cv2.THRESH_BINARY + cv2.THRESH_OTSU)}
+        # TODO
+        # Automate key error messages
+        # Support user defined methods
+
+        if threshold_method not in threshold_methods.keys():
+            raise ValueError(f"Thresholding with {threshold_method} is not supported")
+
+        image_list = self.read_images()
+
         if self.color_mode == "rgb":
-            image_list = gray_images(self.read_images())
-        else:
-            image_list = self.read_images()
+            image_list = gray_images(image_list)
 
         thresholded_images = list(map(threshold_methods[threshold_method], image_list))
         # drop ret val
@@ -128,7 +139,7 @@ class Segmentation(object):
                                "scharr_horizontal", "canny", "roberts"]
 
         if operator not in available_operators:
-            raise KeyError("operator should be one of {}".format(available_operators))
+            raise ValueError(f"Edge detection with {operator} not supported.")
 
         kernels = {'sobel_horizontal': lambda x: cv2.Sobel(x, cv2.CV_64F, 1, 0, ksize=kernel_size),
                    'sobel_vertical': lambda x: cv2.Sobel(x, cv2.CV_64F, 0, 1, ksize=kernel_size),
@@ -141,16 +152,15 @@ class Segmentation(object):
                    'scharr_horizontal': lambda x: filters.scharr_h(x, optional_mask),
                    'scharr_vertical': lambda x: filters.scharr_v(x, optional_mask)}
 
-        print("Using {}".format(operator))
+        print(f"Detecting edges with the {operator} operator")
         # denoise and gray
-        if self.color_mode == "gray":
-            to_denoise = self.smooth(**kwargs)
-        else:
-            to_denoise = gray_images(self.smooth(**kwargs))
-        grayed_denoised = to_denoise
-        final_images = list(map(kernels[operator], grayed_denoised))
 
-        return final_images
+        if self.color_mode == "gray":
+            denoised = self.smooth(**kwargs)
+        else:
+            denoised = gray_images(self.smooth(**kwargs))
+
+        return list(map(kernels[operator], denoised))
 
 
 def show_images(original_images=None, processed_images=None, cmap="gray", number=None, figure_size=(20, 20),
