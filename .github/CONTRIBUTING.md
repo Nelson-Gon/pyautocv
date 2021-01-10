@@ -27,6 +27,10 @@ Please also update the docs using `sphinx`
 ```shell
 python test.py
 ```
+* Check coverage
+```shell
+coverage report -m  
+```  
 * Update `changelog.md` to reflect the changes made.
 
 * Do the following:
@@ -34,6 +38,7 @@ python test.py
 ```
 bash scripts/mkdocs.sh
 ```
+
 Please note that the 'pyautocv' project is released with a
 [Contributor Code of Conduct](https://github.com/Nelson-Gon/pyautocv/.github/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.

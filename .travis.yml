@@ -6,3 +6,4 @@ before_install: pip install -U pip && pip install -r requirements.txt
 
 script: python setup.py install
 
+after_success: bash <(curl -s https://codecov.io/bash)

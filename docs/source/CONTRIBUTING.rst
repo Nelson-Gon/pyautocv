@@ -36,6 +36,11 @@ Please also update the docs using ``sphinx``
    python test.py
 
 
+* Check coverage
+  .. code-block:: shell
+
+     coverage report -m
+
 * 
   Update ``changelog.md`` to reflect the changes made.
 
