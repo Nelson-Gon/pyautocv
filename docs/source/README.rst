@@ -14,7 +14,17 @@
 
 .. image:: https://github.com/Nelson-Gon/pyautocv/workflows/Test-Package/badge.svg
    :target: https://github.com/Nelson-Gon/pyautocv/workflows/Test-Package/badge.svg
-   :alt: Test-Package
+   :alt: Actions
+
+
+.. image:: https://img.shields.io/codecov/c/github/Nelson-Gon/pyautocv/master
+   :target: https://img.shields.io/codecov/c/github/Nelson-Gon/pyautocv/master
+   :alt: Codecov
+
+
+.. image:: https://travis-ci.com/Nelson-Gon/pyautocv.svg?branch=master
+   :target: https://travis-ci.com/Nelson-Gon/pyautocv.svg?branch=master
+   :alt: Travis Build
 
 
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
@@ -25,11 +35,6 @@
 .. image:: https://readthedocs.org/projects/pyautocv/badge/?version=latest
    :target: https://pyautocv.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
-
-
-.. image:: https://travis-ci.com/Nelson-Gon/pyautocv.svg?branch=master
-   :target: https://travis-ci.com/Nelson-Gon/pyautocv.svg?branch=master
-   :alt: Travis Build
 
 
 .. image:: https://badge.fury.io/py/pyautocv.svg
