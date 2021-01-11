@@ -55,16 +55,15 @@ class Segmentation(object):
         :param other_directory: Use if images exist in sub-folders.
         :return: Returns an n-D array of images.
         """
-        # read png and jpg from current directory
+
         if self.image_suffix == "tif":
             images_list = sorted(glob.glob(self.directory + "/*.tif"))
             return [imread(x, plugin='pil') for x in images_list]
         else:
-            if self.image_suffix not in ["png", "jpg"]:
-                raise ValueError("Only tif, png, and jpg are currently supported")
-            if other_directory is None:
-                other_directory = self.directory
-            return list(imread_collection(self.directory + "/*.jpg" + pathsep + other_directory + "/*.png"))
+            path_to_read = self.directory + "/*.jpg" + pathsep + self.directory + "/*.png"
+            if other_directory is not None:
+                path_to_read = self.directory + "/*.jpg" + pathsep + other_directory + "/*.png"
+            return list(imread_collection(path_to_read))
 
     def smooth(self, mask="box", kernel_shape=(5, 5), **kwargs):
         """
@@ -192,14 +191,15 @@ def show_images(original_images=None, processed_images=None, cmap="gray", number
     # Currently only considering divisibility by three and two for image visualization
     # This is mostly necessary for single list visualization
 
+    number_of_columns = len(image_list) / 3
+    number_of_rows = 3
+
     if len(image_list) % 2 == 0:
         number_of_columns = len(image_list) / 2
         number_of_rows = 2
 
-    else:
-        number_of_columns = len(image_list) / 3
-        number_of_rows = 3
     custom_titles = custom_titles * len(image_list)
+
     fig, axes = plt.subplots(nrows=number_of_rows, ncols=int(number_of_columns), figsize=figure_size)
 
     for ind, image in enumerate(image_list):
@@ -217,6 +217,8 @@ def resize_images(image_list, target_size):
 
 
     """
+    if not isinstance(target_size, tuple):
+        raise TypeError(f"Expected a tuple in target_size not {type(target_size).__name__}")
 
     return [resize(x, target_size) for x in image_list]
 
@@ -228,6 +230,7 @@ def reshape_images(image_list):
     :return: Images that can be plotted with show_images
 
     """
+    
     final_list = [img[:, :, 0] if len(img.shape) == 3 and img.shape[2] != 3 else img for img in image_list]
     return final_list
 
