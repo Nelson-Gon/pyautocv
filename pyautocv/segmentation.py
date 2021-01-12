@@ -208,7 +208,7 @@ def show_images(original_images=None, processed_images=None, cmap="gray", number
         axes.ravel()[ind].set_axis_off()
 
 
-def resize_images(image_list, target_size):
+def resize_images(image_list=None, target_size=None):
     """
 
     :param image_list: A list of images or image that needs to be resized
@@ -217,25 +217,30 @@ def resize_images(image_list, target_size):
 
 
     """
+    if image_list is None or target_size is None:
+        raise ValueError("Please provide both an image list and a target size")
+
     if not isinstance(target_size, tuple):
         raise TypeError(f"Expected a tuple in target_size not {type(target_size).__name__}")
 
     return [resize(x, target_size) for x in image_list]
 
 
-def reshape_images(image_list):
+def reshape_images(image_list=None):
     """
 
     :param image_list: A list of images to reshape for plotting
     :return: Images that can be plotted with show_images
 
     """
-    
+    if image_list is None:
+        raise ValueError("Please provide a list of images to reshape.")
+
     final_list = [img[:, :, 0] if len(img.shape) == 3 and img.shape[2] != 3 else img for img in image_list]
     return final_list
 
 
-def stack_images(list_one, list_two, direction="horizontal"):
+def stack_images(list_one=None, list_two=None, direction="horizontal"):
     """
 
     :param list_one: List containing image arrays to stack together
@@ -244,8 +249,14 @@ def stack_images(list_one, list_two, direction="horizontal"):
     :return: Returns a list of images stacked together as requested.
 
     """
-    stack_direction = {"horizontal": np.hstack,
-                       "vertical": np.vstack}
+    if any(input_list is None for input_list in [list_one, list_two]):
+        raise ValueError("Please provide two lists to stack")
+    if not all(isinstance(input_list, list) for input_list in [list_one, list_two]):
+        raise TypeError("Both list_one and list_two should be lists")
+    if direction not in ["horizontal", "vertical", "h", "v"]:
+        raise ValueError(f"direction should be one of horizontal, vertical, h, v not {direction}")
+    stack_direction = {"horizontal": np.hstack, "vertical": np.vstack,
+                       "h": np.hstack, "v": np.vstack}
     stacked_images = []
     for img_x, img_y in zip(list_one, list_two):
         stacked_images.append(stack_direction[direction]((img_x, img_y)))

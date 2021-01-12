@@ -2,7 +2,8 @@
 import unittest
 from pyautocv.segmentation import *
 import os
-from unittest import mock
+
+# from unittest import mock
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 print("Working in {}".format(os.getcwd()))
@@ -92,6 +93,39 @@ class TestModule(unittest.TestCase):
     #  show_images(use_this.read_images(), use_this.read_images())
     # mock_plt.subplots.assert_called_once()
     # """
+
+    def test_resizing(self):
+        resized = resize_images(use_object.read_images(), (125, 125))
+        self.assertEqual(resized[0].shape[0], 125)
+        with self.assertRaises(TypeError) as err:
+            resize_images(use_object.read_images(), 4)
+        self.assertEqual(str(err.exception), "Expected a tuple in target_size not int")
+        with self.assertRaises(ValueError) as err:
+            resize_images()
+        self.assertEqual(str(err.exception), "Please provide both an image list and a target size")
+
+    def test_reshaping(self):
+        with self.assertRaises(ValueError) as err:
+            reshape_images()
+        self.assertEqual(str(err.exception), "Please provide a list of images to reshape.")
+        # Check that reshaped images are not the same shape as original images
+        reshaped = reshape_images(use_object.read_images())
+        self.assertEqual(reshaped[0].shape, use_object.read_images()[0].shape)
+        use_object.read_images()
+
+    def test_stacking(self):
+        with self.assertRaises(ValueError) as err:
+            stack_images()
+        self.assertEqual(str(err.exception), "Please provide two lists to stack")
+        with self.assertRaises(TypeError) as err:
+            stack_images(use_object.read_images(), "gibberish")
+        self.assertEqual(str(err.exception), "Both list_one and list_two should be lists")
+
+        with self.assertRaises(ValueError) as err:
+            stack_images(use_object.read_images(), use_object.threshold_images(),
+                         direction="gibberish")
+        self.assertEqual(str(err.exception), "direction should be one of horizontal, vertical, h, v not gibberish")
+        self.assertEqual(len(stack_images(use_object.read_images(),use_object.read_images())), 2)
 
 
 if __name__ == "__main__":
