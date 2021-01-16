@@ -33,7 +33,7 @@ Please also update the docs using ``sphinx``
 
 .. code-block:: shell
 
-   python test.py
+   python tests.py
 
 
 * Check coverage

@@ -34,7 +34,7 @@ jobs:
       run: python scripts/processing.py -d "images/cats" -s "png" -m "binary_inverse" -o "threshold" -mt 250 -t 50
 
     - name: Run Tests
-      run: python test.py
+      run: python tests.py
 
     - name: Show coverage on the command line
       run: coverage run test.py && coverage report -m

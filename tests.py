@@ -2,8 +2,7 @@
 import unittest
 from pyautocv.segmentation import *
 import os
-
-# from unittest import mock
+from unittest import mock
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 print("Working in {}".format(os.getcwd()))
@@ -125,7 +124,15 @@ class TestModule(unittest.TestCase):
             stack_images(use_object.read_images(), use_object.threshold_images(),
                          direction="gibberish")
         self.assertEqual(str(err.exception), "direction should be one of horizontal, vertical, h, v not gibberish")
-        self.assertEqual(len(stack_images(use_object.read_images(),use_object.read_images())), 2)
+        self.assertEqual(len(stack_images(use_object.read_images(), use_object.read_images())), 2)
+
+    @mock.patch("pyautocv.segmentation.plt")
+    def test_hist_plots(self, mock_plt):
+        image_test = use_object.read_images()[1]
+        plot_hist(image_test)
+        mock_plt.plot.assert_called_once()
+        # TODO assert that color_mode works as expected
+        mock_plt.xlim.assert_called_once_with([0, 256])
 
 
 if __name__ == "__main__":

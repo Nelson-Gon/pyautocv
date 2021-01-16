@@ -25,7 +25,7 @@ Please also update the docs using `sphinx`
 * Run tests
 
 ```shell
-python test.py
+python tests.py
 ```
 * Check coverage
 ```shell
