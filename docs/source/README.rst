@@ -17,8 +17,8 @@
    :alt: Actions
 
 
-.. image:: https://img.shields.io/codecov/c/github/Nelson-Gon/pyautocv/master
-   :target: https://img.shields.io/codecov/c/github/Nelson-Gon/pyautocv/master
+.. image:: https://codecov.io/gh/Nelson-Gon/pyautocv/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/Nelson-Gon/pyautocv?branch=master
    :alt: Codecov
 
 

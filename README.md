@@ -2,7 +2,7 @@
 
 ![Stage](https://www.repostatus.org/badges/latest/active.svg) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3766956.svg)](https://doi.org/10.5281/zenodo.3766956)
 ![Actions](https://github.com/Nelson-Gon/pyautocv/workflows/Test-Package/badge.svg)
-![Codecov](https://img.shields.io/codecov/c/github/Nelson-Gon/pyautocv/master)
+[![Codecov](https://codecov.io/gh/Nelson-Gon/pyautocv/branch/master/graph/badge.svg)](https://codecov.io/gh/Nelson-Gon/pyautocv?branch=master)
 ![Travis Build](https://travis-ci.com/Nelson-Gon/pyautocv.svg?branch=master)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Nelson-Gon/pyautocv/blob/master/LICENSE)
 [![Documentation Status](https://readthedocs.org/projects/pyautocv/badge/?version=latest)](https://pyautocv.readthedocs.io/en/latest/?badge=latest)
