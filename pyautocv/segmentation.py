@@ -200,7 +200,7 @@ def show_images(original_images=None, processed_images=None, cmap="gray", number
 
     custom_titles = custom_titles * len(image_list)
 
-    fig, axes = plt.subplots(nrows=number_of_rows, ncols=int(number_of_columns), figsize=figure_size)
+    fig, axes = plt.subplots(nrows=int(number_of_rows), ncols=int(number_of_columns), figsize=figure_size)
 
     for ind, image in enumerate(image_list):
         axes.ravel()[ind].imshow(image_list[ind], cmap=cmap)
