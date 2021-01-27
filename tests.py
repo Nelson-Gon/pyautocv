@@ -128,7 +128,7 @@ class TestModule(unittest.TestCase):
         # TODO assert that color_mode works as expected
         mock_plt.xlim.assert_called_once_with([0, 256])
 
-    # TODO: Figure out why this only fails as a test. 
+    # TODO: Figure out why this only fails as a test.
     @unittest.expectedFailure
     @mock.patch("pyautocv.segmentation.plt")
     def test_show_images(self, mock_plt):
