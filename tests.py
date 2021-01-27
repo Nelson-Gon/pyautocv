@@ -10,6 +10,7 @@ print("Working in {}".format(os.getcwd()))
 
 use_object = Segmentation("images/cars", "png")
 color_read = use_object.read_images()[0]
+sub_folders_test = use_object.read_images(other_directory="images/cats")
 gray_read = gray_images(use_object.read_images())[0]
 
 
@@ -74,6 +75,8 @@ class TestModule(unittest.TestCase):
         # Test gray color mode
         use_gray = Segmentation("images/dic", image_suffix="tif", color_mode="gray")
         self.assertNotEqual(use_gray.read_images()[1].flat[40], use_gray.detect_edges()[1].flat[40])
+        # Test that if we provide sub-folders we get the expected image length
+        self.assertEqual(len(sub_folders_test), 5)
 
     def test_image_reading(self):
         jpg_png = Segmentation("images/cats", image_suffix="png")
@@ -83,16 +86,6 @@ class TestModule(unittest.TestCase):
         # Should use pil, expect 15
         tif_only = Segmentation("images/dic", image_suffix="tif")
         self.assertEqual(len(tif_only.read_images()), 15)
-
-    # Use mock tests for arguments
-    # TODO Revisit mock of show_images
-    # """
-    # @mock.patch("pyautocv.segmentation.plt")
-    # def test_segmentation(self, mock_plt):
-    #   use_this = Segmentation("images/cats", "jpg")
-    #  show_images(use_this.read_images(), use_this.read_images())
-    # mock_plt.subplots.assert_called_once()
-    # """
 
     def test_resizing(self):
         resized = resize_images(use_object.read_images(), (125, 125))
@@ -134,6 +127,13 @@ class TestModule(unittest.TestCase):
         mock_plt.plot.assert_called_once()
         # TODO assert that color_mode works as expected
         mock_plt.xlim.assert_called_once_with([0, 256])
+
+    # TODO: Figure out why this only fails as a test. 
+    @unittest.expectedFailure
+    @mock.patch("pyautocv.segmentation.plt")
+    def test_show_images(self, mock_plt):
+        show_images(use_object.read_images(), use_object.read_images())
+        mock_plt.subplots.assert_called_once()
 
 
 if __name__ == "__main__":

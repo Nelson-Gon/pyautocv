@@ -52,7 +52,7 @@ class Segmentation(object):
 
     def read_images(self, other_directory=None):
         """
-        :param other_directory: Use if images exist in sub-folders.
+        :param other_directory: Use if images exist in sub-folders or another folder. Only for jpg and png suffixes.
         :return: Returns an n-D array of images.
         """
 
@@ -60,10 +60,12 @@ class Segmentation(object):
             images_list = sorted(glob.glob(self.directory + "/*.tif"))
             return [imread(x, plugin='pil') for x in images_list]
         else:
-            path_to_read = self.directory + "/*.jpg" + pathsep + self.directory + "/*.png"
-            if other_directory is not None:
-                path_to_read = self.directory + "/*.jpg" + pathsep + other_directory + "/*.png"
-            return list(imread_collection(path_to_read))
+            read_path = self.directory + "/*.jpg" + pathsep + self.directory + "/*.png"
+            if other_directory is None:
+                pass
+            else:
+                read_path = read_path + pathsep + other_directory + "/*.png" + pathsep + other_directory + "/*.jpg"
+            return list(imread_collection(read_path))
 
     def smooth(self, mask="box", kernel_shape=(5, 5), **kwargs):
         """
