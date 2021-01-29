@@ -2,6 +2,7 @@
 pyautocv's change log
 =====================
 
+**Release 0.3.0**
 **pyautocv 0.2.2**
 
 
