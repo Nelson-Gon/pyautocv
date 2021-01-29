@@ -2,7 +2,7 @@
 
 **pyautocv 0.2.2**
 
-- Initial tests
+- Extended tests and coverage
 
 - Initial support for action based script run.
 

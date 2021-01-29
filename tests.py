@@ -3,7 +3,7 @@ import unittest
 from pyautocv.segmentation import *
 import os
 from unittest import mock
-import matplotlib
+
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 print("Working in {}".format(os.getcwd()))

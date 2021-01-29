@@ -6,7 +6,7 @@ pyautocv's change log
 
 
 * 
-  Initial tests
+  Extended tests and coverage
 
 * 
   Initial support for action based script run.

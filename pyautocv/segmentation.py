@@ -204,8 +204,10 @@ def show_images(original_images=None, processed_images=None, cmap="gray", number
 
     fig, axes = plt.subplots(nrows=int(number_of_rows), ncols=int(number_of_columns), figsize=figure_size)
 
+    print(f"Showing {number} image(s)")
+
     for ind, image in enumerate(image_list):
-        axes.ravel()[ind].imshow(image_list[ind], cmap=cmap)
+        axes.ravel()[ind].imshow(image, cmap=cmap)
         axes.ravel()[ind].set_title(f'{custom_titles[ind]}')
         axes.ravel()[ind].set_axis_off()
 
