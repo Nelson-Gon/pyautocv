@@ -38,6 +38,19 @@ coverage report -m
 ```
 bash scripts/mkdocs.sh
 ```
+Releasing
+
+```
+bash scripts/release.sh
+
+```
+
+The above does the following:
+
+ - Makes `dist` with `python setup.py sdist` at the very minimum. Ensure everything necessary is included in
+ `Manifest.in`. 
+ - Uploads `dist` to test.pypi.org with `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
+ - If everything looks good, asks you to upload to pypi.org with `twine upload dist/*`
 
 Please note that the 'pyautocv' project is released with a
 [Contributor Code of Conduct](https://github.com/Nelson-Gon/pyautocv/.github/CODE_OF_CONDUCT.md).

@@ -341,14 +341,14 @@ Nelson Gonzabato(2020) pyautocv: (Semi) Automated Image Processing, https://gith
 
 .. code-block:: shell
 
-   @misc {Gonzabato2020,
+   @misc {Gonzabato2021,
    author = {Gonzabato, N},
    title = {pyautocv: (Semi) Automated Image Processing},
-   year = {2020},
+   year = {2021},
    publisher = {GitHub},
    journal = {GitHub repository},
    howpublished = {\url{https://github.com/Nelson-Gon/pyautocv}},
-   commit = {2a5a8c48fd91c719d526ed013b298d560df9b73f}
+   commit = {7fe2e0f7894e8be4588a22758e8097c247cd1cd9}
 
 ..
 
