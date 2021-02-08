@@ -2,7 +2,7 @@
 Contributing to pyautocv
 ========================
 
-This document provides guidelines for contributions to pyautocv.
+This document provides guidelines for contributions to ``pyautocv``.
 
 **Kinds of contribution**
 
@@ -29,18 +29,6 @@ Please also update the docs using ``sphinx``
 * 
   Make changes and ensure that builds are passing the necessary checks on Travis.
 
-* Run tests
-
-.. code-block:: shell
-
-   python tests.py
-
-
-* Check coverage
-  .. code-block:: shell
-
-     coverage report -m
-
 * 
   Update ``changelog.md`` to reflect the changes made.
 
@@ -49,11 +37,12 @@ Please also update the docs using ``sphinx``
 
 .. code-block::
 
-   bash scripts/mkdocs.sh
+   bash scripts/mkdocs.sh #projectnamehere
 
-Releasing
 
-.. code-block::
+* Releasing
+
+.. code-block:: shell
 
    bash scripts/release.sh
 
@@ -66,7 +55,7 @@ The above does the following:
 * If everything looks good, asks you to upload to pypi.org with ``twine upload dist/*``
 
 Please note that the 'pyautocv' project is released with a
-`Contributor Code of Conduct <https://github.com/Nelson-Gon/pyautocv/.github/CODE_OF_CONDUCT.md>`_.
+`Contributor Code of Conduct <https://github/com/Nelson-Gon/pyautocv/.github/CODE_OF_CONDUCT.md>`_.
 By contributing to this project, you agree to abide by its terms.
 
 `See also <https://samnicholls.net/2016/06/15/how-to-sphinx-readthedocs/>`_ for a guide on Sphinx documentation.
