@@ -5,12 +5,14 @@ import os
 from unittest import mock
 
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-print("Working in {}".format(os.getcwd()))
+dir_path = os.path.dirname(os.path.abspath(__file__))
+cats = os.path.join(dir_path, "images/cats")
+cars = os.path.join(dir_path, "images/cars")
+dic = os.path.join(dir_path, "images/dic")
 
-use_object = Segmentation("images/cars", "png")
+use_object = Segmentation(cats, "png")
 color_read = use_object.read_images()[0]
-sub_folders_test = use_object.read_images(other_directory="images/cats")
+sub_folders_test = use_object.read_images(other_directory=cats)
 gray_read = gray_images(use_object.read_images())[0]
 
 
@@ -28,7 +30,7 @@ class TestModule(unittest.TestCase):
 
     def test_errors_are_thrown(self):
         with self.assertRaises(ValueError) as err:
-            Segmentation("images/cars", "nope")
+            Segmentation(cars, "nope")
         # Check that reading images failed if we change the target format
         self.assertEqual(str(err.exception), "Only png, jpg, and tif are supported")
 
@@ -53,7 +55,7 @@ class TestModule(unittest.TestCase):
         self.assertEqual(str(err.exception), "Expected a tuple not int")
 
         # Expect a list if all works as expected
-        smoothed = Segmentation("images/dic", "tif", color_mode="gray").smooth(mask="median")
+        smoothed = Segmentation(dic, "tif", color_mode="gray").smooth(mask="median")
         self.assertIsInstance(smoothed, list)
 
     def test_thresholding(self):
@@ -73,18 +75,18 @@ class TestModule(unittest.TestCase):
 
         self.assertNotEqual(use_object.read_images()[1].flat[40], use_object.detect_edges()[1].flat[40])
         # Test gray color mode
-        use_gray = Segmentation("images/dic", image_suffix="tif", color_mode="gray")
+        use_gray = Segmentation(dic, image_suffix="tif", color_mode="gray")
         self.assertNotEqual(use_gray.read_images()[1].flat[40], use_gray.detect_edges()[1].flat[40])
         # Test that if we provide sub-folders we get the expected image length
-        self.assertEqual(len(sub_folders_test), 5)
+        self.assertEqual(len(sub_folders_test), 6)
 
     def test_image_reading(self):
-        jpg_png = Segmentation("images/cats", image_suffix="png")
+        jpg_png = Segmentation(cats, image_suffix="png")
         # Expect length 3 since we have two jpg and one png in images/car
         self.assertEqual(len(jpg_png.read_images()), 3)
 
         # Should use pil, expect 15
-        tif_only = Segmentation("images/dic", image_suffix="tif")
+        tif_only = Segmentation(dic, image_suffix="tif")
         self.assertEqual(len(tif_only.read_images()), 15)
 
     def test_resizing(self):
@@ -118,7 +120,7 @@ class TestModule(unittest.TestCase):
             stack_images(use_object.read_images(), use_object.threshold_images(),
                          direction="gibberish")
         self.assertEqual(str(err.exception), "direction should be one of horizontal, vertical, h, v not gibberish")
-        self.assertEqual(len(stack_images(use_object.read_images(), use_object.read_images())), 2)
+        self.assertEqual(len(stack_images(use_object.read_images(), use_object.read_images())), 3)
 
     @mock.patch("pyautocv.segmentation.plt")
     def test_hist_plots(self, mock_plt):
