@@ -48,9 +48,19 @@
    :alt: PyPI license
 
 
-.. image:: https://img.shields.io/pypi/dm/pyautocv.svg
-   :target: https://pypi.python.org/pypi/pyautocv/
-   :alt: PyPI Downloads Month
+.. image:: https://pepy.tech/badge/pyautocv
+   :target: https://pepy.tech/project/pyautocv
+   :alt: Total Downloads
+
+
+.. image:: https://pepy.tech/badge/pyautocv/month
+   :target: https://pepy.tech/project/pyautocv
+   :alt: Monthly Downloads
+
+
+.. image:: https://pepy.tech/badge/pyautocv/week
+   :target: https://pepy.tech/project/pyautocv
+   :alt: Weekly Downloads
 
 
 .. image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
