@@ -1,7 +1,8 @@
 from setuptools import setup, find_packages
-
+from pyautocv.version import __version__
 setup(name='pyautocv',
-      version="0.3.0".encode("ascii", "ignore").decode('ascii'),
+      version=__version__,
+      scripts="scripts",
       description='(Semi) Automated Image Processing',
       url='http://www.github.com/Nelson-Gon/pyautocv',
       author='Nelson Gonzabato',
@@ -10,7 +11,6 @@ setup(name='pyautocv',
       keywords="image-data image-analysis computer-vision image-processing",
       packages=find_packages(),
       long_description=open('README.md', encoding="UTF-8").read(),
-      scripts=['examples/example.py'],
       long_description_content_type='text/markdown',
       install_requires=['scikit-image', 'scipy', 'matplotlib', 'opencv-python'],
       zip_safe=False,

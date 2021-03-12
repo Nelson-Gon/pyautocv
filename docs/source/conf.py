@@ -15,15 +15,16 @@ import os
 
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('../../'))
+from pyautocv.version import __version__
 
 # -- Project information -----------------------------------------------------
 
 project = 'pyautocv'
-copyright = '2020, Nelson Gonzabato'
+copyright = '2021, Nelson Gonzabato'
 author = 'Nelson Gonzabato'
 
 # The full version, including alpha/beta/rc tags
-release = '0.2.0'
+release = __version__
 
 source_suffix = ['.rst', '.md']
 
