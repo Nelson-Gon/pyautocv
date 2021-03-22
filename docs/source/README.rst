@@ -118,10 +118,7 @@ To run the script at the  commandline, we can do the following
 .. code-block:: shell
 
 
-   # Ensure you have your paths set well
-   # This assumes that we are inside the package's top level directory
-
-    python scripts/processing.py -d "images/cats" -s "png" -m "binary_inverse" -o "threshold" -mt 250 -t 50
+   python -m pyautocv -d "images/cats" -s "png" -m "thresh_to_zero" -o "threshold" -mt 200 -t 100
 
 Sample Result
 
@@ -136,7 +133,7 @@ To perform edge detection
 .. code-block:: shell
 
 
-   python scripts/processing.py -d "images/biology" -s "jpg" -o "detect_edges" -m "sobel_vertical" -k 3
+   python -m pyautocv -d "images/biology" -s "jpg" -o "detect_edges" -m "sobel_vertical" -k 3
 
 
 .. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bioscript.png?raw=true
@@ -148,7 +145,7 @@ To smooth images
 
 .. code-block:: shell
 
-   python scripts/processing.py -d "images/houses" -s "jpg" -o "smooth" -m "gaussian" -k 5 5 --sigma 0.7
+   python -m pyautocv -d "images/houses" -s "jpg" -o "smooth" -m "gaussian" -k 5 5 --sigma 0.7
 
 
 .. image:: https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_smooth.png?raw=true
@@ -161,7 +158,7 @@ To get help
 .. code-block:: shell
 
 
-   python scripts/processing.py -h
+   python -m pyautocv -h
 
 Further exploration is left to the user.
 
@@ -176,7 +173,7 @@ To grey an image directory
 
 .. code-block:: python
 
-   from pyautocv.segmentation import *
+   from pyautocv.segmentation import Segmentation, gray_images, show_images
 
    images_list=Segmentation("images/cats")
    show_images(gray_images(images_list.read_images()), images_list.read_images(), number=2)
@@ -195,8 +192,6 @@ follows
 
 .. code-block:: python
 
-
-   from pyautocv.segmentation import *
 
    images_list=Segmentation("images/cats")
    show_images(images_list.smooth(), images_list.read_images(),number=2)
@@ -347,7 +342,7 @@ shown in ``sources.md``. If you feel attribution was not made, please file an is
 
 **Citation**
 
-Nelson Gonzabato(2020) pyautocv: (Semi) Automated Image Processing, https://github.com/Nelson-Gon/pyautocv.
+Nelson Gonzabato(2021) pyautocv: (Semi) Automated Image Processing, https://github.com/Nelson-Gon/pyautocv.
 
 .. code-block:: shell
 

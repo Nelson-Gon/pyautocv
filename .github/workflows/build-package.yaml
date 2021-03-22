@@ -31,7 +31,8 @@ jobs:
       run: python3 setup.py install
 
     - name: Test script
-      run: python scripts/processing.py -d "images/cats" -s "png" -m "binary_inverse" -o "threshold" -mt 250 -t 50
+      run: python -m pyautocv -d "images/houses" -s "jpg" -o "smooth" -m "gaussian" -k 5 5 --sigma 0.7
+
 
     - name: Run Tests
       run: python tests.py

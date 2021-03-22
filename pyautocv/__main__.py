@@ -1,5 +1,5 @@
-if __name__ == "__main__":
-    from pyautocv.segmentation import *
+def main():
+    from pyautocv.segmentation import Segmentation, show_images, plt
     import argparse
 
     arg_parser = argparse.ArgumentParser()
@@ -49,3 +49,7 @@ if __name__ == "__main__":
 
     show_images(init_call.read_images(), other_plot)
     plt.show()
+
+
+if __name__ == "__main__":
+    main()

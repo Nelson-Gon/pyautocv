@@ -56,11 +56,7 @@ To run the script at the  commandline, we can do the following
 
 ```shell
 
-# Ensure you have your paths set well
-# This assumes that we are inside the package's top level directory
-
- python scripts/processing.py -d "images/cats" -s "png" -m "binary_inverse" -o "threshold" -mt 250 -t 50
-
+python -m pyautocv -d "images/cats" -s "png" -m "thresh_to_zero" -o "threshold" -mt 200 -t 100
 
 ```
 
@@ -73,7 +69,7 @@ To perform edge detection
 
 ```shell
 
-python scripts/processing.py -d "images/biology" -s "jpg" -o "detect_edges" -m "sobel_vertical" -k 3
+python -m pyautocv -d "images/biology" -s "jpg" -o "detect_edges" -m "sobel_vertical" -k 3
 ```
 
 ![Bio Script](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/bioscript.png?raw=true)
@@ -82,7 +78,7 @@ python scripts/processing.py -d "images/biology" -s "jpg" -o "detect_edges" -m "
 To smooth images
 
 ```shell
-python scripts/processing.py -d "images/houses" -s "jpg" -o "smooth" -m "gaussian" -k 5 5 --sigma 0.7
+python -m pyautocv -d "images/houses" -s "jpg" -o "smooth" -m "gaussian" -k 5 5 --sigma 0.7
 ```
 
 ![Houses Smooth](https://github.com/Nelson-Gon/pyautocv/blob/master/sample_results/houses_smooth.png?raw=true)
@@ -91,7 +87,7 @@ To get help
 
 ```shell
 
-python scripts/processing.py -h 
+python -m pyautocv -h 
 
 
 
@@ -108,7 +104,7 @@ The following section shows how to use the more flexible class/methods approach
 To grey an image directory
 
 ```python
-from pyautocv.segmentation import *
+from pyautocv.segmentation import Segmentation, gray_images, show_images
 
 images_list=Segmentation("images/cats")
 show_images(gray_images(images_list.read_images()), images_list.read_images(), number=2)
@@ -122,8 +118,6 @@ To smooth a directory of images, we can use `EdgeDetection`'s `smooth` method as
 follows
 
 ```python
-
-from pyautocv.segmentation import *
 
 images_list=Segmentation("images/cats")
 show_images(images_list.smooth(), images_list.read_images(),number=2)
@@ -254,7 +248,7 @@ shown in `sources.md`. If you feel attribution was not made, please file an issu
 
 **Citation**
 
-Nelson Gonzabato(2020) pyautocv: (Semi) Automated Image Processing, https://github.com/Nelson-Gon/pyautocv.
+Nelson Gonzabato(2021) pyautocv: (Semi) Automated Image Processing, https://github.com/Nelson-Gon/pyautocv.
 
 
 ```shell

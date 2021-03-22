@@ -2,8 +2,12 @@
 pyautocv's change log
 =====================
 
+**Version 0.3.1**
+
+
+* Package can now be run at the command line or Terminal via ``python -m pyautocv``. 
+
 **Release 0.3.0**
-**pyautocv 0.2.2**
 
 
 * 
