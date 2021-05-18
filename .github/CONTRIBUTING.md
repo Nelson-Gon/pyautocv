@@ -30,14 +30,15 @@ Please also update the docs using `sphinx`
 
 
 ```
-bash scripts/mkdocs.sh #projectnamehere
+bash scripts/mkdocs.sh 
 ```
 
+**Commit messages**
 
-* Releasing
+Please write commit messages in the format "Extends functionality" instead of "Extended functionality".
 
-Before releasing, please ensure that you have updated version in `version.py` and that the release on GitHub follows
-the structure `v#versionhere` e.g. `v0.2.1`.
+
+**Releasing**
 
 ```shell
 bash scripts/release.sh
