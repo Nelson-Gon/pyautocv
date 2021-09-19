@@ -5,7 +5,6 @@
 ![Stage](https://www.repostatus.org/badges/latest/active.svg) 
 ![Actions](https://github.com/Nelson-Gon/pyautocv/workflows/Test-Package/badge.svg)
 [![Codecov](https://codecov.io/gh/Nelson-Gon/pyautocv/branch/master/graph/badge.svg)](https://codecov.io/gh/Nelson-Gon/pyautocv?branch=master)
-![Travis Build](https://travis-ci.com/Nelson-Gon/pyautocv.svg?branch=master)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Nelson-Gon/pyautocv/blob/master/LICENSE)
 [![Documentation Status](https://readthedocs.org/projects/pyautocv/badge/?version=latest)](https://pyautocv.readthedocs.io/en/latest/?badge=latest)
 [![PyPI license](https://img.shields.io/pypi/l/pyautocv.svg)](https://pypi.python.org/pypi/pyautocv/)

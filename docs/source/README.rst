@@ -28,11 +28,6 @@
    :alt: Codecov
 
 
-.. image:: https://travis-ci.com/Nelson-Gon/pyautocv.svg?branch=master
-   :target: https://travis-ci.com/Nelson-Gon/pyautocv.svg?branch=master
-   :alt: Travis Build
-
-
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
    :target: https://github.com/Nelson-Gon/pyautocv/blob/master/LICENSE
    :alt: license
