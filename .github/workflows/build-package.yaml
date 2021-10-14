@@ -39,7 +39,12 @@ jobs:
 
     - name: Show coverage on the command line
       run: coverage run tests.py && coverage report -m
-
+   
     - name: Upload reports to codecov
-      run: bash <(curl -s https://codecov.io/bash)
+      env:
+        CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
+      run: |
+       curl -Os https://uploader.codecov.io/latest/linux/codecov
+       chmod +x codecov
+       ./codecov -t ${CODECOV_TOKEN} -R /home/runner/work/pyautocv
 
