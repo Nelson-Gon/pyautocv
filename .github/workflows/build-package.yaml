@@ -38,7 +38,7 @@ jobs:
       run: python tests.py
 
     - name: Show coverage on the command line
-      run: coverage run tests.py && coverage report -im && coverage xml
+      run: coverage run tests.py && coverage report -im && coverage xml -i 
    
     - name: Upload reports to codecov
       env:
