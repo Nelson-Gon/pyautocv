@@ -2,6 +2,10 @@
 
 **Version 0.3.1**
 
+* Due to changes in `matplotlib`'s requirements, we now require python greater than or equal to 3.7. 
+
+* We now use `pytest` for testing. This is mostly a developer focused issue.
+
 * Package can now be run at the command line or Terminal via `python -m pyautocv`. 
 
 **Release 0.3.0**

@@ -5,8 +5,8 @@
 # from the environment for the first two.
 SPHINXOPTS    ?=
 SPHINXBUILD   ?= sphinx-build
-SOURCEDIR     = source
-BUILDDIR      = build
+SOURCEDIR     = docs/source
+BUILDDIR      = docs/build
 PDFBUILDDIR   = /tmp
 PDF           = ../docs_pdf.pdf
 
