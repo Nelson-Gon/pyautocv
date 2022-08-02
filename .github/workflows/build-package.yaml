@@ -28,7 +28,7 @@ jobs:
        pip install -r requirements.txt
 
     - name: Install package
-      run: python3 setup.py install
+      run: python3 -m pip install . 
 
     - name: Test script
       run: python -m pyautocv -d "images/houses" -s "jpg" -o "smooth" -m "gaussian" -k 5 5 --sigma 0.7
